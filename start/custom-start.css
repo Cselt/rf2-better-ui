@@ -1,0 +1,7 @@
+ol.tabnavigation.bottom {
+    z-index: 0;
+}
+
+main.largepanels {
+    z-index: 1;
+}
