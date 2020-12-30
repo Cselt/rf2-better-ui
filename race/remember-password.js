@@ -18,7 +18,8 @@ $(document).ready(function () {
       process();
     }
 
-    if ($("section#multiplayer p")[1].textContent === "No favorite servers found.") {
+    const noFavoritePElement = $("section#multiplayer p")[1];
+    if (noFavoritePElement && noFavoritePElement.textContent === "No favorite servers found.") {
       addLog("No favorite servers found.");
       clearInterval(interval);
     }
