@@ -19,3 +19,8 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - add left and right arrow navigation to the race screen
 - add left and right arrow navigation to the garage screen
 - fix too big tiles on garage screen
+
+
+Before                                                      |  After
+:----------------------------------------------------------:|:----------------------------------------------------------:
+![alt text](garage/garage_before.png "Garage view before")  |  ![alt text](garage/garage_after.png "Garage view after")
