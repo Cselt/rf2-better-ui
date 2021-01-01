@@ -23,4 +23,4 @@ In this repository you can find small modifications for the new rFactor 2 UI
 
 Before                                                      |  After
 :----------------------------------------------------------:|:----------------------------------------------------------:
-![alt text](garage/garage_before.png "Garage view before")  |  ![alt text](garage/garage_after.png "Garage view after")
+![alt text](scripts/garage/garage_before.png "Garage view before")  |  ![alt text](scripts/garage/garage_after.png "Garage view after")
