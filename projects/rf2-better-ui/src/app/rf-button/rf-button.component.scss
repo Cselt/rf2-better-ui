@@ -1,0 +1,90 @@
+@use "projects/rf2-better-ui/src/scss/common-styles" as common;
+
+.primary {
+  background: #000000;
+}
+
+.danger {
+  background: common.$colorRed;
+}
+
+.rfButton {
+  @include common.skewElement();
+
+  outline: 1px solid transparent;
+  color: #ffff;
+
+  border: 0;
+  padding: .2rem 1.5rem .2rem;
+  text-transform: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-box-shadow: .25rem .15rem .35rem rgba(0, 0, 0, .5);
+    box-shadow: .25rem .15rem .35rem rgba(0, 0, 0, .5);
+    opacity: 0
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: common.$colorWhite;
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s, -webkit-transform .2s
+  }
+
+  &:hover {
+    transition: background .4s, color .2s;
+    background: common.$colorWhite;
+    color: #000000;
+
+    &.danger {
+      color: common.$colorRed;
+    }
+
+    &:before {
+      opacity: 1;
+      -webkit-transition: opacity .4s;
+      transition: opacity .4s;
+    }
+
+    &:after {
+      -webkit-transform: scale(1, 1);
+      transform: scale(1, 1);
+      outline: 1px solid transparent;
+    }
+  }
+
+  &:active {
+    -webkit-transition: -webkit-transform linear .1s;
+    transition: -webkit-transform linear .1s;
+    transition: transform linear .1s, -webkit-transform linear .1s;
+    -webkit-transform: scale(.9, .9) skewX(- common.$skew);
+    transform: scale(.9, .9) skewX(- common.$skew)
+  }
+
+  .rfButtonText {
+    display: inline-block;
+    transform: skewX(common.$skew) translate3d(0, 0, 0);
+    -webkit-transform: skewX(common.$skew) translate3d(0,0,0);
+    font-size: 1rem;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: lowercase;
+  }
+}

@@ -12,7 +12,7 @@
       },
       "root": "projects/rf2-better-ui",
       "sourceRoot": "projects/rf2-better-ui/src",
-      "prefix": "app",
+      "prefix": "rf",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

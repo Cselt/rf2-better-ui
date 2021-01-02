@@ -1,0 +1,28 @@
+@use "vars";
+
+@mixin disabledState($bw:false) {
+  opacity: vars.$opacityDisabled;
+  pointer-events: none;
+  cursor: default;
+
+  @if ($bw == true) {
+    -webkit-filter: grayScale(100%);
+    filter: grayScale(100%);
+  }
+}
+
+@mixin skewX($deg) {
+  -webkit-transform: skewX($deg);
+  -moz-transform: skewX($deg);
+  -ms-transform: skewX($deg);
+  transform: skewX($deg);
+}
+
+@mixin skewElement($toRight: true) {
+  @if $toRight {
+    @include skewX(- vars.$skew);
+  } @else {
+    @include skewX(vars.$skew);
+  }
+}
+

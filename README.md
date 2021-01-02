@@ -24,3 +24,8 @@ In this repository you can find small modifications for the new rFactor 2 UI
 Before                                                      |  After
 :----------------------------------------------------------:|:----------------------------------------------------------:
 ![alt text](scripts/garage/garage_before.png "Garage view before")  |  ![alt text](scripts/garage/garage_after.png "Garage view after")
+
+
+Swagger UI location:
+https://amdatu.org/components/amdatu-web/
+http://localhost:5396/swagger/index.html
