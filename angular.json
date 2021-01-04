@@ -28,7 +28,11 @@
               "projects/rf2-better-ui/src/assets"
             ],
             "styles": [
-              "projects/rf2-better-ui/src/styles.scss"
+              "projects/rf2-better-ui/src/styles.scss",
+              {
+                "input": "projects/rf2-better-ui/src/scss/custom-event.scss",
+                "bundleName": "custom-event"
+              }
             ],
             "scripts": []
           },
@@ -65,7 +69,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rf2-better-ui:build"
+            "browserTarget": "rf2-better-ui:build",
+            "proxyConfig": "projects/rf2-better-ui/src/proxy.conf.json"
           },
           "configurations": {
             "production": {

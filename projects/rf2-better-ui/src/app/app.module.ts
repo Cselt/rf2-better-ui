@@ -1,24 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { createCustomElement } from '@angular/elements';
 import { RfButtonComponent } from './rf-button/rf-button.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   declarations: [
-    RfButtonComponent
+    RfButtonComponent,
+    ChatComponent
   ],
   providers: []
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {
-    const webComponent = createCustomElement(RfButtonComponent, {injector});
-    customElements.define("rf-button", webComponent);
+    const buttonWebComponent = createCustomElement(RfButtonComponent, {injector});
+    customElements.define("rf-button", buttonWebComponent);
+
+    const chatWebComponent = createCustomElement(ChatComponent, {injector});
+    customElements.define("rf-chat", chatWebComponent);
   }
 
-  ngDoBootstrap(appRef: ApplicationRef) {
+  ngDoBootstrap(appRef: ApplicationRef): void {
   }
 }

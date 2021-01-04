@@ -1,0 +1,15 @@
+html {
+  .templ-col {
+    margin: 0;
+  }
+}
+
+.tab-camera {
+  .camera-wrapper {
+    flex: 1;
+
+    .camera-controls {
+      flex: 0 0 auto;
+    }
+  }
+}
