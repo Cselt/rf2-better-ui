@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build.scripts": "tsc --project scripts/tsconfig.json",
+    "build.all": "ts-node  --project utils/tsconfig.json utils/builder.ts"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/scripts",
+    "types": [
+      "node"
+    ],
+    "sourceMap": false,
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "module": "CommonJS",
+  },
+  "files": [
+    "builder.ts"
+  ]
+}

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { createCustomElement } from '@angular/elements';
 import { RfButtonComponent } from './rf-button/rf-button.component';
 import { ChatComponent } from './chat/chat.component';
+import { BetterUiComponent } from './better-ui/better-ui.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ChatComponent } from './chat/chat.component';
   ],
   declarations: [
     RfButtonComponent,
-    ChatComponent
+    ChatComponent,
+    BetterUiComponent
   ],
   providers: []
 })
@@ -24,6 +26,9 @@ export class AppModule implements DoBootstrap {
 
     const chatWebComponent = createCustomElement(ChatComponent, {injector});
     customElements.define("rf-chat", chatWebComponent);
+
+    const betterUiWebComponent = createCustomElement(BetterUiComponent, {injector});
+    customElements.define("rf-better-ui", betterUiWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {
