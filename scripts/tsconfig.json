@@ -6,6 +6,7 @@
     "sourceMap": false
   },
   "files": [
-    "better-ui.ts"
+    "better-ui.ts",
+    "better-ui-debug.ts"
   ]
 }
