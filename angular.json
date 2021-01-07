@@ -30,8 +30,8 @@
             "styles": [
               "projects/rf2-better-ui/src/styles.scss",
               {
-                "input": "projects/rf2-better-ui/src/scss/custom-event.scss",
-                "bundleName": "custom-event"
+                "input": "projects/rf2-better-ui/src/scss/rf-pages/event.scss",
+                "bundleName": "event"
               }
             ],
             "scripts": []
