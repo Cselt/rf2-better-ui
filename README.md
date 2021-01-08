@@ -20,6 +20,8 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - add left and right arrow navigation to the garage screen
 - fix too big tiles on garage screen
 - add permanent chat window below camera view
+- highlight current track in setup popup
+- disable opacity change animation
 
 # How to patch UI files
 - Compile Better ui: `npm run build.all`
