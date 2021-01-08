@@ -6,6 +6,13 @@ function debugMain(): void {
     document.getElementsByTagName('body')[0].appendChild(script);
   }
 
+  function addLinkTag(href: string): void {
+    const link: HTMLLinkElement = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
+
   function waitForElm(selector): Promise<any> {
     return new Promise(resolve => {
       if (document.querySelector(selector)) {
@@ -28,9 +35,9 @@ function debugMain(): void {
 
   addScriptTag('http://localhost:4200/runtime.js');
   addScriptTag('http://localhost:4200/polyfills.js');
-  addScriptTag('http://localhost:4200/styles.js');
   addScriptTag('http://localhost:4200/vendor.js');
   addScriptTag('http://localhost:4200/main.js');
+  addLinkTag('http://localhost:4200/styles.css');
 
   waitForElm('ui-view div').then(() => {
     setTimeout(() => {

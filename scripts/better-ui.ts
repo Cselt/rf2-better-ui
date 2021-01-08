@@ -6,9 +6,17 @@ function main(): void {
     document.getElementsByTagName('body')[0].appendChild(script);
   }
 
+  function addLinkTag(href: string): void {
+    const link: HTMLLinkElement = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
+
   addScriptTag('../framework/better-ui/runtime.<runtime>.js');
   addScriptTag('../framework/better-ui/polyfills.<polyfills>.js');
   addScriptTag('../framework/better-ui/main.<main>.js');
+  addLinkTag('../framework/better-ui/styles.<styles>.css');
 
   waitForElm('ui-view div').then(() => {
     setTimeout(() => {

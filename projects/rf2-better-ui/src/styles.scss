@@ -1,31 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use "./scss/vars";
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 20px;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-html, body, div, p, form, fieldset, legend, label,
-h1, h2, h3, h4, h5, h6, ol, ul {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: vars.$colorBg;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: Ubuntu, sans-serf, serif;
+.thumbnailwrapper {
+  .thumbnails {
+    .thumbnail {
+      width: 8rem !important;
+    }
+  }
 }

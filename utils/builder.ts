@@ -11,10 +11,11 @@ execSync('npm run build.scripts', {stdio: 'inherit'});
 enum FileTypes {
   main = 'main',
   polyFills = 'polyfills',
-  runtime = 'runtime'
+  runtime = 'runtime',
+  styles = 'styles'
 }
 
-const interestedFiles: string[] = ['main', 'polyfills', 'runtime'];
+const interestedFiles: string[] = ['main', 'polyfills', 'runtime', 'styles'];
 
 const hashes: { [key: string]: string } = {};
 
@@ -33,6 +34,10 @@ readdirSync('./dist/rf2-better-ui').forEach((file: string) => {
       hashes[FileTypes.runtime] = splits[1];
       break;
 
+    case FileTypes.styles:
+      hashes[FileTypes.styles] = splits[1];
+      break;
+
     default:
       // Delete unnecessary file
       unlinkSync(join('./dist/rf2-better-ui', file));
@@ -47,6 +52,7 @@ Object.values(FileTypes).forEach((value: string) => {
   betterUi = betterUi.replace(`<${FileTypes.main}>`, hashes[FileTypes.main]);
   betterUi = betterUi.replace(`<${FileTypes.runtime}>`, hashes[FileTypes.runtime]);
   betterUi = betterUi.replace(`<${FileTypes.polyFills}>`, hashes[FileTypes.polyFills]);
+  betterUi = betterUi.replace(`<${FileTypes.styles}>`, hashes[FileTypes.styles]);
 });
 
 writeFileSync("./dist/scripts/better-ui.js", betterUi, {encoding: 'utf8'});
