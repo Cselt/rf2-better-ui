@@ -7,6 +7,7 @@ import { RfButtonComponent } from './rf-button/rf-button.component';
 import { ChatComponent } from './chat/chat.component';
 import { BetterUiComponent } from './better-ui/better-ui.component';
 import { StartHandlerComponent } from './start-handler/start-handler.component';
+import { RaceHandlerComponent } from './race-handler/race-handler.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { StartHandlerComponent } from './start-handler/start-handler.component';
     RfButtonComponent,
     ChatComponent,
     BetterUiComponent,
-    StartHandlerComponent
+    StartHandlerComponent,
+    RaceHandlerComponent
   ],
   providers: []
 })
@@ -34,6 +36,9 @@ export class AppModule implements DoBootstrap {
 
     const startHandlerWebComponent = createCustomElement(StartHandlerComponent, {injector});
     customElements.define("rf-start-handler", startHandlerWebComponent);
+
+    const raceHandlerWebComponent = createCustomElement(RaceHandlerComponent, {injector});
+    customElements.define("rf-race-handler", raceHandlerWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {

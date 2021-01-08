@@ -26,6 +26,11 @@ export class BetterUiComponent implements OnInit {
         const startHandler: HTMLElement = document.createElement('rf-start-handler');
         document.getElementsByTagName('body')[0].prepend(startHandler);
         break;
+
+      case '/race/index.html':
+        const raceHandler: HTMLElement = document.createElement('rf-race-handler');
+        document.getElementsByTagName('body')[0].prepend(raceHandler);
+        break;
     }
   }
 
