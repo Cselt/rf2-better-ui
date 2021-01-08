@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Highlight current track in setup popup
+- Disable opacity change animation
 
 ### Changed
 - Removed jQuery scripts and started to use Angular to manipulate with DOM
