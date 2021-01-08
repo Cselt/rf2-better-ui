@@ -2,26 +2,24 @@ import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/cor
 import { arrowNavigation } from '../utils/utils';
 
 @Component({
-  selector: 'rf-start-handler',
+  selector: 'rf-garage-handler',
   template: '',
-  styleUrls: ['./start-handler.component.scss'],
+  styleUrls: ['./garage-handler.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StartHandlerComponent implements OnInit {
+export class GarageHandlerComponent implements OnInit {
 
   private listItems: NodeListOf<HTMLLIElement>;
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
-    return arrowNavigation(event, this.listItems);
+    return arrowNavigation(event, this.listItems, "main section div.selected");
   }
 
-  constructor() {
-    console.log('Start handler activated');
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
+    this.listItems = document.querySelectorAll('main section div.thumbnail');
   }
 
 }
