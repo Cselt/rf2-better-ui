@@ -41,6 +41,11 @@ export class BetterUiComponent implements OnInit {
         const eventHandler: HTMLElement = document.createElement('rf-event-handler');
         document.getElementsByTagName('body')[0].prepend(eventHandler);
         break;
+
+      case '/sessions/index.html':
+        const sessionsHandler: HTMLElement = document.createElement('rf-sessions-handler');
+        document.getElementsByTagName('body')[0].prepend(sessionsHandler);
+        break;
     }
   }
 

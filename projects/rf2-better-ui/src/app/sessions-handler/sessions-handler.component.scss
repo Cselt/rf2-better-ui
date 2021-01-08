@@ -1,0 +1,14 @@
+section {
+  right-section {
+    div.opponent-filter {
+      ul {
+        li {
+          &.selected {
+            font-style: italic;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
