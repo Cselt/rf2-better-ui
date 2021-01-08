@@ -9,6 +9,7 @@ import { BetterUiComponent } from './better-ui/better-ui.component';
 import { StartHandlerComponent } from './start-handler/start-handler.component';
 import { RaceHandlerComponent } from './race-handler/race-handler.component';
 import { GarageHandlerComponent } from './garage-handler/garage-handler.component';
+import { EventHandlerComponent } from './event-handler/event-handler.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { GarageHandlerComponent } from './garage-handler/garage-handler.componen
     BetterUiComponent,
     StartHandlerComponent,
     RaceHandlerComponent,
-    GarageHandlerComponent
+    GarageHandlerComponent,
+    EventHandlerComponent
   ],
   providers: []
 })
@@ -44,6 +46,9 @@ export class AppModule implements DoBootstrap {
 
     const garageHandlerWebComponent = createCustomElement(GarageHandlerComponent, {injector});
     customElements.define("rf-garage-handler", garageHandlerWebComponent);
+
+    const eventHandlerWebComponent = createCustomElement(EventHandlerComponent, {injector});
+    customElements.define("rf-event-handler", eventHandlerWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {

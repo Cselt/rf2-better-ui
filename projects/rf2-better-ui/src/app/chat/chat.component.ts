@@ -28,8 +28,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  private scrollOnNext: boolean = true;
-
   constructor(private http: HttpClient) {
   }
 
@@ -41,9 +39,11 @@ export class ChatComponent implements OnInit, OnDestroy {
         switchMap(() => this.http.get<ChatMessage[]>('/rest/chat')),
         distinctUntilChanged((prev: ChatMessage[], curr: ChatMessage[]) => prev.length === curr.length),
         tap(() => {
-          if (this.scrollOnNext) {
+          const top: number = this.chatListElement.nativeElement.scrollTop + this.chatListElement.nativeElement.offsetHeight;
+          const scrollHeight: number = this.chatListElement.nativeElement.scrollHeight;
+
+          if (top === scrollHeight) { // user is at the bottom
             this.scrollToBottom();
-            this.scrollOnNext = false;
           }
         })
       );
@@ -58,9 +58,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(msg: string): void {
-    this.http.post('/rest/chat', msg).subscribe(() => {
-      this.scrollOnNext = true;
-    });
+    this.http.post('/rest/chat', msg).subscribe();
   }
 
   private scrollToBottom(): void {
@@ -80,25 +78,5 @@ export class ChatComponent implements OnInit, OnDestroy {
     const buttonNavTop: number = buttonNav?.getBoundingClientRect().top;
 
     this.height = buttonNavTop - cameraBottom;
-  }
-
-  private waitForElement(selector: string): Promise<Element> {
-    return new Promise(resolve => {
-      if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
-      }
-
-      const observer = new MutationObserver(mutations => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    });
   }
 }

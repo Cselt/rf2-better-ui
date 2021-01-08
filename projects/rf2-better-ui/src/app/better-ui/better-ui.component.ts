@@ -36,6 +36,11 @@ export class BetterUiComponent implements OnInit {
         const garageHandler: HTMLElement = document.createElement('rf-garage-handler');
         document.getElementsByTagName('body')[0].prepend(garageHandler);
         break;
+
+      case '/event/index.html':
+        const eventHandler: HTMLElement = document.createElement('rf-event-handler');
+        document.getElementsByTagName('body')[0].prepend(eventHandler);
+        break;
     }
   }
 
