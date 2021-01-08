@@ -13,10 +13,10 @@ function main(): void {
     document.getElementsByTagName('head')[0].appendChild(link);
   }
 
-  addScriptTag('../framework/better-ui/runtime.<runtime>.js');
-  addScriptTag('../framework/better-ui/polyfills.<polyfills>.js');
-  addScriptTag('../framework/better-ui/main.<main>.js');
-  addLinkTag('../framework/better-ui/styles.<styles>.css');
+  addScriptTag('../framework/rf2-better-ui/runtime.<runtime>.js');
+  addScriptTag('../framework/rf2-better-ui/polyfills.<polyfills>.js');
+  addScriptTag('../framework/rf2-better-ui/main.<main>.js');
+  addLinkTag('../framework/rf2-better-ui/styles.<styles>.css');
 
   waitForElm('ui-view div').then(() => {
     setTimeout(() => {
