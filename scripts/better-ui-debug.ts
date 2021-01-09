@@ -1,4 +1,5 @@
 function debugMain(): void {
+  console.log("Better-UI running in debug mode");
   function addScriptTag(src: string): void {
     const script: HTMLScriptElement = document.createElement('script');
     script.src = src;

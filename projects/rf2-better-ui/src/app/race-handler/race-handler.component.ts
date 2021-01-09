@@ -17,6 +17,7 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   constructor() {
+    console.log("RACE handler activated");
   }
 
   ngOnInit(): void {
@@ -35,6 +36,11 @@ export class RaceHandlerComponent implements OnInit {
             input.value = savedPassword;
             input.dispatchEvent(new Event('change'));
           }
+
+          input.onchange = (value: any) => {
+            console.log(`Saving password ${input.value} to server ${selected}`);
+            localStorage.setItem(selected, input.value);
+          };
         };
       });
     });
