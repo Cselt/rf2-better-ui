@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2021-01-09
+
+### Fixed
+- Update saved password on input value change
+
 ## [2.0.0] - 2021-01-08
 
 ### Added
