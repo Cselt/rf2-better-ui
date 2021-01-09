@@ -22,6 +22,7 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - add permanent chat window below camera view
 - highlight current track in setup popup
 - disable opacity change animation
+- remember selected multiplayer server filters
 
 # How to patch UI files
 - Compile Better ui: `npm run build.all`

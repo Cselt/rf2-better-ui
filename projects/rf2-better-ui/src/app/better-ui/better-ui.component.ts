@@ -46,6 +46,11 @@ export class BetterUiComponent implements OnInit {
         const sessionsHandler: HTMLElement = document.createElement('rf-sessions-handler');
         document.getElementsByTagName('body')[0].prepend(sessionsHandler);
         break;
+
+      case '/multiplayer/index.html':
+        const multiplayerHandler: HTMLElement = document.createElement('rf-multiplayer-handler');
+        document.getElementsByTagName('body')[0].prepend(multiplayerHandler);
+        break;
     }
   }
 

@@ -11,6 +11,7 @@ import { RaceHandlerComponent } from './race-handler/race-handler.component';
 import { GarageHandlerComponent } from './garage-handler/garage-handler.component';
 import { EventHandlerComponent } from './event-handler/event-handler.component';
 import { SessionsHandlerComponent } from './sessions-handler/sessions-handler.component';
+import { MultiplayerHandlerComponent } from './multiplayer-handler/multiplayer-handler.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { SessionsHandlerComponent } from './sessions-handler/sessions-handler.co
     RaceHandlerComponent,
     GarageHandlerComponent,
     EventHandlerComponent,
-    SessionsHandlerComponent
+    SessionsHandlerComponent,
+    MultiplayerHandlerComponent
   ],
   providers: []
 })
@@ -54,6 +56,9 @@ export class AppModule implements DoBootstrap {
 
     const sessionsHandlerWebComponent = createCustomElement(SessionsHandlerComponent, {injector});
     customElements.define("rf-sessions-handler", sessionsHandlerWebComponent);
+
+    const multiplayerHandlerWebComponent = createCustomElement(MultiplayerHandlerComponent, {injector});
+    customElements.define("rf-multiplayer-handler", multiplayerHandlerWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {
