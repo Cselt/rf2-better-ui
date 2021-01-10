@@ -10,6 +10,6 @@
 </ol>
 
 <div class="bottom">
-  <textarea #text cols="40" rows="1" (keyup.enter)="sendMessage(text.value); text.value = ''"></textarea>
+  <input #text (keyup.enter)="sendMessage(text.value); text.value = ''">
   <span class="fi fi-iconsend" (click)="sendMessage(text.value); text.value = ''"></span>
 </div>

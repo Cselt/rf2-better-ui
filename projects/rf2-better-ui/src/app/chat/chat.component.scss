@@ -58,7 +58,7 @@
   text-align: center;
   opacity: .8;
 
-  textarea {
+  input {
     flex: 1 1 auto;
     margin-right: 10px;
     font-size: .9rem;
@@ -67,7 +67,7 @@
     background: #555;
     border: none;
     resize: none;
-    padding: .5rem;
+    padding-left: 0.3rem;
     overflow: auto;
     color: inherit;
   }

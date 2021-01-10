@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2021-01-10
+### Added
+- Remember selected server filters
+
+### Fixed
+- Display rf-chat on tab change
+- Fix server admin commands in rf-chat
+
 ## [2.0.1] - 2021-01-09
 
 ### Fixed

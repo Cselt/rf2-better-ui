@@ -11,7 +11,7 @@ export class BetterUiComponent implements OnInit {
     console.log('Better UI loaded');
 
     const div: HTMLDivElement = document.createElement('div');
-    div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI v2.0.1</span>`;
+    div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI v2.1.0</span>`;
     document.getElementsByTagName('body')[0].prepend(div);
 
     this.applyHandlers();
