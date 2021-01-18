@@ -3,15 +3,15 @@ import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { createCustomElement } from '@angular/elements';
-import { RfButtonComponent } from './rf-button/rf-button.component';
-import { ChatComponent } from './chat/chat.component';
-import { BetterUiComponent } from './better-ui/better-ui.component';
-import { StartHandlerComponent } from './start-handler/start-handler.component';
-import { RaceHandlerComponent } from './race-handler/race-handler.component';
-import { GarageHandlerComponent } from './garage-handler/garage-handler.component';
-import { EventHandlerComponent } from './event-handler/event-handler.component';
-import { SessionsHandlerComponent } from './sessions-handler/sessions-handler.component';
-import { MultiplayerHandlerComponent } from './multiplayer-handler/multiplayer-handler.component';
+import { RfButtonComponent } from './components/rf-button/rf-button.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { BetterUiComponent } from './components/better-ui/better-ui.component';
+import { StartHandlerComponent } from './components/start-handler/start-handler.component';
+import { RaceHandlerComponent } from './components/race-handler/race-handler.component';
+import { GarageHandlerComponent } from './components/garage-handler/garage-handler.component';
+import { EventHandlerComponent } from './components/event-handler/event-handler.component';
+import { SessionsHandlerComponent } from './components/sessions-handler/sessions-handler.component';
+import { MultiplayerHandlerComponent } from './components/multiplayer-handler/multiplayer-handler.component';
 
 @NgModule({
   imports: [

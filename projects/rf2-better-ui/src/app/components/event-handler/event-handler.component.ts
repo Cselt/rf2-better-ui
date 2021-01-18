@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { waitForElement } from '../utils/utils';
+import { waitForElement } from '../../utils/utils';
 
 @Component({
   selector: 'rf-event-handler',

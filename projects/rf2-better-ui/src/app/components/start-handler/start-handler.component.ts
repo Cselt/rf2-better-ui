@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { arrowNavigation } from '../utils/utils';
+import { arrowNavigation } from '../../utils/utils';
 
 @Component({
   selector: 'rf-start-handler',

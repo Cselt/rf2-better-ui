@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { arrowNavigation, waitForElement } from '../utils/utils';
+import { arrowNavigation, waitForElement } from '../../utils/utils';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
