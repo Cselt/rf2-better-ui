@@ -13,9 +13,14 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
   private observer: MutationObserver;
 
   ngOnInit(): void {
+    waitForElement('nav em').then((e: Element) => {
+      const countDown: HTMLElement = document.createElement('rf-race-countdown-timer');
+      e.parentElement.appendChild(countDown);
+    });
+
     // add rf-chat component to the DOM
     waitForElement('.camera-wrapper').then(() => {
-      this.tabHolder = document.querySelector("div[ng-if='eventCtrl.gameState.navigationState']");
+      this.tabHolder = document.querySelector('div[ng-if=\'eventCtrl.gameState.navigationState\']');
       this.injectChat();
       this.observeTabChange();
     });

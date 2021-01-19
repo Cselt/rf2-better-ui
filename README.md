@@ -23,6 +23,7 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - highlight current track in setup popup
 - disable opacity change animation
 - remember selected multiplayer server filters
+- add countdown timer to lap limited multiplayer race events
 
 # How to patch UI files
 - Compile Better ui: `npm run build.all`

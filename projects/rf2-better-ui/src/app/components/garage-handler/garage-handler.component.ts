@@ -22,6 +22,11 @@ export class GarageHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    waitForElement('nav em').then((e: Element) => {
+      const countDown: HTMLElement = document.createElement('rf-race-countdown-timer');
+      e.parentElement.appendChild(countDown);
+    });
+
     this.listItems = document.querySelectorAll('main section div.thumbnail');
 
     this.findSetupButtons();

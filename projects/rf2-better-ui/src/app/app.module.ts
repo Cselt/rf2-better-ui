@@ -12,6 +12,7 @@ import { GarageHandlerComponent } from './components/garage-handler/garage-handl
 import { EventHandlerComponent } from './components/event-handler/event-handler.component';
 import { SessionsHandlerComponent } from './components/sessions-handler/sessions-handler.component';
 import { MultiplayerHandlerComponent } from './components/multiplayer-handler/multiplayer-handler.component';
+import { RaceCountdownTimerComponent } from './components/race-countdown-timer/race-countdown-timer.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MultiplayerHandlerComponent } from './components/multiplayer-handler/mu
     GarageHandlerComponent,
     EventHandlerComponent,
     SessionsHandlerComponent,
-    MultiplayerHandlerComponent
+    MultiplayerHandlerComponent,
+    RaceCountdownTimerComponent
   ],
   providers: []
 })
@@ -59,6 +61,9 @@ export class AppModule implements DoBootstrap {
 
     const multiplayerHandlerWebComponent = createCustomElement(MultiplayerHandlerComponent, {injector});
     customElements.define("rf-multiplayer-handler", multiplayerHandlerWebComponent);
+
+    const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, {injector});
+    customElements.define("rf-race-countdown-timer", raceCountDownTimerWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {
