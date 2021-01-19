@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2021-01-19
+### Added
+- Installer
+- Support latest rFactor2 release
+
 ## [2.2.0] - 2021-01-19
 ### Added
 - Add countdown timer to lap limited multiplayer race events

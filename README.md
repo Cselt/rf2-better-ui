@@ -31,12 +31,17 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - Open zip archive `net.rfactor2.ui.framework.jar`
 - Go to`static\framework`
 - Copy here `dist/scripts/better-ui.js`
-- Copy `dist/rf2-better-ui` to `better-ui`
+- Copy `dist/rf2-better-ui` to `rf2-better-ui`
 - Edit `main-xxxx.js` file
 - Append code at the end: <br>
   ```
   require(["./framework/better-ui"]);
   ```
+# How to create an installer
+- Create the jar file as it's described above
+- Put the jar file into folder `dist/jar`
+- Use the NSIS compiler (MakeNSISW) to compile `installer/install.nsi`
+- The installer will be located at `dist/installer`
 
 Swagger UI location:
 https://amdatu.org/components/amdatu-web/
