@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.1] - 2021-01-20
+### Changed
+- Modified installer to pick official jar file and patch with Better-UI
+
 ## [2.3.0] - 2021-01-19
 ### Added
 - Installer
