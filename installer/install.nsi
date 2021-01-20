@@ -11,7 +11,6 @@ CompletedText "Better-UI successfully installed!"
 OutFile "..\\dist\\installer\\Better-UI.exe"
 
 Var rFLocation
-Var backupDir
 Var mainFile
 Var unpackedDir
 
@@ -23,15 +22,7 @@ Function .onInit
   ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 365960" 'InstallLocation'
   StrCpy $rfLocation $0
   DetailPrint "rFactor 2 location: $rfLocation"
-  StrCpy $backupDir $rfLocation\Bin\Backup
   StrCpy $unpackedDir $rfLocation\Bin\Cache\out
-FunctionEnd
-
-Function CreateBackup
-  # First create a backup
-  DetailPrint "Creating backups in folder: $backupDir"
-  CreateDirectory $backupDir
-  CopyFiles $rfLocation\Bin\Bundles\net.rfactor2.ui.framework.jar $backupDir
 FunctionEnd
 
 Function FindMainJs
@@ -99,7 +90,6 @@ Section
   # define the output path for this file
   SetOutPath $rfLocation\Bin\Bundles
 
-  Call CreateBackup
   Call UnpackJar
   Call PatchFiles
   Call AddBetterUI
