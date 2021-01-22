@@ -42,10 +42,26 @@ jobs:
         with:
           args: unzip -qq ./dist/7-zip/7za920.zip -d ./dist/7-zip
 
+      - uses: suisei-cn/actions-download-file@v1
+        id: locate-plugin
+        name: Download locate plguin
+        with:
+          url: "https://nsis.sourceforge.io/mediawiki/images/a/af/Locate.zip"
+          target: dist/plugins
+
+      - name: Decompress Locate plugin
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./dist/plugins/Locate.zip -d ./dist/plguins
+
+      - name: 'Install makensis'
+        run: sudo apt update && sudo apt install -y nsis nsis-pluginapi
+
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
         with:
           script-file: "installer/install.nsi"
+          additional-plugin-paths: ${{ github.workspace }}/dist/plugins
 
 #      - name: Push Build to Releases
 #        uses: ncipollo/release-action@v1
