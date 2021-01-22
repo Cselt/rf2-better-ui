@@ -79,7 +79,7 @@ jobs:
         id: package-version
 
       - name: Update installer version number to ${{ steps.package-version.outputs.version }}
-        run: (Get-Content install.nsi) -replace '0.0.0', '${{ steps.package-version.outputs.version }}' | Out-File -encoding ASCII install.nsi
+        run: (Get-Content install.nsi) -replace 'PRODUCT_VERSION "0.0.0"', 'PRODUCT_VERSION "${{ steps.package-version.outputs.version }}"' | Out-File -encoding ASCII install.nsi
         shell: powershell
         working-directory: installer
 
