@@ -30,11 +30,11 @@ jobs:
           npm run build.all
 
       - uses: suisei-cn/actions-download-file@v1
-        id: 7za-zip
+        id: 7_zip
         name: Download 7-zip
         with:
           url: "https://www.7-zip.org/a/7za920.zip"
-          target: dist/7zip
+          target: dist/7-zip
 
       - name: Decompress 7-zip
         uses: TonyBogdanov/zip@1.0
