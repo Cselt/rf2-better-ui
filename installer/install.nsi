@@ -3,16 +3,33 @@
 !include LogicLib.nsh
 !include "Locate.nsh"
 
+!define PRODUCT_VERSION "0.0.0"
+
 Name "BetterUI"
 ShowInstDetails show
 CompletedText "Better-UI successfully installed!"
 
 # the file to write
-OutFile "..\\dist\\installer\\Better-UI.exe"
+OutFile "..\\dist\\installer\\Better-UI-${PRODUCT_VERSION}.exe"
 
 Var rFLocation
 Var mainFile
 Var unpackedDir
+
+; --------------------
+;Version Information -
+; --------------------
+LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"
+VIProductVersion "${PRODUCT_VERSION}.0"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "Better-UI"
+VIAddVersionKey  "OriginalFilename" "Better-UI.exe"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" "Cselt"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "Copyright Cselt"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "rFactor 2 Better-UI"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${PRODUCT_VERSION}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${PRODUCT_VERSION}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "InternalName" "Better-UI"
+;--------------------------------
 
 Function .onInit
   InitPluginsDir
