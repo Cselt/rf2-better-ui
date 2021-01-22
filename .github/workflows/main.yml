@@ -30,7 +30,7 @@ jobs:
           npm run build.all
 
       - uses: suisei-cn/actions-download-file@v1
-        id: 7_zip
+        id: 7zip
         name: Download 7-zip
         with:
           url: "https://www.7-zip.org/a/7za920.zip"
