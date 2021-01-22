@@ -64,8 +64,8 @@ jobs:
 
       - name: Install Nsis plguins
         run: |
-          xcopy dist\plugins\Plugin\locate.dll "C:\Program Files (x86)\NSIS\Plugins\x86-ansi\locate.dll" /E /C /H /R /K /O /Y
-          xcopy dist\plugins\Include\Locate.nsh "c:\Program Files (x86)\NSIS\Include\Locate.nsh" /E /C /H /R /K /O /Y
+          copy dist\plugins\Plugin\locate.dll "C:\Program Files (x86)\NSIS\Plugins\x86-ansi\" /Y
+          copy dist\plugins\Include\Locate.nsh "c:\Program Files (x86)\NSIS\Include\" /Y
 
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
