@@ -1,5 +1,5 @@
 # For this script to use you need to install Locate plugin
-# And you need to put 7za.exe to dist\7za.exe
+# And you need to put 7za.exe to dist\7-zip\7za.exe
 !include LogicLib.nsh
 !include "Locate.nsh"
 
@@ -43,7 +43,7 @@ FunctionEnd
 Function UnPackJar
   CreateDirectory $rfLocation\Bin\Cache
   SetOutPath $rfLocation\Bin\Cache
-  File ..\dist\7za.exe
+  File ..\dist\7-zip\7za.exe
   CopyFiles $rfLocation\Bin\Bundles\net.rfactor2.ui.framework.jar $rfLocation\Bin\Cache
 
   nsExec::Exec '7za.exe x net.rfactor2.ui.framework.jar -o"$unpackedDir"'

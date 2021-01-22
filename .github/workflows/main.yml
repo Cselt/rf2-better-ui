@@ -29,8 +29,25 @@ jobs:
           npm i
           npm run build.all
 
-      - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
+      - uses: suisei-cn/actions-download-file@v1
+        id: 7za-zip
+        name: Download 7-zip
         with:
-          artifacts: "dist/rf2-better-ui/*,dist/scripts"
-          token: ${{ secrets.TOKEN }}
+          url: "https://www.7-zip.org/a/7za920.zip"
+          target: dist/7zip
+
+      - name: Decompress 7-zip
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./dist/7-zip -d ./dist/7-zip
+
+      - name: Create installer
+        uses: joncloud/makensis-action@v3.4
+        with:
+          script-file: "installer/install.nsi"
+
+#      - name: Push Build to Releases
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "dist/rf2-better-ui/*,dist/scripts"
+#          token: ${{ secrets.TOKEN }}
