@@ -1,6 +1,10 @@
-on: push
+name: Release
 
-name: Build
+on:
+  push:
+    tags:
+      - v*
+
 jobs:
   build:
     name: "Build Better-UI"
