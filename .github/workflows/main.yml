@@ -67,6 +67,9 @@ jobs:
           copy dist\plugins\Plugin\locate.dll "C:\Program Files (x86)\NSIS\Plugins\x86-ansi\"
           copy dist\plugins\Include\Locate.nsh "c:\Program Files (x86)\NSIS\Include\"
 
+      - name: Create installer directory
+        run: mkdir dist\installer
+
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
         with:
