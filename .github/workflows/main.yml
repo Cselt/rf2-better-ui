@@ -47,7 +47,7 @@ jobs:
           url: "https://nsis.sourceforge.io/mediawiki/images/a/af/Locate.zip"
           target: dist/plugins
 
-      - name: Decompress 7-zip
+      - name: Decompress Locate plugin
         run: 7z x dist\plugins\Locate.zip -odist\plugins\
 
       - name: Install NSIS
@@ -62,12 +62,15 @@ jobs:
       - name: Print NSIS compile flags
         run: makensis -HDRINFO
 
+      - name: Install Nsis plguins
+        run: |
+          xcopy dist\plugins\Plugin\locate.dll "C:\Program Files (x86)\NSIS\Plugins\x86-ansi\" /E /C /H /R /K /O /Y
+          xcopy dist\plugins\Include\Locate.nsh "c:\Program Files (x86)\NSIS\Include\" /E /C /H /R /K /O /Y
 
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
         with:
           script-file: "installer/install.nsi"
-          additional-plugin-paths: ${{ github.workspace }}/dist/plugins
 
 #      - name: Push Build to Releases
 #        uses: ncipollo/release-action@v1
