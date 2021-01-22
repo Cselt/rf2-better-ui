@@ -1,8 +1,9 @@
 on: workflow_dispatch
 
-name: Build Angular
+name: Build
 jobs:
   build:
+    name: "Build angular"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +27,7 @@ jobs:
 
       - name: npm install and npm run build
         run: |
-          npm i
+          npm ci
           npm run build.all
 
       - uses: suisei-cn/actions-download-file@v1
@@ -39,7 +40,7 @@ jobs:
       - name: Decompress 7-zip
         uses: TonyBogdanov/zip@1.0
         with:
-          args: unzip -qq ./dist/7-zip -d ./dist/7-zip
+          args: unzip -qq ./dist/7-zip/7za920.zip -d ./dist/7-zip
 
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
