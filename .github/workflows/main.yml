@@ -3,9 +3,8 @@ on: workflow_dispatch
 name: Build
 jobs:
   build:
-    name: "Build angular"
-    runs-on: ubuntu-latest
-    container: debian:sid
+    name: "Build Better-UI"
+    runs-on: windows-latest
     strategy:
       matrix:
        node-version: [12.x]
@@ -57,9 +56,9 @@ jobs:
 
       - name: Install NSIS
         run: |
-          bash -c 'echo "deb http://ftp.debian.org/debian unstable main contrib non-free" >> /etc/apt/sources.list.d/unstable.list'
-          apt-get -y update
-          apt-get -y install -t unstable nsis
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+          scoop bucket add extras
+          scoop install nsis
 
       - name: Print NSIS version
         run: makensis -VERSION
