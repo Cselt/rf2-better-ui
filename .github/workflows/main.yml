@@ -40,7 +40,7 @@ jobs:
       - name: Decompress 7-zip
         uses: TonyBogdanov/zip@1.0
         with:
-          args: unzip -qq ./dist/7-zip/7za920.zip -d ./dist/7-zip
+          args: unzip -qq .\dist\7-zip\7za920.zip -d .\dist\7-zip
 
       - uses: suisei-cn/actions-download-file@v1
         id: locate-plugin
@@ -52,7 +52,7 @@ jobs:
       - name: Decompress Locate plugin
         uses: TonyBogdanov/zip@1.0
         with:
-          args: unzip -qq ./dist/plugins/Locate.zip -d ./dist/plguins
+          args: unzip -qq .\dist\plugins\Locate.zip -d .\dist\plguins
 
       - name: Install NSIS
         run: |
