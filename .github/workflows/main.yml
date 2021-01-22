@@ -75,8 +75,9 @@ jobs:
         with:
           script-file: "installer/install.nsi"
 
-#      - name: Push Build to Releases
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "dist/rf2-better-ui/*,dist/scripts"
-#          token: ${{ secrets.TOKEN }}
+      - name: Push Build to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/installer/*"
+          token: ${{ secrets.TOKEN }}
+          prerelease: true
