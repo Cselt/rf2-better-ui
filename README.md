@@ -2,15 +2,12 @@
 In this repository you can find small modifications for the new rFactor 2 UI
 
 # How to install
-1. Locate your rFactor 2 install directory
-2. Backup files under `rFactor 2\Bin\Bundles`
-3. Download modified bundle jar files
-4. Copy and overwrite original files
-5. Start rFactor 2 & enjoy
+1. Go to latest relaese page and download installer: [link](https://github.com/Cselt/rf2-better-ui/releases/latest)
+2. Run the installer
+3. Start rFactor 2 & enjoy
 
 # How to uninstall
-- Restore your backup files
-- OR let Steam re-download modified files: https://support.steampowered.com/kb_article.php?ref=2037-QEUH-3335
+Let Steam re-download modified files: [link](https://support.steampowered.com/kb_article.php?ref=2037-QEUH-3335)
 
 # Features
 - add left and right arrow navigation to the main screen
@@ -25,7 +22,8 @@ In this repository you can find small modifications for the new rFactor 2 UI
 - remember selected multiplayer server filters
 - add countdown timer to lap limited multiplayer race events
 
-# How to patch UI files
+# How to contribute
+## How to manually patch UI files
 - Compile Better ui: `npm run build.all`
 - Go to `rFactor 2\Bin\Bundles`
 - Open zip archive `net.rfactor2.ui.framework.jar`
@@ -37,12 +35,9 @@ In this repository you can find small modifications for the new rFactor 2 UI
   ```
   require(["./framework/better-ui"]);
   ```
-# How to create an installer
-- Create the jar file as it's described above
-- Put the jar file into folder `dist/jar`
+## How to create an installer
+- Install Locate NSIS plugin
+- Compile Better ui: `npm run build.all`
+- Create directory `dist\installer`
 - Use the NSIS compiler (MakeNSISW) to compile `installer/install.nsi`
 - The installer will be located at `dist/installer`
-
-Swagger UI location:
-https://amdatu.org/components/amdatu-web/
-http://localhost:5396/swagger/index.html
