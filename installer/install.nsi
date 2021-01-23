@@ -2,6 +2,7 @@
 # And you need to put 7za.exe to dist\7-zip\7za.exe
 !include LogicLib.nsh
 !include "Locate.nsh"
+!include nsDialogs.nsh
 
 !define PRODUCT_VERSION "0.0.0"
 
@@ -15,6 +16,8 @@ OutFile "..\\dist\\installer\\Better-UI-${PRODUCT_VERSION}.exe"
 Var rFLocation
 Var mainFile
 Var unpackedDir
+var /global SOURCE
+var /global SOURCETEXT
 
 ; --------------------
 ;Version Information -
@@ -38,8 +41,21 @@ Function .onInit
   SetRegView 64
   ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 365960" 'InstallLocation'
   StrCpy $rfLocation $0
-  DetailPrint "rFactor 2 location: $rfLocation"
-  StrCpy $unpackedDir $rfLocation\Bin\Cache\out
+
+  # if it's not found then ask the user to pick rF location
+  StrCmp $rfLocation "" getRfPath done
+
+  getRfPath:
+    nsDialogs::SelectFolderDialog "Select rFactor 2 Folder" "c:\"
+    pop $rfLocation
+    ${NSD_SetText} $SOURCETEXT $rfLocation
+
+  done:
+    # remove tailing "\" OUTDIR is a special paramter, will remove extra slashes
+    StrCpy $OUTDIR $rfLocation
+    StrCpy $rfLocation $OUTDIR
+
+    StrCpy $unpackedDir $rfLocation\Bin\Cache\out
 FunctionEnd
 
 Function FindMainJs
@@ -101,6 +117,7 @@ FunctionEnd
 
 # default section start; every NSIS script has at least one section.
 Section
+  DetailPrint "rFactor 2 location: $rfLocation"
   # Delete Cache folder
   RMDir /r $rfLocation\Bin\Cache
 
