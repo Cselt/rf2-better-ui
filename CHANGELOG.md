@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.2] - 2021-01-10
+### Added
+- Installer generated via Github Actions
+
+### Fixed
+- Ask user to enter rFactor 2 location if it's not found in registry
+
 ## [2.3.1] - 2021-01-20
 ### Changed
 - Modified installer to pick official jar file and patch with Better-UI
