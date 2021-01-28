@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { version } from '../../../../../../package.json';
+import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { waitForElement } from '../../utils/utils';
 
 @Component({
   selector: 'rf-better-ui',
@@ -8,7 +11,7 @@ import { version } from '../../../../../../package.json';
 })
 export class BetterUiComponent implements OnInit {
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     console.log('Better UI loaded');
 
     const div: HTMLDivElement = document.createElement('div');
@@ -19,6 +22,14 @@ export class BetterUiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    waitForElement("nav ol.right", 1000).then((ol: HTMLOListElement) => {
+      if (ol) {
+        const quitLi: HTMLLIElement = document.createElement('li');
+        quitLi.classList.add('fa', 'fa-power-off');
+        quitLi.onclick = () => this.dialog.open(ExitDialogComponent);
+        ol.appendChild(quitLi);
+      }
+    });
   }
 
   private applyHandlers(): void {

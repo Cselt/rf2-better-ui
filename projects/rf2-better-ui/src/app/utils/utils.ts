@@ -1,13 +1,20 @@
-export function waitForElement(selector: string): Promise<Element> {
-  return new Promise((resolve: any) => {
+export function waitForElement(selector: string, timeout: number = 5000): Promise<Element> {
+  return new Promise((resolve: any, reject: any) => {
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));
     }
+
+    // after timeout give up
+    const timeoutHandler = setTimeout(() => {
+      observer.disconnect();
+      reject();
+    }, timeout);
 
     const observer = new MutationObserver(mutations => {
       if (document.querySelector(selector)) {
         resolve(document.querySelector(selector));
         observer.disconnect();
+        clearInterval(timeoutHandler);
       }
     });
 
@@ -26,7 +33,6 @@ export function arrowNavigation(event: KeyboardEvent,
   }
 
   const selectedLi: HTMLLIElement = document.querySelector(selector);
-  console.log("selected LI ", selectedLi);
   let selectedIndex: number = -1;
   listItems.forEach((node: HTMLLIElement, index: number) => {
     if (selectedLi === node) {

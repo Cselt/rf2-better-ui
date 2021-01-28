@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { createCustomElement } from '@angular/elements';
 import { RfButtonComponent } from './components/rf-button/rf-button.component';
@@ -13,11 +15,14 @@ import { EventHandlerComponent } from './components/event-handler/event-handler.
 import { SessionsHandlerComponent } from './components/sessions-handler/sessions-handler.component';
 import { MultiplayerHandlerComponent } from './components/multiplayer-handler/multiplayer-handler.component';
 import { RaceCountdownTimerComponent } from './components/race-countdown-timer/race-countdown-timer.component';
+import { ExitDialogComponent } from './components/exit-dialog/exit-dialog.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   declarations: [
     RfButtonComponent,
@@ -29,7 +34,8 @@ import { RaceCountdownTimerComponent } from './components/race-countdown-timer/r
     EventHandlerComponent,
     SessionsHandlerComponent,
     MultiplayerHandlerComponent,
-    RaceCountdownTimerComponent
+    RaceCountdownTimerComponent,
+    ExitDialogComponent
   ],
   providers: []
 })

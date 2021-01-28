@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Exit popup to navbar
+
 ## [2.3.2] - 2021-01-10
 ### Added
 - Installer generated via Github Actions
