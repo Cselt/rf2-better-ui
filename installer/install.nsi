@@ -1,5 +1,10 @@
 # For this script to use you need to install Locate plugin
 # And you need to put 7za.exe to dist\7-zip\7za.exe
+;--------------------------------
+;Include Modern UI
+
+  !include "MUI2.nsh"
+
 !include LogicLib.nsh
 !include "Locate.nsh"
 !include nsDialogs.nsh
@@ -33,6 +38,21 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "InternalName" "Better-UI"
 ;--------------------------------
+
+;--------------------------------
+;Interface Settings
+
+  !define MUI_ABORTWARNING
+
+;--------------------------------
+;Pages
+
+  !define MUI_DIRECTORYPAGE_VARIABLE $rFLocation
+  !define MUI_PAGE_HEADER_TEXT "APP Installation folder location."
+  !define MUI_DIRECTORYPAGE_TEXT_TOP "Please select the folder where rFactor 2 has been installed.  If you are unsure where rFactor 2 has been installed, please keep the default value."
+  !define MUI_DIRECTORYPAGE_TEXT_DESTINATION "rFactor 2 location"
+  !insertmacro MUI_PAGE_DIRECTORY
+  !insertmacro MUI_PAGE_INSTFILES
 
 Function .onInit
   InitPluginsDir
