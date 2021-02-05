@@ -25,6 +25,10 @@ export function waitForElement(selector: string, timeout: number = 5000): Promis
   });
 }
 
+export function timeout(ms: number): Promise<void> {
+  return new Promise<void>((resolve: () => void) => setTimeout(resolve, ms));
+}
+
 export function arrowNavigation(event: KeyboardEvent,
                                 listItems: NodeListOf<HTMLLIElement>,
                                 selector: string = 'ol.tabnavigation:not(.bottom) li.selected'): void {

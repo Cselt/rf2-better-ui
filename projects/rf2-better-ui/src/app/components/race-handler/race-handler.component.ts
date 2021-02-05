@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { arrowNavigation, waitForElement } from '../../utils/utils';
+import { arrowNavigation, timeout, waitForElement } from '../../utils/utils';
 
 @Component({
   selector: 'rf-race-handler',
@@ -17,7 +17,7 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   constructor() {
-    console.log("RACE handler activated");
+    console.log('RACE handler activated');
   }
 
   ngOnInit(): void {
@@ -25,26 +25,35 @@ export class RaceHandlerComponent implements OnInit {
     waitForElement('section#multiplayer ul li').then(() => {
       document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
         node.onclick = () => {
-
           const selected: string = node.querySelector('span').textContent;
-
-          const input: HTMLInputElement = document.querySelector('#server-password');
-          const savedPassword: string = localStorage.getItem(selected);
-
-          if (!!savedPassword) {
-            console.log('Restore saved password ', savedPassword);
-            input.value = savedPassword;
-            input.dispatchEvent(new Event('change'));
-          }
-
-          input.onchange = (value: any) => {
-            console.log(`Saving password ${input.value} to server ${selected}`);
-            localStorage.setItem(selected, input.value);
-          };
+          this.handlePasswordPopup(selected);
         };
       });
     });
+  }
 
+  private handlePasswordPopup(serverName: string): void {
+    const input: HTMLInputElement = document.querySelector('#server-password');
+    const submitButton: HTMLButtonElement = document.querySelector('.modal-form button.primary');
+    const savedPassword: string = localStorage.getItem(serverName);
+
+    if (!!savedPassword) {
+      console.log('Restore saved password ', savedPassword);
+      input.value = savedPassword;
+      input.dispatchEvent(new Event('change'));
+    }
+
+    input.onchange = (value: any) => {
+      console.log(`Saving password ${input.value} to server ${serverName}`);
+      localStorage.setItem(serverName, input.value);
+    };
+
+    submitButton.onclick = async () => {
+      // if the password is wrong then start again
+      await timeout(500);
+      await waitForElement('.modal-dialog p.validation-message');
+      this.handlePasswordPopup(serverName);
+    };
   }
 
 }
