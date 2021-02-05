@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.1]
+### Fixed
+- use FontAwesome coming with rF
+- do not ask user for path if location was not found in registry
+
 ## [2.4.0]
 ### Added
 - Exit popup to navbar
