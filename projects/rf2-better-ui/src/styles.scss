@@ -5,11 +5,6 @@ html, body {
   height: 100%;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .thumbnailwrapper {
   .thumbnails {
     .thumbnail {
@@ -38,4 +33,12 @@ nav {
   .fa {
     color: vars.$colorGrey;
   }
+}
+
+.fa-power-off:before {
+  content: "\f011";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1;
 }

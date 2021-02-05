@@ -29,8 +29,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "projects/rf2-better-ui/src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.css"
+              "projects/rf2-better-ui/src/styles.scss"
             ],
             "scripts": []
           },
