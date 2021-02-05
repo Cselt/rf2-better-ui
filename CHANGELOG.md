@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2.4.0]
 ### Added
 - Exit popup to navbar
+- Let the user select rFactor 2 location in the installer
+
+### Fixed
+- update password event if it was wrong
 
 ## [2.3.2] - 2021-01-10
 ### Added

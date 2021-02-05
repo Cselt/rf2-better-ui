@@ -37,12 +37,12 @@ readdirSync('./dist/rf2-better-ui').forEach((file: string) => {
     case FileTypes.styles:
       hashes[FileTypes.styles] = splits[1];
       break;
-
-    default:
-      // Delete unnecessary file
-      unlinkSync(join('./dist/rf2-better-ui', file));
   }
 });
+
+// Delete unnecessary files
+unlinkSync(join('./dist/rf2-better-ui/index.html'));
+unlinkSync(join('./dist/rf2-better-ui/favicon.ico'));
 
 console.log('Read hash numbers', hashes);
 let betterUi: string = readFileSync('./dist/scripts/better-ui.js', 'utf8');
