@@ -62,20 +62,9 @@ Function .onInit
   ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 365960" 'InstallLocation'
   StrCpy $rfLocation $0
 
-  # if it's not found then ask the user to pick rF location
-  StrCmp $rfLocation "" getRfPath done
-
-  getRfPath:
-    nsDialogs::SelectFolderDialog "Select rFactor 2 Folder" "c:\"
-    pop $rfLocation
-    ${NSD_SetText} $SOURCETEXT $rfLocation
-
-  done:
-    # remove tailing "\" OUTDIR is a special paramter, will remove extra slashes
-    StrCpy $OUTDIR $rfLocation
-    StrCpy $rfLocation $OUTDIR
-
-    StrCpy $unpackedDir $rfLocation\Bin\Cache\out
+  # remove tailing "\" OUTDIR is a special parameter, will remove extra slashes
+  StrCpy $OUTDIR $rfLocation
+  StrCpy $rfLocation $OUTDIR
 FunctionEnd
 
 Function FindMainJs
@@ -138,6 +127,8 @@ FunctionEnd
 # default section start; every NSIS script has at least one section.
 Section
   DetailPrint "rFactor 2 location: $rfLocation"
+  StrCpy $unpackedDir $rfLocation\Bin\Cache\out
+  DetailPrint "Unpacked dir: $unpackedDir"
   # Delete Cache folder
   RMDir /r $rfLocation\Bin\Cache
 
