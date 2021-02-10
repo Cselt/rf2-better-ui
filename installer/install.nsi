@@ -13,17 +13,19 @@
 
 Name "BetterUI"
 ShowInstDetails show
-CompletedText "Better-UI successfully installed!"
 
 # the file to write
 OutFile "..\\dist\\installer\\Better-UI-${PRODUCT_VERSION}.exe"
 
 Var rFLocation
+Var steamCmd
+Var completedText
 Var mainFile
 Var unpackedDir
 var /global SOURCE
 var /global SOURCETEXT
 
+CompletedText $completedText
 ; --------------------
 ;Version Information -
 ; --------------------
@@ -57,6 +59,7 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "InternalName" "Better-UI"
 Function .onInit
   InitPluginsDir
 
+  StrCpy $completedText "Better-UI successfully installed!"
   # read the value from the registry into the $0 register
   SetRegView 64
   ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 365960" 'InstallLocation'
@@ -124,17 +127,40 @@ Function CreateJarFile
   nsExec::Exec '..\7za.exe a -r net.rfactor2.ui.framework.jar *.*'
 FunctionEnd
 
+Function downloadSteamCmd
+  IfFileExists "$steamCmd" done
+
+  DetailPrint "Download SteamCmd"
+  CreateDirectory $rfLocation\SteamCmd
+  NSISdl::download https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip $rfLocation\SteamCmd\steamcmd.zip
+  SetOutPath $rfLocation\SteamCmd
+  File ..\dist\7-zip\7za.exe
+  nsExec::Exec '7za.exe x steamcmd.zip -o"$rfLocation\SteamCmd"'
+  Delete $rfLocation\SteamCmd\steamcmd.zip
+  Delete $rfLocation\SteamCmd\7za.exe
+
+  # initialize steam cmd
+  DetailPrint "Initialize SteamCmd"
+  nsExec::Exec 'steamcmd.exe +quit'
+
+  done:
+FunctionEnd
+
 # default section start; every NSIS script has at least one section.
 Section
   DetailPrint "rFactor 2 location: $rfLocation"
   StrCpy $unpackedDir $rfLocation\Bin\Cache\out
+  StrCpy $steamCmd "$rfLocation\SteamCmd\steamcmd.exe"
+  DetailPrint "SteamCmd: $steamCmd"
   DetailPrint "Unpacked dir: $unpackedDir"
+
   # Delete Cache folder
   RMDir /r $rfLocation\Bin\Cache
 
   # define the output path for this file
   SetOutPath $rfLocation\Bin\Bundles
 
+  Call downloadSteamCmd
   Call UnpackJar
   Call PatchFiles
   Call AddBetterUI
@@ -146,5 +172,22 @@ Section
   DetailPrint "Cleanup Cache folder"
   RMDir /r $rfLocation\Bin\Cache
 
+  WriteUninstaller "$rfLocation\Uninstall-Better-UI.exe"
+
 # default section end
+SectionEnd
+
+# Uninstaller
+Section "Uninstall"
+  StrCpy $completedText "Better-UI successfully uninstalled!"
+  StrCpy $steamCmd "$INSTDIR\SteamCmd\steamcmd.exe"
+  DetailPrint "rfLocation: $INSTDIR"
+  DetailPrint "SteamCmd: $steamCmd"
+
+  Delete "$INSTDIR\Uninstall-Better-UI.exe"
+
+  DetailPrint "Restoring changes"
+  nsExec::Exec '"$steamCmd" +login anonymous +force_install_dir "$INSTDIR" +app_update 400300 validate +quit'
+
+  RMDir /r "$INSTDIR\SteamCmd"
 SectionEnd

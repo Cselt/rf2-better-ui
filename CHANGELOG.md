@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+## Added
+- Uninstaller (comes with SteamCmd)
+
 ## [2.4.1]
 ### Fixed
 - use FontAwesome coming with rF
