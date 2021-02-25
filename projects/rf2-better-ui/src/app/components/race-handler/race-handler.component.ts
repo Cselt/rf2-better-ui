@@ -21,6 +21,7 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.patchRaceController();
     this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
     waitForElement('section#multiplayer ul li').then(() => {
       document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
@@ -29,7 +30,14 @@ export class RaceHandlerComponent implements OnInit {
           this.handlePasswordPopup(selected);
         };
       });
-    });
+    }).catch(() => console.warn("Can't find multiplayer list"));
+  }
+
+  private patchRaceController(): void {
+    // Get RaceController object
+    const controller: any = angular.element("main section#multiplayer").controller();
+    // Overwrite pickFavoriteServers function to pick all of the favorite servers
+    controller.pickFavoriteServers = (servers: any[]) => servers;
   }
 
   private handlePasswordPopup(serverName: string): void {
