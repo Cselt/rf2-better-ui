@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ## Added
 - Uninstaller (comes with SteamCmd)
 
+### Fixed
+- Remember server filters in multiplayer view
+
 ## [2.4.1]
 ### Fixed
 - use FontAwesome coming with rF

@@ -1,4 +1,4 @@
-export function waitForElement(selector: string, timeout: number = 5000): Promise<Element> {
+export function waitForElement(selector: string, timeout: number = 30000): Promise<Element> {
   return new Promise((resolve: any, reject: any) => {
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));

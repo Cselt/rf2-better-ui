@@ -43,6 +43,6 @@ export class MultiplayerHandlerComponent implements OnInit {
           localStorage.setItem('savedFilters', JSON.stringify(this.savedFilters));
         };
       });
-    });
+    }).catch(() => console.warn("Can't find multiplayer table"));
   }
 }
