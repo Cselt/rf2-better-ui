@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Remember server filters in multiplayer view
+- Load Better-UI code more reliably
 
 ## [2.4.1]
 ### Fixed
