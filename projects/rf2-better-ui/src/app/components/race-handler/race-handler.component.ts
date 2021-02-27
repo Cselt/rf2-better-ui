@@ -36,8 +36,23 @@ export class RaceHandlerComponent implements OnInit {
   private patchRaceController(): void {
     // Get RaceController object
     const controller: any = angular.element("main section#multiplayer").controller();
-    // Overwrite pickFavoriteServers function to pick all of the favorite servers
-    controller.pickFavoriteServers = (servers: any[]) => servers;
+
+    const injector: any = angular.element("main section#multiplayer").injector();
+    const raceService: any = injector.get("raceService");
+
+    controller.loadFavorites = async () => {
+      controller.loadFavoritesButtonDisabled = true;
+      controller.favoriteServers = undefined;
+      try {
+        const favorites: any[] = await raceService.getFavoriteServers();
+        controller.favoriteServers = favorites;
+        controller.cacheFavoriteServers(favorites);
+      } catch (e) {
+        controller.favoriteServers = null;
+      } finally {
+        controller.loadFavoritesButtonDisabled = false;
+      }
+    };
   }
 
   private handlePasswordPopup(serverName: string): void {

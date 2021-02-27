@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Added
 - Uninstaller (comes with SteamCmd)
 - Display unlimited number of favorite servers on race screen
+- Do not display popup while loading favorite servers on race screen
 
 ### Fixed
 - Remember server filters in multiplayer view
