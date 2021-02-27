@@ -16,12 +16,11 @@ export class MultiplayerHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const listItems: NodeListOf<HTMLLIElement> = document.querySelectorAll('section.content section.card section.filter-options li');
-
     this.savedFilters = JSON.parse(localStorage.getItem('savedFilters')) || [];
 
     // wait for servers to be loaded
     waitForElement('section.content table').then(() => {
+      const listItems: NodeListOf<HTMLLIElement> = document.querySelectorAll('section.content section.card section.filter-options li');
       listItems.forEach((li: HTMLLIElement, index: number) => {
         // if the filter was saved, then select it
         if (this.savedFilters.includes(index)) {
