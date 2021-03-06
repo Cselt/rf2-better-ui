@@ -27,28 +27,50 @@ export class GarageHandlerComponent implements OnInit {
       e.parentElement.appendChild(countDown);
     });
 
+    this.addRaceButton();
+
     this.listItems = document.querySelectorAll('main section div.thumbnail');
 
     this.findSetupButtons();
     this.loadActiveTrack();
+
+    window.onhashchange = () => {
+      if (location.hash.startsWith('#/summary')) {
+        this.findSetupButtons();
+      }
+    };
   }
 
   private findSetupButtons(): void {
     document.querySelectorAll('left-section button').forEach((button: HTMLButtonElement) =>
-      button.onclick = () => {
-        waitForElement('.modal-dialog .setup-content .setup-tree-wrapper ul').then((element: HTMLUListElement) => {
-          element.querySelectorAll('li .setup-name').forEach((span: HTMLSpanElement) => {
-            if (span.textContent === this.currentTrackFolder) {
-              span.textContent += '*';
-              span.classList.add('track-selected');
-            }
-          });
+      button.onclick = async () => {
+        const element: HTMLUListElement = await waitForElement('.modal-dialog .setup-content .setup-tree-wrapper ul') as HTMLUListElement;
+        element.querySelectorAll('li .setup-name').forEach((span: HTMLSpanElement) => {
+          if (span.textContent === this.currentTrackFolder) {
+            span.textContent += '*';
+            span.classList.add('track-selected');
+          }
         });
       });
+  }
+
+  private async addRaceButton(): Promise<void> {
+    const quitLi: HTMLLIElement = (await waitForElement('nav ol.right li.fa-power-off', 1000) as HTMLLIElement);
+    const ol: HTMLElement = quitLi.parentElement;
+    if (ol) {
+      const raceButton: HTMLButtonElement = document.createElement('button');
+      raceButton.classList.add('raceButton', 'fa', 'fa-play', 'fi-white');
+      raceButton.onclick = () => this.drive();
+      ol.appendChild(raceButton);
+    }
   }
 
   private loadActiveTrack(): void {
     this.http.get('/rest/garage/currentTrackFolder', {responseType: 'text'})
       .subscribe((folder: string) => this.currentTrackFolder = folder);
+  }
+
+  private drive(): void {
+    this.http.post('/rest/garage/drive', undefined).subscribe();
   }
 }

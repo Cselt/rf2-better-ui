@@ -1,8 +1,47 @@
+@use "../../../scss/common-styles" as common;
+
 .modal-dialog .setup-content .setup-tree-wrapper {
   font-weight: normal;
 
   .track-selected {
     font-style: italic;
     font-weight: bold;
+  }
+}
+
+.templ-setting-view .setting-panel {
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+ol.buttonnavigation {
+  display: none;
+}
+
+main.garage {
+
+  ui-view {
+    margin: 1rem 0 0;
+  }
+
+  .left-section {
+    padding-bottom: 0;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+.raceButton {
+  margin: 0;
+  background: common.$colorRed;
+  min-width: 3.5rem;
+  max-width: 3.5rem;
+
+  &:hover {
+    transition: background-color .5s;
+    background: common.$colorDarkRed;
   }
 }
