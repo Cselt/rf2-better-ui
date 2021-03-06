@@ -2,15 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [3.0.0]
 ## Added
 - Uninstaller (comes with SteamCmd)
 - Display unlimited number of favorite servers on race screen
 - Do not display popup while loading favorite servers on race screen
+- Increase visible content size on garage view
 
 ### Fixed
 - Remember server filters in multiplayer view
 - Load Better-UI code more reliably
+- Apply patches again when hash location changes on
 
 ## [2.4.1]
 ### Fixed
