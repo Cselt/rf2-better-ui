@@ -64,6 +64,7 @@ export class RaceHandlerComponent implements OnInit {
         controller.favoriteServers = null;
       } finally {
         controller.loadFavoritesButtonDisabled = false;
+        this.rememberPassword();
       }
     };
   }
