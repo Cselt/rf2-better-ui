@@ -21,8 +21,18 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.patchRaceController();
+    window.onhashchange = () => {
+      this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
+      this.rememberPassword();
+      this.patchRaceController();
+    };
+
     this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
+    this.patchRaceController();
+    this.rememberPassword();
+  }
+
+  private rememberPassword(): void {
     waitForElement('section#multiplayer ul li').then(() => {
       document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
         node.onclick = () => {
@@ -30,15 +40,18 @@ export class RaceHandlerComponent implements OnInit {
           this.handlePasswordPopup(selected);
         };
       });
-    }).catch(() => console.warn("Can't find multiplayer list"));
+    }).catch(() => console.warn('Can\'t find multiplayer list'));
   }
 
   private patchRaceController(): void {
+    if (!location.hash.startsWith('#/race')) {
+      return;
+    }
     // Get RaceController object
-    const controller: any = angular.element("main section#multiplayer").controller();
+    const controller: any = angular.element('main section#multiplayer').controller();
 
-    const injector: any = angular.element("main section#multiplayer").injector();
-    const raceService: any = injector.get("raceService");
+    const injector: any = angular.element('main section#multiplayer').injector();
+    const raceService: any = injector.get('raceService');
 
     controller.loadFavorites = async () => {
       controller.loadFavoritesButtonDisabled = true;
