@@ -22,7 +22,12 @@ export class BetterUiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    waitForElement("nav ol.right", 1000).then((ol: HTMLOListElement) => {
+    this.addQuitButton();
+    window.onhashchange = () => this.addQuitButton();
+  }
+
+  private addQuitButton(): void {
+    waitForElement('nav ol.right', 1000).then((ol: HTMLOListElement) => {
       if (ol) {
         const quitLi: HTMLLIElement = document.createElement('li');
         quitLi.classList.add('fa', 'fa-power-off');

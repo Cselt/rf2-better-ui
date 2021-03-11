@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+## Fixed
+- Add quit button on hash location change
+
 ## [3.0.0]
 ## Added
 - Uninstaller (comes with SteamCmd)
