@@ -27,7 +27,7 @@ export class MultiplayerHandlerComponent implements OnInit {
           li.querySelector('span').click();
         }
 
-        li.onclick = () => {
+        li.addEventListener('click', () => {
           if (li.querySelector('input').checked) { // filter selected
             if (!this.savedFilters.includes(index)) {
               this.savedFilters.push(index);
@@ -40,8 +40,8 @@ export class MultiplayerHandlerComponent implements OnInit {
           this.savedFilters.sort();
 
           localStorage.setItem('savedFilters', JSON.stringify(this.savedFilters));
-        };
+        });
       });
-    }).catch(() => console.warn("Can't find multiplayer table"));
+    }).catch(() => console.warn('Can\'t find multiplayer table'));
   }
 }

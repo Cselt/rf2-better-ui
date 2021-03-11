@@ -30,16 +30,16 @@ export class SessionsHandlerComponent implements OnInit {
     }
 
     // find opponents thumbnail
-    (document.querySelectorAll('main section div.thumbnail').item(1) as HTMLDivElement).onclick = () => {
+    (document.querySelectorAll('main section div.thumbnail').item(1) as HTMLDivElement).addEventListener('click', () => {
       this.findSelectButtons();
       this.loadCurrentFilter();
-    };
+    });
   }
 
   private findSelectButtons(): void {
     this.rightSection = document.querySelector('section right-section');
     this.rightSection.querySelectorAll('button').forEach((node: HTMLButtonElement) =>
-      node.onclick = () => this.loadCurrentFilter());
+      node.addEventListener('click', () => this.loadCurrentFilter()));
   }
 
   private loadCurrentFilter(): void {
@@ -53,11 +53,11 @@ export class SessionsHandlerComponent implements OnInit {
               li.classList.add('selected');
             }
 
-            li.onclick = () => {
+            li.addEventListener('click', () => {
               setTimeout(() => {
                 this.loadCurrentFilter();
               }, 200);
-            };
+            });
           });
         }, 0);
       });

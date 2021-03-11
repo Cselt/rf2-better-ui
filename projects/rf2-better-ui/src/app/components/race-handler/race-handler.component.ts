@@ -21,11 +21,11 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.onhashchange = () => {
+    window.addEventListener('hashchange', () => {
       this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
       this.rememberPassword();
       this.patchRaceController();
-    };
+    });
 
     this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
     this.patchRaceController();
@@ -35,10 +35,10 @@ export class RaceHandlerComponent implements OnInit {
   private rememberPassword(): void {
     waitForElement('section#multiplayer ul li').then(() => {
       document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
-        node.onclick = () => {
+        node.addEventListener('click', () => {
           const selected: string = node.querySelector('span').textContent;
           this.handlePasswordPopup(selected);
-        };
+        });
       });
     }).catch(() => console.warn('Can\'t find multiplayer list'));
   }
@@ -85,12 +85,12 @@ export class RaceHandlerComponent implements OnInit {
       localStorage.setItem(serverName, input.value);
     };
 
-    submitButton.onclick = async () => {
+    submitButton.addEventListener('click', async () => {
       // if the password is wrong then start again
       await timeout(500);
       await waitForElement('.modal-dialog p.validation-message');
       this.handlePasswordPopup(serverName);
-    };
+    });
   }
 
 }

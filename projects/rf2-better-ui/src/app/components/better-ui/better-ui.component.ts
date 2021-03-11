@@ -23,18 +23,22 @@ export class BetterUiComponent implements OnInit {
 
   ngOnInit(): void {
     this.addQuitButton();
-    window.onhashchange = () => this.addQuitButton();
+    window.addEventListener('hashchange', () => this.addQuitButton());
   }
 
-  private addQuitButton(): void {
-    waitForElement('nav ol.right', 1000).then((ol: HTMLOListElement) => {
+  private async addQuitButton(): Promise<void> {
+    try {
+      const ol: HTMLOListElement = await waitForElement('nav ol.right', 1000) as HTMLOListElement;
+
       if (ol) {
         const quitLi: HTMLLIElement = document.createElement('li');
         quitLi.classList.add('fa', 'fa-power-off');
-        quitLi.onclick = () => this.dialog.open(ExitDialogComponent);
+        quitLi.addEventListener('click', () => this.dialog.open(ExitDialogComponent));
         ol.appendChild(quitLi);
       }
-    });
+    } catch (e) {
+      console.warn('Can\'t find nav element to add quit button');
+    }
   }
 
   private applyHandlers(): void {

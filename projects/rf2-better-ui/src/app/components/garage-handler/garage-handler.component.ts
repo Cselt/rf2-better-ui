@@ -34,16 +34,16 @@ export class GarageHandlerComponent implements OnInit {
     this.findSetupButtons();
     this.loadActiveTrack();
 
-    window.onhashchange = () => {
+    window.addEventListener('hashchange', () => {
       if (location.hash.startsWith('#/summary')) {
         this.findSetupButtons();
       }
-    };
+    });
   }
 
   private findSetupButtons(): void {
     document.querySelectorAll('left-section button').forEach((button: HTMLButtonElement) =>
-      button.onclick = async () => {
+      button.addEventListener('click', async () => {
         const element: HTMLUListElement = await waitForElement('.modal-dialog .setup-content .setup-tree-wrapper ul') as HTMLUListElement;
         element.querySelectorAll('li .setup-name').forEach((span: HTMLSpanElement) => {
           if (span.textContent === this.currentTrackFolder) {
@@ -51,7 +51,8 @@ export class GarageHandlerComponent implements OnInit {
             span.classList.add('track-selected');
           }
         });
-      });
+      })
+    );
   }
 
   private async addRaceButton(): Promise<void> {
@@ -60,7 +61,7 @@ export class GarageHandlerComponent implements OnInit {
     if (ol) {
       const raceButton: HTMLButtonElement = document.createElement('button');
       raceButton.classList.add('raceButton', 'fa', 'fa-play', 'fi-white');
-      raceButton.onclick = () => this.drive();
+      raceButton.addEventListener('click', () => this.drive());
       ol.appendChild(raceButton);
     }
   }
