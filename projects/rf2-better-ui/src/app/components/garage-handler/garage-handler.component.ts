@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { arrowNavigation, waitForElement } from '../../utils/utils';
 import { RaceButtonService } from '../../services/race-button.service';
 
@@ -18,7 +19,8 @@ export class GarageHandlerComponent implements OnInit {
     return arrowNavigation(event, this.listItems, 'main section div.selected');
   }
 
-  constructor(private raceButtonService: RaceButtonService) {
+  constructor(private raceButtonService: RaceButtonService,
+              private http: HttpClient) {
   }
 
   ngOnInit(): void {
