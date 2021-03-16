@@ -34,14 +34,3 @@ main.garage {
   }
 }
 
-.raceButton {
-  margin: 0;
-  background: common.$colorRed;
-  min-width: 3.5rem;
-  max-width: 3.5rem;
-
-  &:hover {
-    transition: background-color .5s;
-    background: common.$colorDarkRed;
-  }
-}

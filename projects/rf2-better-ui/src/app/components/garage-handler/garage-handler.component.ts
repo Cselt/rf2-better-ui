@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { arrowNavigation, waitForElement } from '../../utils/utils';
-import { HttpClient } from '@angular/common/http';
+import { RaceButtonService } from '../../services/race-button.service';
 
 @Component({
   selector: 'rf-garage-handler',
@@ -18,7 +18,7 @@ export class GarageHandlerComponent implements OnInit {
     return arrowNavigation(event, this.listItems, 'main section div.selected');
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private raceButtonService: RaceButtonService) {
   }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class GarageHandlerComponent implements OnInit {
       e.parentElement.appendChild(countDown);
     });
 
-    this.addRaceButton();
+    this.raceButtonService.addRaceButton();
 
     this.listItems = document.querySelectorAll('main section div.thumbnail');
 
@@ -55,23 +55,8 @@ export class GarageHandlerComponent implements OnInit {
     );
   }
 
-  private async addRaceButton(): Promise<void> {
-    const quitLi: HTMLLIElement = (await waitForElement('nav ol.right li.fa-power-off', 1000) as HTMLLIElement);
-    const ol: HTMLElement = quitLi.parentElement;
-    if (ol) {
-      const raceButton: HTMLButtonElement = document.createElement('button');
-      raceButton.classList.add('raceButton', 'fa', 'fa-play', 'fi-white');
-      raceButton.addEventListener('click', () => this.drive());
-      ol.appendChild(raceButton);
-    }
-  }
-
   private loadActiveTrack(): void {
     this.http.get('/rest/garage/currentTrackFolder', {responseType: 'text'})
       .subscribe((folder: string) => this.currentTrackFolder = folder);
-  }
-
-  private drive(): void {
-    this.http.post('/rest/garage/drive', undefined).subscribe();
   }
 }

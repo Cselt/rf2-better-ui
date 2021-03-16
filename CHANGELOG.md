@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ## Added
 - Exit button to installing content dialog
+- Race button to event view
 
 ## Fixed
 - Add quit button on hash location change

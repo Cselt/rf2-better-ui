@@ -42,3 +42,15 @@ nav {
   font-size: 1.2em;
   line-height: 1;
 }
+
+.raceButton {
+  margin: 0;
+  background: vars.$colorRed;
+  min-width: 3.5rem;
+  max-width: 3.5rem;
+
+  &:hover {
+    transition: background-color .5s;
+    background: vars.$colorDarkRed;
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { waitForElement } from '../../utils/utils';
+import { RaceButtonService } from '../../services/race-button.service';
 
 @Component({
   selector: 'rf-event-handler',
@@ -12,7 +13,11 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
   private tabHolder: HTMLDivElement;
   private observer: MutationObserver;
 
+  constructor(private raceButtonService: RaceButtonService) {
+  }
+
   ngOnInit(): void {
+    this.raceButtonService.addRaceButton();
     waitForElement('nav em').then((e: Element) => {
       const countDown: HTMLElement = document.createElement('rf-race-countdown-timer');
       e.parentElement.appendChild(countDown);
