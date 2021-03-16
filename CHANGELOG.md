@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## Added
+- Exit button to installing content dialog
+
 ## Fixed
 - Add quit button on hash location change
 

@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { arrowNavigation, timeout, waitForElement } from '../../utils/utils';
+import { MatDialog } from '@angular/material/dialog';
+import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 
 @Component({
   selector: 'rf-race-handler',
@@ -16,7 +18,7 @@ export class RaceHandlerComponent implements OnInit {
     return arrowNavigation(event, this.listItems);
   }
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     console.log('RACE handler activated');
   }
 
@@ -88,9 +90,38 @@ export class RaceHandlerComponent implements OnInit {
     submitButton.addEventListener('click', async () => {
       // if the password is wrong then start again
       await timeout(500);
-      await waitForElement('.modal-dialog p.validation-message');
-      this.handlePasswordPopup(serverName);
+      this.checkForDownloadsPopup();
+      try {
+        await waitForElement('.modal-dialog p.validation-message', 2000);
+        this.handlePasswordPopup(serverName);
+      } catch (e) {
+        // password was ok
+      }
     });
   }
 
+  private async checkForDownloadsPopup(): Promise<void> {
+    try {
+      const modalForm: HTMLElement =
+        (await waitForElement('.modal-dialog div[modal-title="\'Installing content\' | translate"', 2000) as HTMLDivElement).parentElement;
+
+      if (modalForm.querySelector('div.modal-footer')) {
+        // already added
+        return;
+      }
+
+      const footer: HTMLDivElement = document.createElement('div');
+      footer.classList.add('modal-footer');
+
+      const exitButton: HTMLButtonElement = document.createElement('button');
+      exitButton.classList.add('btn', 'secondary');
+      exitButton.innerHTML = `<span>Exit game</span>`;
+      exitButton.addEventListener('click', () => this.dialog.open(ExitDialogComponent));
+
+      footer.appendChild(exitButton);
+      modalForm.appendChild(footer);
+    } catch (e) {
+      // There is no download
+    }
+  }
 }
