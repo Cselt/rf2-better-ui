@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ## Fixed
 - Add quit button on hash location change
+- Change button order in quit dialog
 
 ## [3.0.0]
 ## Added
