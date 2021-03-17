@@ -28,9 +28,14 @@ export class BetterUiComponent implements OnInit {
 
   private async addQuitButton(): Promise<void> {
     try {
-      const ol: HTMLOListElement = await waitForElement('nav ol.right', 1000) as HTMLOListElement;
+      const ol: HTMLOListElement = await waitForElement<HTMLOListElement>('nav ol.right', 1000);
 
       if (ol) {
+        if (ol.querySelector('li.fa-power-off')) {
+          // Already added
+          return;
+        }
+
         const quitLi: HTMLLIElement = document.createElement('li');
         quitLi.classList.add('fa', 'fa-power-off');
         quitLi.addEventListener('click', () => this.dialog.open(ExitDialogComponent));

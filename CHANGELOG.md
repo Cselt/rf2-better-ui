@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.1]
+## Fixed
+- Multiple quit button at the navbar
+
 ## [3.1.0]
 ## Added
 - Exit button to installing content dialog

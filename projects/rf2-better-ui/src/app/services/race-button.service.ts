@@ -11,7 +11,7 @@ export class RaceButtonService {
   }
 
   public async addRaceButton(): Promise<void> {
-    const quitLi: HTMLLIElement = (await waitForElement('nav ol.right li.fa-power-off', 1000) as HTMLLIElement);
+    const quitLi: HTMLLIElement = await waitForElement<HTMLLIElement>('nav ol.right li.fa-power-off', 1000);
     const ol: HTMLElement = quitLi.parentElement;
     if (ol) {
       const raceButton: HTMLButtonElement = document.createElement('button');

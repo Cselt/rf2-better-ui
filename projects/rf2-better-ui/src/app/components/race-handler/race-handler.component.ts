@@ -76,6 +76,10 @@ export class RaceHandlerComponent implements OnInit {
     const submitButton: HTMLButtonElement = document.querySelector('.modal-form button.primary');
     const savedPassword: string = localStorage.getItem(serverName);
 
+    if (!input) {
+      return;
+    }
+
     if (!!savedPassword) {
       console.log('Restore saved password ', savedPassword);
       input.value = savedPassword;
