@@ -53,11 +53,11 @@ export class SessionsHandlerComponent implements OnInit {
               li.classList.add('selected');
             }
 
-            li.addEventListener('click', () => {
+            li.onclick = () => {
               setTimeout(() => {
                 this.loadCurrentFilter();
               }, 200);
-            });
+            };
           });
         }, 0);
       });

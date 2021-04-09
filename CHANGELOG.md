@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+## Fixed
+- Opponent selector freezes the game
+
 ## [3.1.1]
 ## Fixed
 - Multiple quit button at the navbar
