@@ -23,6 +23,8 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.carSelect();
+
     window.addEventListener('hashchange', () => {
       this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
       this.rememberPassword();
@@ -126,6 +128,24 @@ export class RaceHandlerComponent implements OnInit {
       modalForm.appendChild(footer);
     } catch (e) {
       // There is no download
+    }
+  }
+
+  private carSelect(): void {
+    if (sessionStorage.getItem('betterUI.carSelect') === 'true') {
+      const carSelectCtrl = angular.element('ui-view').controller();
+      const origFun: () => void = carSelectCtrl.joinServer;
+
+      carSelectCtrl.joinServer = () => {
+        origFun();
+        carSelectCtrl.appSwitchService.openAppWithTab('event');
+      };
+
+      angular.element('nav.jumpmenu').scope().config.back = () => {
+        carSelectCtrl.appSwitchService.openAppWithTab('event');
+      };
+
+      sessionStorage.removeItem('betterUI.carSelect');
     }
   }
 }

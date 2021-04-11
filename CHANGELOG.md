@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## Added
+- Car select
+
 ## Fixed
 - Opponent selector freezes the game
 
