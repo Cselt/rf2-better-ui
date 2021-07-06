@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { version } from '../../../../../../package.json';
+import packageInfo from '../../../../../../package.json';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { waitForElement } from '../../utils/utils';
@@ -15,7 +15,7 @@ export class BetterUiComponent implements OnInit {
     console.log('Better UI loaded');
 
     const div: HTMLDivElement = document.createElement('div');
-    div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI ${version}</span>`;
+    div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI ${packageInfo.version}</span>`;
     document.getElementsByTagName('body')[0].prepend(div);
 
     this.applyHandlers();
