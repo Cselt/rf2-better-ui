@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.3.0]
+## Fixed
+- Support latest rf2 build: remove remember password and remove favorite servers popup patch 
+
 ## [3.2.0]
 ## Added
 - Car select

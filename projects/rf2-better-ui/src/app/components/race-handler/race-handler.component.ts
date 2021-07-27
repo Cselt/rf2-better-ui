@@ -28,11 +28,9 @@ export class RaceHandlerComponent implements OnInit {
     window.addEventListener('hashchange', () => {
       this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
       this.rememberPassword();
-      this.patchRaceController();
     });
 
     this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
-    this.patchRaceController();
     this.rememberPassword();
   }
 
@@ -47,51 +45,13 @@ export class RaceHandlerComponent implements OnInit {
     }).catch(() => console.warn('Can\'t find multiplayer list'));
   }
 
-  private patchRaceController(): void {
-    if (!location.hash.startsWith('#/race')) {
-      return;
-    }
-    // Get RaceController object
-    const controller: any = angular.element('main section#multiplayer').controller();
-
-    const injector: any = angular.element('main section#multiplayer').injector();
-    const raceService: any = injector.get('raceService');
-
-    controller.loadFavorites = async () => {
-      controller.loadFavoritesButtonDisabled = true;
-      controller.favoriteServers = undefined;
-      try {
-        const favorites: any[] = await raceService.getFavoriteServers();
-        controller.favoriteServers = favorites;
-        controller.cacheFavoriteServers(favorites);
-      } catch (e) {
-        controller.favoriteServers = null;
-      } finally {
-        controller.loadFavoritesButtonDisabled = false;
-        this.rememberPassword();
-      }
-    };
-  }
-
   private handlePasswordPopup(serverName: string): void {
     const input: HTMLInputElement = document.querySelector('#server-password');
     const submitButton: HTMLButtonElement = document.querySelector('.modal-form button.primary');
-    const savedPassword: string = localStorage.getItem(serverName);
 
     if (!input) {
       return;
     }
-
-    if (!!savedPassword) {
-      console.log('Restore saved password ', savedPassword);
-      input.value = savedPassword;
-      input.dispatchEvent(new Event('change'));
-    }
-
-    input.onchange = (value: any) => {
-      console.log(`Saving password ${input.value} to server ${serverName}`);
-      localStorage.setItem(serverName, input.value);
-    };
 
     submitButton.addEventListener('click', async () => {
       // if the password is wrong then start again
