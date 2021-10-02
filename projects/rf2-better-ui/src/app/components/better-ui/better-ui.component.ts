@@ -1,29 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import packageInfo from '../../../../../../package.json';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { waitForElement } from '../../utils/utils';
+import { StartHandlerComponent } from '../start-handler/start-handler.component';
+import { RaceHandlerComponent } from '../race-handler/race-handler.component';
+import { GarageHandlerComponent } from '../garage-handler/garage-handler.component';
+import { EventHandlerComponent } from '../event-handler/event-handler.component';
+import { SessionsHandlerComponent } from '../sessions-handler/sessions-handler.component';
+import { MultiplayerHandlerComponent } from '../multiplayer-handler/multiplayer-handler.component';
 
 @Component({
   selector: 'rf-better-ui',
-  template: '',
+  template: `
+    <ng-template #container></ng-template>`,
   styleUrls: ['./better-ui.component.scss']
 })
-export class BetterUiComponent implements OnInit {
+export class BetterUiComponent implements OnInit, AfterViewInit {
 
-  constructor(private dialog: MatDialog) {
+  @ViewChild('container', {read: ViewContainerRef})
+  container: ViewContainerRef;
+
+  constructor(private dialog: MatDialog,
+              private resolver: ComponentFactoryResolver) {
     console.log('Better UI loaded');
 
     const div: HTMLDivElement = document.createElement('div');
     div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI ${packageInfo.version}</span>`;
     document.getElementsByTagName('body')[0].prepend(div);
 
-    this.applyHandlers();
   }
 
   ngOnInit(): void {
     this.addQuitButton();
     window.addEventListener('hashchange', () => this.addQuitButton());
+  }
+
+  ngAfterViewInit(): void {
+    this.applyHandlers();
   }
 
   private async addQuitButton(): Promise<void> {
@@ -47,37 +61,36 @@ export class BetterUiComponent implements OnInit {
   }
 
   private applyHandlers(): void {
+    let factory: ComponentFactory<any>;
     switch (location.pathname) {
       case '/start/index.html':
-        const startHandler: HTMLElement = document.createElement('rf-start-handler');
-        document.getElementsByTagName('body')[0].prepend(startHandler);
+        factory = this.resolver.resolveComponentFactory(StartHandlerComponent);
         break;
 
       case '/race/index.html':
-        const raceHandler: HTMLElement = document.createElement('rf-race-handler');
-        document.getElementsByTagName('body')[0].prepend(raceHandler);
+        factory = this.resolver.resolveComponentFactory(RaceHandlerComponent);
         break;
 
       case '/garage/index.html':
-        const garageHandler: HTMLElement = document.createElement('rf-garage-handler');
-        document.getElementsByTagName('body')[0].prepend(garageHandler);
+        console.log('navigate to garage');
+        factory = this.resolver.resolveComponentFactory(GarageHandlerComponent);
         break;
 
       case '/event/index.html':
-        const eventHandler: HTMLElement = document.createElement('rf-event-handler');
-        document.getElementsByTagName('body')[0].prepend(eventHandler);
+        factory = this.resolver.resolveComponentFactory(EventHandlerComponent);
         break;
 
       case '/sessions/index.html':
-        const sessionsHandler: HTMLElement = document.createElement('rf-sessions-handler');
-        document.getElementsByTagName('body')[0].prepend(sessionsHandler);
+        factory = this.resolver.resolveComponentFactory(SessionsHandlerComponent);
         break;
 
       case '/multiplayer/index.html':
-        const multiplayerHandler: HTMLElement = document.createElement('rf-multiplayer-handler');
-        document.getElementsByTagName('body')[0].prepend(multiplayerHandler);
+        factory = this.resolver.resolveComponentFactory(MultiplayerHandlerComponent);
         break;
     }
+
+    this.container.clear();
+    this.container.createComponent(factory);
   }
 
 }
