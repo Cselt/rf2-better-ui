@@ -15,6 +15,8 @@ export class SetupsComponent implements OnInit {
 
   public setups$: Observable<Setup[]>;
 
+  public selected: Setup;
+
   constructor(private dialogRef: MatDialogRef<SetupsComponent>,
               private store: Store) {
     this.setups$ = this.store.select(GarageSelectors.selectSetups);
@@ -22,5 +24,9 @@ export class SetupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(GarageActions.loadSetups());
+  }
+
+  loadSelected(): void {
+    this.store.dispatch(GarageActions.loadSavedSetup(this.selected));
   }
 }

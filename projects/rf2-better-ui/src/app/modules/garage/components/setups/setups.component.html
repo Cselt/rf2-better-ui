@@ -1,4 +1,19 @@
 Setups:
+<div>
+  <div>
+    <button rf-button (click)="loadSelected()">Load</button>
+    <button rf-button>Assign</button>
+    <button rf-button>Compare</button>
+    <button rf-button color="danger">Delete</button>
+    <button rf-button>Copy</button>
+    <button rf-button>Defaults</button>
+  </div>
+</div>
+
+<div>
+  selected: {{selected?.name}}
+</div>
+
 <div *ngFor="let setup of setups$ | async">
-  <div>name: {{setup.name}}</div>
+  <div *ngIf="!setup.name.endsWith('\\')" (click)="selected = setup">name: {{setup.name}}</div>
 </div>

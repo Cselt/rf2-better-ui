@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
 import { createCustomElement } from '@angular/elements';
-import { RfButtonComponent } from './components/rf-button/rf-button.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { BetterUiComponent } from './components/better-ui/better-ui.component';
 import { StartHandlerComponent } from './components/start-handler/start-handler.component';
@@ -21,6 +20,7 @@ import { RaceCountdownTimerComponent } from './components/race-countdown-timer/r
 import { ExitDialogComponent } from './components/exit-dialog/exit-dialog.component';
 import { GarageModule } from './modules/garage/garage.module';
 import { environment } from '../environments/environment';
+import { UiComponentsModule } from './modules/ui-components/ui-components.module';
 
 @NgModule({
   imports: [
@@ -30,11 +30,11 @@ import { environment } from '../environments/environment';
     MatDialogModule,
     GarageModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    EffectsModule.forRoot([]),
+    UiComponentsModule
   ],
   declarations: [
-    RfButtonComponent,
     ChatComponent,
     BetterUiComponent,
     StartHandlerComponent,
@@ -58,9 +58,6 @@ export class AppModule implements DoBootstrap {
 
     const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, {injector});
     customElements.define("rf-race-countdown-timer", raceCountDownTimerWebComponent);
-
-    const buttonWebComponent = createCustomElement(RfButtonComponent, {injector});
-    customElements.define("rf-button", buttonWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {

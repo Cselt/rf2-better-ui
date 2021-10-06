@@ -7,5 +7,14 @@ export const loadSetups = createAction(
 
 export const setupsLoaded = createAction(
   '[Garage] Setups Loaded',
-  props<{setups: Setup[]}>()
+  props<{ setups: Setup[] }>()
+);
+
+export const loadSavedSetup = createAction(
+  '[Garage] Load Saved Setup',
+  props<Setup>()
+);
+
+export const updateView = createAction(
+  '[Garage] Update View'
 );
