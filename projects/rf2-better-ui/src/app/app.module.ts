@@ -21,6 +21,7 @@ import { ExitDialogComponent } from './components/exit-dialog/exit-dialog.compon
 import { GarageModule } from './modules/garage/garage.module';
 import { environment } from '../environments/environment';
 import { UiComponentsModule } from './modules/ui-components/ui-components.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
@@ -28,13 +29,14 @@ import { UiComponentsModule } from './modules/ui-components/ui-components.module
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    GarageModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([]),
-    UiComponentsModule
+    UiComponentsModule,
+    GarageModule,
   ],
   declarations: [
+    AppComponent,
     ChatComponent,
     BetterUiComponent,
     StartHandlerComponent,
@@ -46,18 +48,19 @@ import { UiComponentsModule } from './modules/ui-components/ui-components.module
     RaceCountdownTimerComponent,
     ExitDialogComponent
   ],
-  providers: []
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {
     const chatWebComponent = createCustomElement(ChatComponent, {injector});
-    customElements.define("rf-chat", chatWebComponent);
+    customElements.define('rf-chat', chatWebComponent);
 
     const betterUiWebComponent = createCustomElement(BetterUiComponent, {injector});
     customElements.define('rf-better-ui', betterUiWebComponent);
 
     const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, {injector});
-    customElements.define("rf-race-countdown-timer", raceCountDownTimerWebComponent);
+    customElements.define('rf-race-countdown-timer', raceCountDownTimerWebComponent);
   }
 
   ngDoBootstrap(appRef: ApplicationRef): void {

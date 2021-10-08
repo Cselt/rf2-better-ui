@@ -1,12 +1,27 @@
-Setups:
-<div>
-  <div>
-    <button rf-button (click)="loadSelected()">Load</button>
-    <button rf-button>Assign</button>
-    <button rf-button>Compare</button>
-    <button rf-button color="danger">Delete</button>
-    <button rf-button>Copy</button>
-    <button rf-button>Defaults</button>
+<div class="flex flex-col">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-5">
+    <span>Setups</span>
+
+    <i class="fi fi-icon-close"></i>
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex flex-col space-y-2">
+    <div class="flex flex-grow flex-shrink-0 space-x-2">
+      <button class="flex-1" rf-button (click)="loadSelected()">Load</button>
+      <button class="flex-1" rf-button>Assign</button>
+    </div>
+
+    <div class="flex flex-grow flex-shrink-0 space-x-2">
+      <button class="flex-1 w-2/4" rf-button>Compare</button>
+      <button class="flex-1 w-2/4" rf-button color="danger">Delete</button>
+    </div>
+
+    <div class="flex flex-grow flex-shrink-0 space-x-2">
+      <button class="flex-1 w-2/4" rf-button>Copy</button>
+      <button class="flex-1 w-2/4" rf-button>Defaults</button>
+    </div>
   </div>
 </div>
 

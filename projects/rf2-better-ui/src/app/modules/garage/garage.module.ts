@@ -22,6 +22,9 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
   ],
   providers: [
     GarageService
+  ],
+  exports: [
+    SetupsComponent
   ]
 })
 export class GarageModule { }
