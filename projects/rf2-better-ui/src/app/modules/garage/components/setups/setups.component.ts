@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import * as GarageActions from '../../state/garage.actions';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'rf-setups',
   templateUrl: './setups.component.html',
-  styleUrls: ['./setups.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetupsComponent implements OnInit {
 
@@ -28,5 +28,10 @@ export class SetupsComponent implements OnInit {
 
   loadSelected(): void {
     this.store.dispatch(GarageActions.loadSavedSetup(this.selected));
+    this.close();
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 }

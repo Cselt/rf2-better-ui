@@ -133,5 +133,12 @@
       }
     }
   },
-  "defaultProject": "rf2-better-ui"
+  "defaultProject": "rf2-better-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush",
+      "inlineStyle": true,
+      "skipTests": true
+    }
+  }
 }

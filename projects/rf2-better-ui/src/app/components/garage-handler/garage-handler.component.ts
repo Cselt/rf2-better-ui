@@ -50,7 +50,11 @@ export class GarageHandlerComponent implements OnInit {
     const setups: HTMLButtonElement = (document.querySelectorAll('left-section button')[0] as HTMLButtonElement);
 
     setups.onclick = () => {
-      this.dialog.open(SetupsComponent);
+      this.dialog.open(SetupsComponent, {
+        height: '50vh',
+        maxHeight: '90vh',
+        width: '70vw'
+      });
     };
     // angular.element('left-section button:first').unbind('click');
 

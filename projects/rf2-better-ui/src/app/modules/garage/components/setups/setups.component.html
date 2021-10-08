@@ -1,34 +1,44 @@
 <div class="flex flex-col">
   <!-- Header -->
   <div class="flex justify-between items-center mb-5">
-    <span>Setups</span>
+    <h2 class="text-gray-400 italic select-none">Setups</h2>
 
-    <i class="fi fi-icon-close"></i>
+    <i (click)="close()" class="fi fi-icon-close cursor-pointer"></i>
   </div>
 
-  <!-- Buttons -->
-  <div class="flex flex-col space-y-2">
-    <div class="flex flex-grow flex-shrink-0 space-x-2">
-      <button class="flex-1" rf-button (click)="loadSelected()">Load</button>
-      <button class="flex-1" rf-button>Assign</button>
-    </div>
+  <div class="flex justify-around">
+    <!-- Buttons -->
+    <section class="flex flex-col space-y-1">
+      <div class="flex flex-shrink-0 space-x-2">
+        <button class="flex-1" rf-button (click)="loadSelected()">Load</button>
+        <button class="flex-1" rf-button>Assign</button>
+      </div>
 
-    <div class="flex flex-grow flex-shrink-0 space-x-2">
-      <button class="flex-1 w-2/4" rf-button>Compare</button>
-      <button class="flex-1 w-2/4" rf-button color="danger">Delete</button>
-    </div>
+      <div class="flex flex-shrink-0 space-x-2">
+        <button class="flex-1 w-2/4" rf-button>Compare</button>
+        <button class="flex-1 w-2/4" rf-button color="danger">Delete</button>
+      </div>
 
-    <div class="flex flex-grow flex-shrink-0 space-x-2">
-      <button class="flex-1 w-2/4" rf-button>Copy</button>
-      <button class="flex-1 w-2/4" rf-button>Defaults</button>
-    </div>
+      <div class="flex flex-shrink-0 space-x-2">
+        <button class="flex-1 w-2/4" rf-button>Copy</button>
+        <button class="flex-1 w-2/4" rf-button>Defaults</button>
+      </div>
+    </section>
+
+    <!-- Setup selector -->
+    <section>
+      <div>
+        selected: {{selected?.name}}
+      </div>
+
+      <div>
+        <rf-setup-tree [setups]="setups$ | async"
+                       (selected)="selected = $event"></rf-setup-tree>
+      </div>
+
+    </section>
+
   </div>
+
 </div>
 
-<div>
-  selected: {{selected?.name}}
-</div>
-
-<div *ngFor="let setup of setups$ | async">
-  <div *ngIf="!setup.name.endsWith('\\')" (click)="selected = setup">name: {{setup.name}}</div>
-</div>

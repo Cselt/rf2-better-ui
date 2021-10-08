@@ -7,6 +7,9 @@ import * as fromGarage from './state';
 import { GarageEffects } from './state/garage.effects';
 import { GarageService } from './services/garage.service';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
+import { SetupTreeComponent } from './components/setup-tree/setup-tree.component';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -15,10 +18,13 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
     EffectsModule.forFeature([
       GarageEffects
     ]),
-    UiComponentsModule
+    CdkTreeModule,
+    UiComponentsModule,
+    MatButtonModule
   ],
   declarations: [
-    SetupsComponent
+    SetupsComponent,
+    SetupTreeComponent
   ],
   providers: [
     GarageService

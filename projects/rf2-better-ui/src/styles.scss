@@ -47,6 +47,14 @@ nav {
   line-height: 1;
 }
 
+.fa-chevron-right:before {
+  content: "\f054";
+}
+
+.fa-chevron-down:before {
+  content: "\f078";
+}
+
 .raceButton {
   margin: 0;
   background: vars.$colorRed;

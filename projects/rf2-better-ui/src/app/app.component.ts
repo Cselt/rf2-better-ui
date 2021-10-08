@@ -14,10 +14,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialog.open(SetupsComponent);
+    this.openDialog();
   }
 
   openDialog(): void {
-    this.dialog.open(SetupsComponent);
+    this.dialog.open(SetupsComponent, {
+      height: '50vh',
+      maxHeight: '90vh',
+      width: '70vw'
+    });
   }
 }
