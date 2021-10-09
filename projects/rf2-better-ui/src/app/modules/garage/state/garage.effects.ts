@@ -60,6 +60,18 @@ export class GarageEffects {
     map((notes: string) => GarageActions.notesLoaded({notes}))
   ));
 
+  loadShowingOnlyRelevant$ = createEffect(() => this.actions$.pipe(
+    ofType(GarageActions.loadShowingRelevant),
+    switchMap(() => this.service.loadShowingOnlyRelevant()),
+    map((showOnlyRelevant: boolean) => GarageActions.showingRelevantLoaded({showOnlyRelevant}))
+  ));
+
+  changeShowOnlyRelevant$ = createEffect(() => this.actions$.pipe(
+    ofType(GarageActions.changeShowOnlyRelevant),
+    switchMap(action => this.service.changeShowingOnlyRelevant(action.showOnlyRelevant)),
+    map(() => GarageActions.loadSetups())
+  ));
+
   constructor(private actions$: Actions,
               private store: Store<any>,
               private service: GarageService) {

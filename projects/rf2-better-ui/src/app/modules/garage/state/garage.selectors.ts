@@ -25,3 +25,8 @@ export const selectCurrentNotes: MemoizedSelector<GarageState, string> = createS
   selectGarageState,
   (state: GarageState) => state.currentNote
 );
+
+export const showingOnlyRelevant: MemoizedSelector<GarageState, boolean> = createSelector(
+  selectGarageState,
+  (state: GarageState) => state.showOnlyRelevant
+);

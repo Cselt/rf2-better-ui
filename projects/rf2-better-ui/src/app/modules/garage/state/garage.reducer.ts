@@ -7,13 +7,15 @@ export interface GarageState {
   currentSetupSummary: SetupSummary;
   currentSetupName: string;
   currentNote: string;
+  showOnlyRelevant: boolean;
 }
 
 export const initialState: GarageState = {
   setups: [],
   currentSetupSummary: undefined,
   currentSetupName: undefined,
-  currentNote: undefined
+  currentNote: undefined,
+  showOnlyRelevant: false
 };
 
 export const reducer: ActionReducer<GarageState, Action> = createReducer(
@@ -41,5 +43,15 @@ export const reducer: ActionReducer<GarageState, Action> = createReducer(
   on(GarageActions.notesLoaded, (state: GarageState, {notes}) => ({
     ...state,
     currentNote: notes
+  })),
+
+  on(GarageActions.showingRelevantLoaded, (state: GarageState, {showOnlyRelevant}) => ({
+    ...state,
+    showOnlyRelevant
+  })),
+
+  on(GarageActions.changeShowOnlyRelevant, (state: GarageState, {showOnlyRelevant}) => ({
+    ...state,
+    showOnlyRelevant
   }))
 );

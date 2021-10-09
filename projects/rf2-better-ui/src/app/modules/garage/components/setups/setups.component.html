@@ -46,6 +46,14 @@
 
     <!-- Right Section -->
     <section class="w-2/3">
+      <!-- Show Only Relevant -->
+      <div *ngIf="{showOnlyRelevant: showingOnlyRelevant$ | async} as context"
+           class="flex items-center"
+           (click)="changeShowOnlyRelevant(!context.showOnlyRelevant)">
+        <i class="fa relevant mr-2"
+           [ngClass]="context.showOnlyRelevant ? 'fa-check': 'fa-times'"></i>
+        <span class="cursor-pointer">Show Only Relevant</span>
+      </div>
       <div>
         <rf-setup-tree [setups]="setups$ | async"
                        (selected)="selectSetup($event)"></rf-setup-tree>

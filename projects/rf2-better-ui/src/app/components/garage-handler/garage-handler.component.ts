@@ -51,9 +51,9 @@ export class GarageHandlerComponent implements OnInit {
 
     setups.onclick = () => {
       this.dialog.open(SetupsComponent, {
-        height: '50vh',
+        height: '80vh',
         maxHeight: '90vh',
-        width: '70vw'
+        width: '80vw'
       });
     };
     angular.element('left-section button:first').unbind('click');

@@ -41,3 +41,17 @@ export const notesLoaded = createAction(
   '[Garage] Notes Loaded',
   props<{ notes: string }>()
 );
+
+export const loadShowingRelevant = createAction(
+  '[Garage] Load Showing Relevant',
+);
+
+export const showingRelevantLoaded = createAction(
+  '[Garage] Showing Relevant Loaded',
+  props<{showOnlyRelevant: boolean}>()
+);
+
+export const changeShowOnlyRelevant = createAction(
+  '[Garage] Change Show Only Relevant',
+  props<{showOnlyRelevant: boolean}>()
+);

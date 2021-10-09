@@ -49,7 +49,7 @@ import { AppComponent } from './app.component';
     ExitDialogComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {

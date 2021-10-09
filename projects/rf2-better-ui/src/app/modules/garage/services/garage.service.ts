@@ -38,4 +38,12 @@ export class GarageService {
   public saveNotes(notes: string): Observable<void> {
     return this.http.post<void>('/rest/garage/setup/notes', notes);
   }
+
+  public loadShowingOnlyRelevant(): Observable<boolean> {
+    return this.http.get<boolean>('/rest/garage/showOnlyRelevantSetups');
+  }
+
+  public changeShowingOnlyRelevant(showOnlyRelevant: boolean): Observable<void> {
+    return this.http.post<void>('/rest/garage/showOnlyRelevantSetups', showOnlyRelevant);
+  }
 }
