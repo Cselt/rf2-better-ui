@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as GarageActions from '../../state/garage.actions';
 import { Setup } from '../../interfaces/setup';
 import * as GarageSelectors from '../../state/garage.selectors';
@@ -13,9 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class SetupsComponent implements OnInit {
 
-  public setups$: Observable<Setup[]> = this.store.select(GarageSelectors.selectSetups);
-
-  public selected: Setup;
+  public setups$: Observable<Setup[]> = this.store.pipe(select(GarageSelectors.selectSetups));
+  public setupName$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentSetupName));
+  public notes$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentNotes));
 
   constructor(private dialogRef: MatDialogRef<SetupsComponent>,
               private store: Store) {
@@ -23,14 +23,19 @@ export class SetupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(GarageActions.loadSetups());
+    this.store.dispatch(GarageActions.loadSetupSummary());
   }
 
   loadSelected(): void {
-    this.store.dispatch(GarageActions.loadSavedSetup(this.selected));
+    this.store.dispatch(GarageActions.loadSavedSetup());
     this.close();
   }
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  selectSetup(setup: Setup): void {
+    this.store.dispatch(GarageActions.selectSetup({setup}));
   }
 }

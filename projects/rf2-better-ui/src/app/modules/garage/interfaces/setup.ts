@@ -5,3 +5,9 @@ export interface Setup {
   modified: string; // Date
   numDiffUpgrades: number;
 }
+
+export interface SetupSummary {
+  settingSummaries: any;
+  activeSetup: string;
+  compareToSetup: string;
+}

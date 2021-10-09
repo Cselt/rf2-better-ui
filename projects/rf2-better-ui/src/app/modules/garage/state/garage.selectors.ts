@@ -15,3 +15,13 @@ export const selectSetups: MemoizedSelector<GarageState, Setup[]> = createSelect
   selectGarageState,
   (state: GarageState) => state.setups
 );
+
+export const selectCurrentSetupName: MemoizedSelector<GarageState, string> = createSelector(
+  selectGarageState,
+  (state: GarageState) => state.currentSetupName ?? state.currentSetupSummary?.activeSetup
+);
+
+export const selectCurrentNotes: MemoizedSelector<GarageState, string> = createSelector(
+  selectGarageState,
+  (state: GarageState) => state.currentNote
+);
