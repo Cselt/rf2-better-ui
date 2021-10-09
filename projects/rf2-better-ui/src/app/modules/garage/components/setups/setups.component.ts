@@ -13,13 +13,12 @@ import { Observable } from 'rxjs';
 })
 export class SetupsComponent implements OnInit {
 
-  public setups$: Observable<Setup[]>;
+  public setups$: Observable<Setup[]> = this.store.select(GarageSelectors.selectSetups);
 
   public selected: Setup;
 
   constructor(private dialogRef: MatDialogRef<SetupsComponent>,
               private store: Store) {
-    this.setups$ = this.store.select(GarageSelectors.selectSetups);
   }
 
   ngOnInit(): void {

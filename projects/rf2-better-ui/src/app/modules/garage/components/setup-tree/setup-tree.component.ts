@@ -41,6 +41,7 @@ export class SetupTreeComponent {
     (node: ExtendedSetup) => node.isDirectory);
 
   public selectedSetup: Setup;
+  public filter: string = '';
   public isDirectory = (idx: number, node: ExtendedSetup) => node.isDirectory;
 
   getParentNode(node: ExtendedSetup): ExtendedSetup {
@@ -55,7 +56,7 @@ export class SetupTreeComponent {
     return null;
   }
 
-  shouldRender(node: ExtendedSetup): boolean {
+  shouldRenderLeaf(node: ExtendedSetup): boolean {
     let parent = this.getParentNode(node);
     while (parent) {
       if (!parent.isExpanded) {
@@ -66,9 +67,10 @@ export class SetupTreeComponent {
     return true;
   }
 
-  hasChild(node: ExtendedSetup): boolean {
+  shouldRenderNode(node: ExtendedSetup): boolean {
+    const allowedByFilter: boolean = node.displayName.toLowerCase().includes(this.filter.toLowerCase());
     const nodeIndex: number = this._setups.indexOf(node);
-    return !this._setups[nodeIndex + 1]?.isDirectory;
+    return !this._setups[nodeIndex + 1]?.isDirectory && allowedByFilter;
   }
 
   select(node: ExtendedSetup): void {

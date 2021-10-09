@@ -56,19 +56,7 @@ export class GarageHandlerComponent implements OnInit {
         width: '70vw'
       });
     };
-    // angular.element('left-section button:first').unbind('click');
-
-    document.querySelectorAll('left-section button').forEach((button: HTMLButtonElement) =>
-      button.addEventListener('click', async () => {
-        const element: HTMLUListElement = await waitForElement('.modal-dialog .setup-content .setup-tree-wrapper ul') as HTMLUListElement;
-        element.querySelectorAll('li .setup-name').forEach((span: HTMLSpanElement) => {
-          if (span.textContent === this.currentTrackFolder) {
-            span.textContent += '*';
-            span.classList.add('track-selected');
-          }
-        });
-      })
-    );
+    angular.element('left-section button:first').unbind('click');
   }
 
   private loadActiveTrack(): void {

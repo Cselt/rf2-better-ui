@@ -55,6 +55,10 @@ nav {
   content: "\f078";
 }
 
+.fa-search:before {
+  content: "\f002";
+}
+
 .raceButton {
   margin: 0;
   background: vars.$colorRed;

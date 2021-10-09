@@ -1,7 +1,24 @@
+<div class="relative flex items-center content-center mb-2">
+  <button class="w-auto flex bg-transparent justify-start items-center p-2 cursor-default">
+    <i class="fa fa-search"></i>
+  </button>
+  <input id="filter"
+         type="text"
+         placeholder="Filter"
+         class="appearance-none border w-full py-0.5 text-gray-700 focus:shadow-outline focus:shadow-outline"
+         [(ngModel)]="filter">
+
+  <button *ngIf="filter !== ''"
+          class="absolute text-center bg-transparent p-0 z-10 right-0"
+          (click)="filter = ''">
+    <i class="fi fi-icon-close cursor-pointer"></i>
+  </button>
+</div>
+
 <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackBy">
   <!-- This is the tree node template for leaf nodes -->
   <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
-                 [style.display]="shouldRender(node) ? 'flex' : 'none'"
+                 [style.display]="shouldRenderLeaf(node) ? 'flex' : 'none'"
                  class="flex items-center">
     <div class="w-4"></div>
     <div class="cursor-pointer hover:bg-gray-200"
@@ -13,7 +30,7 @@
 
   <!-- This is the tree node template for expandable nodes -->
   <cdk-tree-node *cdkTreeNodeDef="let node; when: isDirectory" cdkTreeNodePadding
-                 [style.display]="hasChild(node) ? 'flex' : 'none'"
+                 [style.display]="shouldRenderNode(node) ? 'flex' : 'none'"
                  cdkTreeNodeToggle
                  (click)="node.isExpanded = !node.isExpanded"
                  class="flex items-center cursor-pointer">

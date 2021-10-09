@@ -12,6 +12,10 @@ export const initialState: GarageState = {
 
 export const reducer: ActionReducer<GarageState, Action> = createReducer(
   initialState,
+  on(GarageActions.loadSetups, (state: GarageState) => ({
+    ...state,
+    setups: []
+  })),
   on(GarageActions.setupsLoaded, (state: GarageState, {setups}) => ({
     ...state,
     setups
