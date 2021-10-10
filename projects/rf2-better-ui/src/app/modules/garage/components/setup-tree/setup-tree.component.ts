@@ -19,15 +19,34 @@ export class SetupTreeComponent {
   private _setups: ExtendedSetup[];
 
   @Input()
+  setupsLoading: boolean;
+
+  @Input()
   set setups(values: Setup[]) {
+    values = values.filter((s: Setup) => s.name !== '<Factory Defaults>');
+
     const extendedSetups: ExtendedSetup[] = values.map((setup: Setup) => {
-      const isDirectory: boolean = setup.name.endsWith('\\') && setup.modified === '';
+      const isDirectory: boolean = setup?.name.endsWith('\\') && setup?.modified === '';
+      const nodeIndex: number = values.indexOf(setup);
       return {
         ...setup,
         isDirectory,
-        displayName: isDirectory ? setup.name : setup.name.split('\\')[1]
+        displayName: setup.name.split('\\')[isDirectory ? 0 : 1]
       } as ExtendedSetup;
+    }).filter((setup: ExtendedSetup, index: number, array: ExtendedSetup[]) => {
+      // We need to keep leafs
+      if (!setup.isDirectory) {
+        return true;
+      }
+
+      if (index === array.length - 1) {
+        return false;
+      }
+
+      // Remove empty directories
+      return !array[index + 1]?.isDirectory;
     });
+    console.warn('setus ', extendedSetups);
     this.dataSource = new ArrayDataSource<ExtendedSetup>(extendedSetups);
     this._setups = extendedSetups;
   }
@@ -70,6 +89,12 @@ export class SetupTreeComponent {
   shouldRenderNode(node: ExtendedSetup): boolean {
     const allowedByFilter: boolean = node.displayName.toLowerCase().includes(this.filter.toLowerCase());
     const nodeIndex: number = this._setups.indexOf(node);
+
+    // Last item
+    if (nodeIndex === this._setups.length - 1) {
+      return !node.isDirectory;
+    }
+
     return !this._setups[nodeIndex + 1]?.isDirectory && allowedByFilter;
   }
 

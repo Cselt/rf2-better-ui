@@ -1,50 +1,55 @@
 <!-- Filter -->
-<div class="relative flex items-center content-center mb-2">
-  <button class="w-auto flex bg-transparent justify-start items-center p-2 cursor-default">
-    <i class="fa fa-search"></i>
-  </button>
-  <input id="filter"
-         type="text"
-         placeholder="Filter"
-         class="appearance-none border w-full py-0.5 text-gray-700 focus:shadow-outline focus:shadow-outline"
-         [(ngModel)]="filter">
+<div class="flex flex-col h-full">
+  <div class="relative flex items-center content-center mb-2">
+    <button class="w-auto flex bg-transparent justify-start items-center p-2 cursor-default">
+      <i class="fa fa-search"></i>
+    </button>
+    <input id="filter"
+           type="text"
+           placeholder="Filter"
+           class="appearance-none border w-full py-0.5 text-gray-700 focus:shadow-outline focus:shadow-outline"
+           [(ngModel)]="filter">
 
-  <button *ngIf="filter !== ''"
-          class="absolute text-center bg-transparent p-0 z-10 right-0"
-          (click)="filter = ''">
-    <i class="fi fi-icon-close cursor-pointer"></i>
-  </button>
-</div>
+    <button *ngIf="filter !== ''"
+            class="absolute text-center bg-transparent p-0 z-10 right-0"
+            (click)="filter = ''">
+      <i class="fi fi-icon-close cursor-pointer"></i>
+    </button>
+  </div>
 
-<div class="h-full overflow-auto">
-  <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackBy">
-    <!-- This is the tree node template for leaf nodes -->
-    <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
-                   [style.display]="shouldRenderLeaf(node) ? 'flex' : 'none'"
-                   class="flex items-center">
-      <div class="w-4"></div>
-      <div class="cursor-pointer hover:bg-gray-200"
-           [class.bg-gray-200]="selectedSetup === node"
-           (click)="select(node)">
-        {{node.displayName}}
-      </div>
-    </cdk-tree-node>
+  <div *ngIf="setupsLoading; else tree" class="h-full flex items-center justify-center">
+    <span class="loader-spinner block"></span>
+  </div>
 
-    <!-- This is the tree node template for expandable nodes -->
-    <cdk-tree-node *cdkTreeNodeDef="let node; when: isDirectory" cdkTreeNodePadding
-                   [style.display]="shouldRenderNode(node) ? 'flex' : 'none'"
-                   cdkTreeNodeToggle
-                   (click)="node.isExpanded = !node.isExpanded"
-                   class="flex items-center cursor-pointer">
-      <button [style.visibility]="node.isDirectory ? 'visible' : 'hidden'"
-              class="bg-transparent w-4">
-        <i class="fa" [ngClass]="treeControl.isExpanded(node) ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
-      </button>
+  <ng-template #tree>
+    <div class="h-full overflow-auto">
+      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackBy">
+        <!-- This is the tree node template for leaf nodes -->
+        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
+                       [style.display]="shouldRenderLeaf(node) ? 'flex' : 'none'"
+                       class="flex items-center">
+          <div class="w-4"></div>
+          <div class="cursor-pointer hover:bg-gray-200 w-full"
+               [class.bg-gray-200]="selectedSetup === node"
+               (click)="select(node)">
+            {{node.displayName}}
+          </div>
+        </cdk-tree-node>
 
-      <div>
-        <!-- Remove last character, which is a "\" -->
-        {{node.name.slice(0, -1)}}
-      </div>
-    </cdk-tree-node>
-  </cdk-tree>
+        <!-- This is the tree node template for expandable nodes -->
+        <cdk-tree-node *cdkTreeNodeDef="let node; when: isDirectory" cdkTreeNodePadding
+                       [style.display]="shouldRenderNode(node) ? 'flex' : 'none'"
+                       cdkTreeNodeToggle
+                       (click)="node.isExpanded = !node.isExpanded"
+                       class="flex items-center cursor-pointer">
+          <button [style.visibility]="node.isDirectory ? 'visible' : 'hidden'"
+                  class="bg-transparent w-4">
+            <i class="fa" [ngClass]="treeControl.isExpanded(node) ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
+          </button>
+
+          <div class="w-full">{{node.displayName}}</div>
+        </cdk-tree-node>
+      </cdk-tree>
+    </div>
+  </ng-template>
 </div>

@@ -4,6 +4,7 @@ import { Setup, SetupSummary } from '../interfaces/setup';
 
 export interface GarageState {
   setups: Setup[];
+  setupsLoading: boolean;
   currentSetupSummary: SetupSummary;
   currentSetupName: string;
   currentNote: string;
@@ -12,6 +13,7 @@ export interface GarageState {
 
 export const initialState: GarageState = {
   setups: [],
+  setupsLoading: false,
   currentSetupSummary: undefined,
   currentSetupName: undefined,
   currentNote: undefined,
@@ -22,12 +24,14 @@ export const reducer: ActionReducer<GarageState, Action> = createReducer(
   initialState,
   on(GarageActions.loadSetups, (state: GarageState) => ({
     ...state,
-    setups: []
+    setups: [],
+    setupsLoading: true
   })),
 
   on(GarageActions.setupsLoaded, (state: GarageState, {setups}) => ({
     ...state,
-    setups
+    setups,
+    setupsLoading: false
   })),
 
   on(GarageActions.setupSummaryLoaded, (state: GarageState, summary) => ({
