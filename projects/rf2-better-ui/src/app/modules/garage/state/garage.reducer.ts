@@ -6,7 +6,7 @@ export interface GarageState {
   setups: Setup[];
   setupsLoading: boolean;
   currentSetupSummary: SetupSummary;
-  currentSetupName: string;
+  selectedSetupName: string;
   currentNote: string;
   showOnlyRelevant: boolean;
 }
@@ -15,7 +15,7 @@ export const initialState: GarageState = {
   setups: [],
   setupsLoading: false,
   currentSetupSummary: undefined,
-  currentSetupName: undefined,
+  selectedSetupName: undefined,
   currentNote: undefined,
   showOnlyRelevant: false
 };
@@ -37,12 +37,12 @@ export const reducer: ActionReducer<GarageState, Action> = createReducer(
   on(GarageActions.setupSummaryLoaded, (state: GarageState, summary) => ({
     ...state,
     currentSetupSummary: summary
-  })),
+  }) as GarageState),
 
   on(GarageActions.selectSetup, (state: GarageState, {setup}) => ({
     ...state,
-    currentSetupName: setup.name
-  })),
+    selectedSetupName: setup.name
+  }) as GarageState),
 
   on(GarageActions.notesLoaded, (state: GarageState, {notes}) => ({
     ...state,

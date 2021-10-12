@@ -18,7 +18,7 @@ export class GarageEffects {
 
   loadSavedSetup$ = createEffect(() => this.actions$.pipe(
     ofType(GarageActions.loadSavedSetup),
-    concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectCurrentSetupName))),
+    concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
     switchMap(([_, setupName]) => this.service.loadSavedSetup(setupName)),
     map(() => GarageActions.updateView())
   ));

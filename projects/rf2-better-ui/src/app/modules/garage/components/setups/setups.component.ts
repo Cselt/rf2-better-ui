@@ -15,7 +15,8 @@ export class SetupsComponent implements OnInit {
 
   public setups$: Observable<Setup[]> = this.store.pipe(select(GarageSelectors.selectSetups));
   public setupsLoading$: Observable<boolean> = this.store.pipe(select(GarageSelectors.selectSetupsLoading));
-  public setupName$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentSetupName));
+  public setupName$: Observable<string> = this.store.pipe(select(GarageSelectors.selectDisplayedSetupName));
+  public activeSetupName$: Observable<string> = this.store.pipe(select(GarageSelectors.selectActiveSetupName));
   public notes$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentNotes));
   public showingOnlyRelevant$: Observable<boolean> = this.store.pipe(select(GarageSelectors.showingOnlyRelevant));
 

@@ -22,12 +22,14 @@ export class SetupTreeComponent {
   setupsLoading: boolean;
 
   @Input()
+  activeSetupName: string;
+
+  @Input()
   set setups(values: Setup[]) {
     values = values.filter((s: Setup) => s.name !== '<Factory Defaults>');
 
     const extendedSetups: ExtendedSetup[] = values.map((setup: Setup) => {
       const isDirectory: boolean = setup?.name.endsWith('\\') && setup?.modified === '';
-      const nodeIndex: number = values.indexOf(setup);
       return {
         ...setup,
         isDirectory,

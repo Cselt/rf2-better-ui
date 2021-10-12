@@ -58,7 +58,8 @@
         <span class="cursor-pointer">Show Only Relevant</span>
       </div>
       <div class="h-full">
-        <rf-setup-tree [setups]="setups$ | async"
+        <rf-setup-tree [activeSetupName]="activeSetupName$ | async"
+                       [setups]="setups$ | async"
                        [setupsLoading]="setupsLoading$ | async"
                        (selected)="selectSetup($event)"></rf-setup-tree>
       </div>
