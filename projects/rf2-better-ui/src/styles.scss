@@ -70,3 +70,11 @@ nav {
     background: vars.$colorDarkRed;
   }
 }
+
+.rfPanel .mat-dialog-container {
+  border-radius: 0 !important;
+}
+
+.noDialogPadding .mat-dialog-container {
+  padding: 0 !important;
+}

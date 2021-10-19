@@ -48,10 +48,14 @@ export const loadShowingRelevant = createAction(
 
 export const showingRelevantLoaded = createAction(
   '[Garage] Showing Relevant Loaded',
-  props<{showOnlyRelevant: boolean}>()
+  props<{ showOnlyRelevant: boolean }>()
 );
 
 export const changeShowOnlyRelevant = createAction(
   '[Garage] Change Show Only Relevant',
-  props<{showOnlyRelevant: boolean}>()
+  props<{ showOnlyRelevant: boolean }>()
+);
+
+export const deleteSelectedSetup = createAction(
+  '[Garage] Delete Selected Setup'
 );

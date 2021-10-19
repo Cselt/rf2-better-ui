@@ -11,6 +11,8 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { SetupTreeComponent } from './components/setup-tree/setup-tree.component';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatButtonModule } from '@angular/material/button';
+import { DeleteConfirmPopupComponent } from './components/delete-confirm-popup/delete-confirm-popup.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -22,11 +24,13 @@ import { MatButtonModule } from '@angular/material/button';
     ]),
     CdkTreeModule,
     UiComponentsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   declarations: [
     SetupsComponent,
-    SetupTreeComponent
+    SetupTreeComponent,
+    DeleteConfirmPopupComponent
   ],
   providers: [
     GarageService

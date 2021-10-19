@@ -72,6 +72,13 @@ export class GarageEffects {
     map(() => GarageActions.loadSetups())
   ));
 
+  deleteSetup$ = createEffect(() => this.actions$.pipe(
+    ofType(GarageActions.deleteSelectedSetup),
+    concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
+    switchMap(([action, setup]) => this.service.deleteSetup(setup)),
+    map(() => GarageActions.loadSetups())
+  ));
+
   constructor(private actions$: Actions,
               private store: Store<any>,
               private service: GarageService) {

@@ -37,7 +37,11 @@
 
         <div class="flex flex-shrink-0 space-x-2">
           <button class="flex-1 w-2/4" rf-button>Compare</button>
-          <button class="flex-1 w-2/4" rf-button color="danger">Delete</button>
+          <button *ngIf="setupName$ | async as setup"
+                  class="flex-1 w-2/4" rf-button color="danger"
+                  (click)="deleteSelected(setup)">
+            Delete
+          </button>
         </div>
 
         <div class="flex flex-shrink-0 space-x-2">

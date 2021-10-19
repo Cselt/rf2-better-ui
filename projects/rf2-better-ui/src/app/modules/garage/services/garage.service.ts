@@ -46,4 +46,8 @@ export class GarageService {
   public changeShowingOnlyRelevant(showOnlyRelevant: boolean): Observable<void> {
     return this.http.post<void>('/rest/garage/showOnlyRelevantSetups', showOnlyRelevant);
   }
+
+  public deleteSetup(name: string): Observable<void> {
+    return this.http.delete<void>(`/rest/garage/setup/${encodeURI(name)}`);
+  }
 }

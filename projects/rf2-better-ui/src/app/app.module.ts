@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -48,7 +48,15 @@ import { AppComponent } from './app.component';
     RaceCountdownTimerComponent,
     ExitDialogComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {
+        ...new MatDialogConfig(),
+        panelClass: 'rfPanel',
+      } as MatDialogConfig
+    }
+  ],
   // bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap {

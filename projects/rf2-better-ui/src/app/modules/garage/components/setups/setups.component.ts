@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import * as GarageActions from '../../state/garage.actions';
 import { Setup } from '../../interfaces/setup';
 import * as GarageSelectors from '../../state/garage.selectors';
 import { Observable } from 'rxjs';
+import { DeleteConfirmPopupComponent } from '../delete-confirm-popup/delete-confirm-popup.component';
 
 @Component({
   selector: 'rf-setups',
@@ -21,7 +22,8 @@ export class SetupsComponent implements OnInit {
   public showingOnlyRelevant$: Observable<boolean> = this.store.pipe(select(GarageSelectors.showingOnlyRelevant));
 
   constructor(private dialogRef: MatDialogRef<SetupsComponent>,
-              private store: Store) {
+              private store: Store,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -45,5 +47,18 @@ export class SetupsComponent implements OnInit {
 
   changeShowOnlyRelevant(show: boolean): void {
     this.store.dispatch(GarageActions.changeShowOnlyRelevant({showOnlyRelevant: show}));
+  }
+
+  deleteSelected(setupName: string): void {
+    this.dialog.open(DeleteConfirmPopupComponent, {
+      panelClass: ['noDialogPadding', 'rfPanel'],
+      data: {setupName}
+    })
+      .afterClosed()
+      .subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.store.dispatch(GarageActions.deleteSelectedSetup());
+        }
+      });
   }
 }
