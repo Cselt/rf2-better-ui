@@ -1,4 +1,4 @@
-<div class="flex flex-col h-full">
+<div class="flex flex-col">
   <!-- Header -->
   <div class="flex justify-between items-center mb-5">
     <h2 class="text-gray-400 italic select-none">Setups</h2>
@@ -10,7 +10,7 @@
   </div>
 
   <!-- Content -->
-  <div class="flex h-full">
+  <div class="flex">
     <!-- Left Section -->
     <section class="flex w-1/3 flex-col space-y-1 mr-5">
 
@@ -37,9 +37,9 @@
 
         <div class="flex flex-shrink-0 space-x-2">
           <button class="flex-1 w-2/4" rf-button>Compare</button>
-          <button *ngIf="setupName$ | async as setup"
+          <button *ngIf="{setup: setupName$ | async} as context"
                   class="flex-1 w-2/4" rf-button color="danger"
-                  (click)="deleteSelected(setup)">
+                  (click)="deleteSelected(context.setup)">
             Delete
           </button>
         </div>
@@ -61,7 +61,7 @@
            [ngClass]="context.showOnlyRelevant ? 'fa-check': 'fa-times'"></i>
         <span class="cursor-pointer">Show Only Relevant</span>
       </div>
-      <div class="h-full">
+      <div>
         <rf-setup-tree [activeSetupName]="activeSetupName$ | async"
                        [setups]="setups$ | async"
                        [setupsLoading]="setupsLoading$ | async"

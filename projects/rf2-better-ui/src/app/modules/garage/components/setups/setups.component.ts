@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import * as GarageActions from '../../state/garage.actions';
@@ -13,6 +13,9 @@ import { DeleteConfirmPopupComponent } from '../delete-confirm-popup/delete-conf
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetupsComponent implements OnInit {
+
+  @HostBinding('class')
+  flexClass: string[] = ['flex', 'flex-col'];
 
   public setups$: Observable<Setup[]> = this.store.pipe(select(GarageSelectors.selectSetups));
   public setupsLoading$: Observable<boolean> = this.store.pipe(select(GarageSelectors.selectSetupsLoading));
