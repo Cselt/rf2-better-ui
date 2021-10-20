@@ -52,7 +52,9 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
 
         const quitLi: HTMLLIElement = document.createElement('li');
         quitLi.classList.add('fa', 'fa-power-off');
-        quitLi.addEventListener('click', () => this.dialog.open(ExitDialogComponent));
+        quitLi.addEventListener('click', () => this.dialog.open(ExitDialogComponent, {
+          panelClass: ['noDialogPadding', 'rfPanel']
+        }));
         ol.appendChild(quitLi);
       }
     } catch (e) {

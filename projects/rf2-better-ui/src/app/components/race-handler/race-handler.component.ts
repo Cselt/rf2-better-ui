@@ -82,7 +82,9 @@ export class RaceHandlerComponent implements OnInit {
       const exitButton: HTMLButtonElement = document.createElement('button');
       exitButton.classList.add('btn', 'secondary');
       exitButton.innerHTML = `<span>Exit game</span>`;
-      exitButton.addEventListener('click', () => this.dialog.open(ExitDialogComponent));
+      exitButton.addEventListener('click', () => this.dialog.open(ExitDialogComponent, {
+        panelClass: ['noDialogPadding', 'rfPanel']
+      }));
 
       footer.appendChild(exitButton);
       modalForm.appendChild(footer);

@@ -1,5 +1,5 @@
 module.exports = {
-  // mode: 'jit',
+  mode: 'jit',
   purge: {
     content: [
       './projects/rf2-better-ui/src/**/*.{html,ts}'
