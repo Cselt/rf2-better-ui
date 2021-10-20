@@ -39,7 +39,10 @@
         </div>
 
         <div class="flex flex-shrink-0 space-x-2">
-          <button class="flex-1 w-2/4" rf-button>Compare</button>
+          <button class="flex-1 w-2/4" rf-button color="blue"
+                  (click)="compare()">
+            Compare
+          </button>
           <button *ngIf="{setup: setupName$ | async} as context"
                   class="flex-1 w-2/4" rf-button color="danger"
                   (click)="deleteSelected(context.setup)">
@@ -66,6 +69,7 @@
       </div>
       <div>
         <rf-setup-tree [activeSetupName]="activeSetupName$ | async"
+                       [compareToSetup]="compareToSetup$ | async"
                        [setups]="setups$ | async"
                        [setupsLoading]="setupsLoading$ | async"
                        (selected)="selectSetup($event)"></rf-setup-tree>

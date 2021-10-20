@@ -25,6 +25,9 @@ export class SetupTreeComponent {
   activeSetupName: string;
 
   @Input()
+  compareToSetup: string;
+
+  @Input()
   set setups(values: Setup[]) {
     values = values.filter((s: Setup) => s.name !== '<Factory Defaults>');
 

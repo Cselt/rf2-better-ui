@@ -42,6 +42,7 @@
               <div class="w-1/3">{{node.displayName}}</div>
               <div class="w-1/3 text-center">
                 <ng-container *ngIf="node.name === activeSetupName">Current</ng-container>
+                <ng-container *ngIf="node.name === compareToSetup"><span class="text-blue-500">Compared</span></ng-container>
               </div>
               <div class="w-1/3 text-right">{{node.modified}}</div>
             </div>

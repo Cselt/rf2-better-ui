@@ -50,4 +50,8 @@ export class GarageService {
   public deleteSetup(name: string): Observable<void> {
     return this.http.delete<void>(`/rest/garage/setup/${encodeURI(name)}`);
   }
+
+  public compareSetup(name: string): Observable<void> {
+    return this.http.post<void>(`/rest/garage/setup/compare`, name);
+  }
 }

@@ -16,7 +16,7 @@ export class RfButtonComponent implements OnInit {
   colorClass: string = "primary";
 
   @Input()
-  set color(value: "primary" | "secondary" | "danger") {
+  set color(value: "primary" | "secondary" | "danger" | "blue") {
     this.colorClass = value;
   }
 

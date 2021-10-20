@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import * as fromState from './index';
-import { Setup } from '../interfaces/setup';
+import { Setup, SetupSummary } from '../interfaces/setup';
 import { GarageState } from './garage.reducer';
 import { State } from './index';
 
@@ -21,14 +21,19 @@ export const selectSetupsLoading: MemoizedSelector<GarageState, boolean> = creat
   (state: GarageState) => state.setupsLoading
 );
 
+export const selectCurrentSummary: MemoizedSelector<GarageState, SetupSummary> = createSelector(
+  selectGarageState,
+  (state: GarageState) => state.currentSetupSummary
+);
+
 export const selectDisplayedSetupName: MemoizedSelector<GarageState, string> = createSelector(
   selectGarageState,
   (state: GarageState) => state.selectedSetupName ?? state.currentSetupSummary?.activeSetup
 );
 
 export const selectActiveSetupName: MemoizedSelector<GarageState, string> = createSelector(
-  selectGarageState,
-  (state: GarageState) => state.currentSetupSummary?.activeSetup
+  selectCurrentSummary,
+  (summary: SetupSummary) => summary?.activeSetup
 );
 
 export const selectCurrentNotes: MemoizedSelector<GarageState, string> = createSelector(
@@ -39,4 +44,9 @@ export const selectCurrentNotes: MemoizedSelector<GarageState, string> = createS
 export const showingOnlyRelevant: MemoizedSelector<GarageState, boolean> = createSelector(
   selectGarageState,
   (state: GarageState) => state.showOnlyRelevant
+);
+
+export const selectCompareSetup: MemoizedSelector<GarageState, string> = createSelector(
+  selectCurrentSummary,
+  (summary: SetupSummary) => summary?.compareToSetup
 );

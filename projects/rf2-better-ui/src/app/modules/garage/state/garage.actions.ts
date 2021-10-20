@@ -59,3 +59,7 @@ export const changeShowOnlyRelevant = createAction(
 export const deleteSelectedSetup = createAction(
   '[Garage] Delete Selected Setup'
 );
+
+export const compareSelected = createAction(
+  '[Garage] Compare Selected'
+);

@@ -8,6 +8,10 @@
   background: common.$colorRed;
 }
 
+.blue {
+  background: common.$colorBlue;
+}
+
 .rfButton {
   @include common.skewElement();
 
@@ -55,6 +59,10 @@
 
     &.danger {
       color: common.$colorRed;
+    }
+
+    &.blue {
+      color: common.$colorBlue;
     }
 
     &:before {

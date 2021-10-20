@@ -79,6 +79,13 @@ export class GarageEffects {
     map(() => GarageActions.loadSetups())
   ));
 
+  compare$ = createEffect(() => this.actions$.pipe(
+    ofType(GarageActions.compareSelected),
+    concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
+    switchMap(([action, setup]) => this.service.compareSetup(setup)),
+    map(() => GarageActions.updateView())
+  ));
+
   constructor(private actions$: Actions,
               private store: Store<any>,
               private service: GarageService) {
