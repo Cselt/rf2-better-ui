@@ -9,6 +9,7 @@ import { GarageHandlerComponent } from '../garage-handler/garage-handler.compone
 import { EventHandlerComponent } from '../event-handler/event-handler.component';
 import { SessionsHandlerComponent } from '../sessions-handler/sessions-handler.component';
 import { MultiplayerHandlerComponent } from '../multiplayer-handler/multiplayer-handler.component';
+import { SettingsHandlerComponent } from '../../modules/settings';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -73,7 +74,6 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
         break;
 
       case '/garage/index.html':
-        console.log('navigate to garage');
         factory = this.resolver.resolveComponentFactory(GarageHandlerComponent);
         break;
 
@@ -87,6 +87,10 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
 
       case '/multiplayer/index.html':
         factory = this.resolver.resolveComponentFactory(MultiplayerHandlerComponent);
+        break;
+
+      case '/options/index.html':
+        factory = this.resolver.resolveComponentFactory(SettingsHandlerComponent);
         break;
     }
 

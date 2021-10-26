@@ -22,6 +22,7 @@ import { GarageModule } from './modules/garage/garage.module';
 import { environment } from '../environments/environment';
 import { UiComponentsModule } from './modules/ui-components/ui-components.module';
 import { AppComponent } from './app.component';
+import { SettingsModule } from './modules/settings/settings.module';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { AppComponent } from './app.component';
     EffectsModule.forRoot([]),
     UiComponentsModule,
     GarageModule,
+    SettingsModule
   ],
   declarations: [
     AppComponent,

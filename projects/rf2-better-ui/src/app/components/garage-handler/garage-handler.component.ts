@@ -47,6 +47,9 @@ export class GarageHandlerComponent implements OnInit {
   }
 
   private findSetupButtons(): void {
+    if (localStorage.getItem('betterUi.disableSetup') === 'true') {
+      return;
+    }
     const setups: HTMLButtonElement = (document.querySelectorAll('left-section button')[0] as HTMLButtonElement);
 
     setups.onclick = () => {
