@@ -11,11 +11,12 @@ function main(): void {
     });
   }
 
-  function addLinkTag(href: string): void {
+  function addLinkTag(href: string): Promise<void> {
     const link: HTMLLinkElement = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
     document.getElementsByTagName('head')[0].appendChild(link);
+    return Promise.resolve();
   }
 
   function waitForElem(selector): Promise<any> {
@@ -38,12 +39,46 @@ function main(): void {
     });
   }
 
-  Promise.all([
-    addScriptTag('../framework/rf2-better-ui/runtime.<runtime>.js'),
-    addScriptTag('../framework/rf2-better-ui/polyfills.<polyfills>.js'),
-    addScriptTag('../framework/rf2-better-ui/main.<main>.js'),
-    addLinkTag('../framework/rf2-better-ui/styles.<styles>.css')
-  ]).then(() => {
+  const div: HTMLDivElement = document.createElement('div');
+  div.innerHTML =
+    `<span id="betterUIVersion" style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI </span>`;
+
+  const devMode: boolean = localStorage.getItem('betterUi.devMode') === 'true';
+  div.ondblclick = () => {
+    if (devMode) {
+      if (confirm('Are you sure you want to switch to Prod mode?')) {
+        localStorage.removeItem('betterUi.devMode');
+        window.location.reload();
+      }
+    } else {
+      if (confirm('Are you sure you want to switch to Dev mode?')) {
+        localStorage.setItem('betterUi.devMode', 'true');
+        window.location.reload();
+      }
+    }
+  };
+
+  document.getElementsByTagName('body')[0].prepend(div);
+
+  let allPromise: Promise<any>;
+  if (devMode) {
+    allPromise = Promise.all([
+      addScriptTag('http://localhost:4200/runtime.js'),
+      addScriptTag('http://localhost:4200/polyfills.js'),
+      addScriptTag('http://localhost:4200/vendor.js'),
+      addScriptTag('http://localhost:4200/main.js'),
+      addLinkTag('http://localhost:4200/styles.css')
+    ]);
+  } else {
+    allPromise = Promise.all([
+      addScriptTag('../framework/rf2-better-ui/runtime.<runtime>.js'),
+      addScriptTag('../framework/rf2-better-ui/polyfills.<polyfills>.js'),
+      addScriptTag('../framework/rf2-better-ui/main.<main>.js'),
+      addLinkTag('../framework/rf2-better-ui/styles.<styles>.css')
+    ]);
+  }
+
+  allPromise.then(() => {
     waitForElem('ui-view div').then(() => {
       const rfBetterUi: HTMLElement = document.createElement('rf-better-ui');
       document.getElementsByTagName('body')[0].prepend(rfBetterUi);

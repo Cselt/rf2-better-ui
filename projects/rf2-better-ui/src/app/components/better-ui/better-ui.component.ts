@@ -9,6 +9,7 @@ import { GarageHandlerComponent } from '../garage-handler/garage-handler.compone
 import { EventHandlerComponent } from '../event-handler/event-handler.component';
 import { SessionsHandlerComponent } from '../sessions-handler/sessions-handler.component';
 import { MultiplayerHandlerComponent } from '../multiplayer-handler/multiplayer-handler.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'rf-better-ui',
@@ -25,10 +26,8 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
               private resolver: ComponentFactoryResolver) {
     console.log('Better UI loaded');
 
-    const div: HTMLDivElement = document.createElement('div');
-    div.innerHTML = `<span style="position: absolute; bottom: 0; right: 0; z-index: 1; font-size: 10px">Better-UI ${packageInfo.version}</span>`;
-    document.getElementsByTagName('body')[0].prepend(div);
-
+    const spanElement: HTMLSpanElement = document.querySelector('#betterUIVersion');
+    spanElement.innerHTML += packageInfo.version + (environment.production ? '' : '-DEV');
   }
 
   ngOnInit(): void {
