@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import packageInfo from '../../../../../../package.json';
+import packageInfo from '../../../../package.json';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { waitForElement } from '../../utils/utils';
