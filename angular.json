@@ -13,7 +13,7 @@
           "strict": true
         }
       },
-      "root": "rf2-better-ui",
+      "root": "",
       "sourceRoot": "src",
       "prefix": "rf",
       "architect": {
@@ -107,6 +107,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
@@ -118,5 +127,8 @@
       "inlineStyle": true,
       "skipTests": true
     }
+  },
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }
