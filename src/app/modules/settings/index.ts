@@ -1,1 +1,1 @@
-export * from "./components/settings-handler/settings-handler.component";
+export * from './components/settings-handler/settings-handler.component';

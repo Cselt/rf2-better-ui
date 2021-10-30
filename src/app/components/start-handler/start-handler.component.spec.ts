@@ -8,9 +8,8 @@ describe('StartHandlerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StartHandlerComponent ]
-    })
-    .compileComponents();
+      declarations: [StartHandlerComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

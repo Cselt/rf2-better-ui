@@ -1,4 +1,4 @@
-@use "../../../scss/common-styles" as common;
+@use '../../../scss/common-styles' as common;
 
 .modal-dialog .setup-content .setup-tree-wrapper {
   font-weight: normal;
@@ -20,7 +20,6 @@ ol.buttonnavigation {
 }
 
 main.garage {
-
   ui-view {
     margin: 1rem 0 0;
   }
@@ -33,4 +32,3 @@ main.garage {
     margin-bottom: 0;
   }
 }
-

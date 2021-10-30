@@ -18,25 +18,15 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     FormsModule,
-    StoreModule.forFeature(fromGarage.garageFeatureKey, fromGarage.reducers, {metaReducers: fromGarage.metaReducers}),
-    EffectsModule.forFeature([
-      GarageEffects
-    ]),
+    StoreModule.forFeature(fromGarage.garageFeatureKey, fromGarage.reducers, { metaReducers: fromGarage.metaReducers }),
+    EffectsModule.forFeature([GarageEffects]),
     CdkTreeModule,
     UiComponentsModule,
     MatButtonModule,
     MatDialogModule
   ],
-  declarations: [
-    SetupsComponent,
-    SetupTreeComponent,
-    DeleteConfirmPopupComponent
-  ],
-  providers: [
-    GarageService
-  ],
-  exports: [
-    SetupsComponent
-  ]
+  declarations: [SetupsComponent, SetupTreeComponent, DeleteConfirmPopupComponent],
+  providers: [GarageService],
+  exports: [SetupsComponent]
 })
-export class GarageModule { }
+export class GarageModule {}

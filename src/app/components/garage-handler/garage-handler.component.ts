@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, ComponentFactoryResolver, HostListener, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { arrowNavigation, waitForElement } from '../../utils/utils';
 import { RaceButtonService } from '../../services/race-button.service';
@@ -12,7 +12,6 @@ import { SetupsComponent } from '../../modules/garage/components/setups/setups.c
   encapsulation: ViewEncapsulation.None
 })
 export class GarageHandlerComponent implements OnInit {
-
   private listItems: NodeListOf<HTMLLIElement>;
   private currentTrackFolder: string;
 
@@ -21,10 +20,7 @@ export class GarageHandlerComponent implements OnInit {
     return arrowNavigation(event, this.listItems, 'main section div.selected');
   }
 
-  constructor(private raceButtonService: RaceButtonService,
-              private http: HttpClient,
-              private dialog: MatDialog) {
-  }
+  constructor(private raceButtonService: RaceButtonService, private http: HttpClient, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     waitForElement('nav em').then((e: Element) => {
@@ -50,7 +46,7 @@ export class GarageHandlerComponent implements OnInit {
     if (localStorage.getItem('betterUi.disableSetup') === 'true') {
       return;
     }
-    const setups: HTMLButtonElement = (document.querySelectorAll('left-section button')[0] as HTMLButtonElement);
+    const setups: HTMLButtonElement = document.querySelectorAll('left-section button')[0] as HTMLButtonElement;
 
     setups.onclick = () => {
       this.dialog.open(SetupsComponent, {
@@ -63,7 +59,8 @@ export class GarageHandlerComponent implements OnInit {
   }
 
   private loadActiveTrack(): void {
-    this.http.get('/rest/garage/currentTrackFolder', {responseType: 'text'})
-      .subscribe((folder: string) => this.currentTrackFolder = folder);
+    this.http
+      .get('/rest/garage/currentTrackFolder', { responseType: 'text' })
+      .subscribe((folder: string) => (this.currentTrackFolder = folder));
   }
 }

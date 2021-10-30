@@ -8,9 +8,8 @@ describe('ExitDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExitDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ExitDialogComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

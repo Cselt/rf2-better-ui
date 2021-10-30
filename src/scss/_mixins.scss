@@ -1,6 +1,6 @@
-@use "vars";
+@use 'vars';
 
-@mixin disabledState($bw:false) {
+@mixin disabledState($bw: false) {
   opacity: vars.$opacityDisabled;
   pointer-events: none;
   cursor: default;
@@ -20,9 +20,9 @@
 
 @mixin skewElement($toRight: true) {
   @if $toRight {
+    // prettier-ignore
     @include skewX(- vars.$skew);
   } @else {
     @include skewX(vars.$skew);
   }
 }
-

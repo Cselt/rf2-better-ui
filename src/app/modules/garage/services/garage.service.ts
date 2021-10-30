@@ -6,9 +6,7 @@ import { Setup } from '../interfaces/setup';
 
 @Injectable()
 export class GarageService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   public loadSetups(): Observable<Setup[]> {
     return this.http.get<Setup[]>('/rest/garage/setup');
@@ -30,9 +28,9 @@ export class GarageService {
     if (!name || name === '') {
       return of('');
     }
-    return this.http.get(`/rest/garage/setup/notes/${encodeURI(name)}`, {responseType: 'text'}).pipe(
-      map((message: string) => message.replace(/(ÿ)/gm, '\n').replace(/['"]+/g, '').replace('NOTES=', ''))
-    );
+    return this.http
+      .get(`/rest/garage/setup/notes/${encodeURI(name)}`, { responseType: 'text' })
+      .pipe(map((message: string) => message.replace(/(ÿ)/gm, '\n').replace(/['"]+/g, '').replace('NOTES=', '')));
   }
 
   public saveNotes(notes: string): Observable<void> {

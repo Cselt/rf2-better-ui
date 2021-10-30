@@ -8,11 +8,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsDialogComponent implements OnInit {
-
   disableSetup: boolean;
 
-  constructor(private dialogRef: MatDialogRef<SettingsDialogComponent>) {
-  }
+  constructor(private dialogRef: MatDialogRef<SettingsDialogComponent>) {}
 
   ngOnInit(): void {
     this.disableSetup = localStorage.getItem('betterUi.disableSetup') === 'true';
@@ -30,5 +28,4 @@ export class SettingsDialogComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
-
 }

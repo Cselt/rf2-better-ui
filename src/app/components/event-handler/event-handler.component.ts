@@ -9,13 +9,11 @@ import { RaceButtonService } from '../../services/race-button.service';
   encapsulation: ViewEncapsulation.None
 })
 export class EventHandlerComponent implements OnInit, OnDestroy {
-
   private tabHolder: HTMLDivElement;
   private observer: MutationObserver;
   private injector: any;
 
-  constructor(private raceButtonService: RaceButtonService) {
-  }
+  constructor(private raceButtonService: RaceButtonService) {}
 
   ngOnInit(): void {
     this.injector = angular.element('ui-view').injector();
@@ -27,13 +25,13 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
 
     // add rf-chat component to the DOM
     waitForElement('.camera-wrapper').then(() => {
-      this.tabHolder = document.querySelector('div[ng-if=\'eventCtrl.gameState.navigationState\']');
+      this.tabHolder = document.querySelector("div[ng-if='eventCtrl.gameState.navigationState']");
       this.injectChat();
       this.observeTabChange();
     });
 
     waitForElement('svg.track-map', 2000).then(() => {
-      this.tabHolder = document.querySelector('div[ng-if=\'eventCtrl.gameState.navigationState\']');
+      this.tabHolder = document.querySelector("div[ng-if='eventCtrl.gameState.navigationState']");
       this.addCarSelect();
       this.observeTabChange();
     });
@@ -55,7 +53,7 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.observer.observe(this.tabHolder, {attributes: true});
+    this.observer.observe(this.tabHolder, { attributes: true });
   }
 
   private async addCarSelect(): Promise<void> {

@@ -31,7 +31,7 @@ import { SettingsModule } from './modules/settings/settings.module';
     BrowserAnimationsModule,
     MatDialogModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     UiComponentsModule,
     GarageModule,
@@ -55,24 +55,23 @@ import { SettingsModule } from './modules/settings/settings.module';
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {
         ...new MatDialogConfig(),
-        panelClass: 'rfPanel',
+        panelClass: 'rfPanel'
       } as MatDialogConfig
     }
-  ],
+  ]
   // bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {
-    const chatWebComponent = createCustomElement(ChatComponent, {injector});
+    const chatWebComponent = createCustomElement(ChatComponent, { injector });
     customElements.define('rf-chat', chatWebComponent);
 
-    const betterUiWebComponent = createCustomElement(BetterUiComponent, {injector});
+    const betterUiWebComponent = createCustomElement(BetterUiComponent, { injector });
     customElements.define('rf-better-ui', betterUiWebComponent);
 
-    const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, {injector});
+    const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, { injector });
     customElements.define('rf-race-countdown-timer', raceCountDownTimerWebComponent);
   }
 
-  ngDoBootstrap(appRef: ApplicationRef): void {
-  }
+  ngDoBootstrap(appRef: ApplicationRef): void {}
 }

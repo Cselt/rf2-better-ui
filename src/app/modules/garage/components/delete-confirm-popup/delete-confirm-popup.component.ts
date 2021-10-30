@@ -7,8 +7,5 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteConfirmPopupComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { setupName: string }) {
-  }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { setupName: string }) {}
 }

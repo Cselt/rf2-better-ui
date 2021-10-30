@@ -8,7 +8,6 @@ import { arrowNavigation } from '../../utils/utils';
   encapsulation: ViewEncapsulation.None
 })
 export class StartHandlerComponent implements OnInit {
-
   private listItems: NodeListOf<HTMLLIElement>;
 
   @HostListener('window:keyup', ['$event'])
@@ -23,5 +22,4 @@ export class StartHandlerComponent implements OnInit {
   ngOnInit(): void {
     this.listItems = document.querySelectorAll('ol.tabnavigation:not(.bottom) li');
   }
-
 }

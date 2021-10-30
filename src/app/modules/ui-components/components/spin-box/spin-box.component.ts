@@ -7,7 +7,6 @@ import { SpinBoxItem } from '../../model/spin-box-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpinBoxComponent {
-
   @Input()
   items: SpinBoxItem[];
 

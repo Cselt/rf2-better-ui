@@ -28,33 +28,41 @@ export const reducer: ActionReducer<GarageState, Action> = createReducer(
     setupsLoading: true
   })),
 
-  on(GarageActions.setupsLoaded, (state: GarageState, {setups}) => ({
+  on(GarageActions.setupsLoaded, (state: GarageState, { setups }) => ({
     ...state,
     setups,
     setupsLoading: false
   })),
 
-  on(GarageActions.setupSummaryLoaded, (state: GarageState, summary) => ({
-    ...state,
-    currentSetupSummary: summary
-  }) as GarageState),
+  on(
+    GarageActions.setupSummaryLoaded,
+    (state: GarageState, summary) =>
+      ({
+        ...state,
+        currentSetupSummary: summary
+      } as GarageState)
+  ),
 
-  on(GarageActions.selectSetup, (state: GarageState, {setup}) => ({
-    ...state,
-    selectedSetupName: setup.name
-  }) as GarageState),
+  on(
+    GarageActions.selectSetup,
+    (state: GarageState, { setup }) =>
+      ({
+        ...state,
+        selectedSetupName: setup.name
+      } as GarageState)
+  ),
 
-  on(GarageActions.notesLoaded, (state: GarageState, {notes}) => ({
+  on(GarageActions.notesLoaded, (state: GarageState, { notes }) => ({
     ...state,
     currentNote: notes
   })),
 
-  on(GarageActions.showingRelevantLoaded, (state: GarageState, {showOnlyRelevant}) => ({
+  on(GarageActions.showingRelevantLoaded, (state: GarageState, { showOnlyRelevant }) => ({
     ...state,
     showOnlyRelevant
   })),
 
-  on(GarageActions.changeShowOnlyRelevant, (state: GarageState, {showOnlyRelevant}) => ({
+  on(GarageActions.changeShowOnlyRelevant, (state: GarageState, { showOnlyRelevant }) => ({
     ...state,
     showOnlyRelevant
   }))

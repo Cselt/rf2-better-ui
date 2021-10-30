@@ -1,4 +1,4 @@
-@use "../../../../../scss/common-styles" as common;
+@use '../../../../../scss/common-styles' as common;
 
 .primary {
   background: #000000;
@@ -19,7 +19,7 @@
   color: #ffff;
 
   border: 0;
-  padding: .2rem 1.5rem .2rem;
+  padding: 0.2rem 1.5rem 0.2rem;
   text-transform: none;
 
   &:before {
@@ -29,9 +29,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    -webkit-box-shadow: .25rem .15rem .35rem rgba(0, 0, 0, .5);
-    box-shadow: .25rem .15rem .35rem rgba(0, 0, 0, .5);
-    opacity: 0
+    -webkit-box-shadow: 0.25rem 0.15rem 0.35rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0.25rem 0.15rem 0.35rem rgba(0, 0, 0, 0.5);
+    opacity: 0;
   }
 
   &:after {
@@ -47,13 +47,13 @@
     transform: scale(0, 0);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-    -webkit-transition: -webkit-transform .2s;
-    transition: -webkit-transform .2s;
-    transition: transform .2s, -webkit-transform .2s
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
   }
 
   &:hover {
-    transition: background .4s, color .2s;
+    transition: background 0.4s, color 0.2s;
     background: common.$colorWhite;
     color: #000000;
 
@@ -67,8 +67,8 @@
 
     &:before {
       opacity: 1;
-      -webkit-transition: opacity .4s;
-      transition: opacity .4s;
+      -webkit-transition: opacity 0.4s;
+      transition: opacity 0.4s;
     }
 
     &:after {
@@ -79,17 +79,19 @@
   }
 
   &:active {
-    -webkit-transition: -webkit-transform linear .1s;
-    transition: -webkit-transform linear .1s;
-    transition: transform linear .1s, -webkit-transform linear .1s;
-    -webkit-transform: scale(.9, .9) skewX(- common.$skew);
-    transform: scale(.9, .9) skewX(- common.$skew)
+    -webkit-transition: -webkit-transform linear 0.1s;
+    transition: -webkit-transform linear 0.1s;
+    transition: transform linear 0.1s, -webkit-transform linear 0.1s;
+    // prettier-ignore
+    -webkit-transform: scale(0.9, 0.9) skewX(- common.$skew);
+    // prettier-ignore
+    transform: scale(0.9, 0.9) skewX(- common.$skew);
   }
 
   .rfButtonText {
     display: inline-block;
     transform: skewX(common.$skew) translate3d(0, 0, 0);
-    -webkit-transform: skewX(common.$skew) translate3d(0,0,0);
+    -webkit-transform: skewX(common.$skew) translate3d(0, 0, 0);
     font-size: 1rem;
     font-weight: 700;
     font-style: italic;

@@ -14,7 +14,6 @@ interface ChatMessage {
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-
   @HostBinding('style.height.px')
   height: number = undefined;
 
@@ -28,8 +27,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -39,10 +37,12 @@ export class ChatComponent implements OnInit, OnDestroy {
         switchMap(() => this.http.get<ChatMessage[]>('/rest/chat')),
         distinctUntilChanged((prev: ChatMessage[], curr: ChatMessage[]) => prev.length === curr.length),
         tap(() => {
-          const top: number = this.chatListElement.nativeElement.scrollTop + this.chatListElement.nativeElement.offsetHeight;
+          const top: number =
+            this.chatListElement.nativeElement.scrollTop + this.chatListElement.nativeElement.offsetHeight;
           const scrollHeight: number = this.chatListElement.nativeElement.scrollHeight;
 
-          if (top === scrollHeight) { // user is at the bottom
+          if (top === scrollHeight) {
+            // user is at the bottom
             this.scrollToBottom();
           }
         })
@@ -65,8 +65,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       try {
         this.chatListElement.nativeElement.scrollTop = this.chatListElement.nativeElement.scrollHeight;
-      } catch (err) {
-      }
+      } catch (err) {}
     }, 0);
   }
 

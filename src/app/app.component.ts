@@ -10,8 +10,7 @@ import { SetupsComponent } from './modules/garage/components/setups/setups.compo
 export class AppComponent implements OnInit {
   title = 'rf2-better-ui';
 
-  constructor(private dialog: MatDialog) {
-  }
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.openDialog();

@@ -8,9 +8,8 @@ describe('BetterUiComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BetterUiComponent ]
-    })
-    .compileComponents();
+      declarations: [BetterUiComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

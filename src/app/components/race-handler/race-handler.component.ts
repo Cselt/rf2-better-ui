@@ -10,7 +10,6 @@ import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
   encapsulation: ViewEncapsulation.None
 })
 export class RaceHandlerComponent implements OnInit {
-
   private listItems: NodeListOf<HTMLLIElement>;
 
   @HostListener('window:keyup', ['$event'])
@@ -35,14 +34,16 @@ export class RaceHandlerComponent implements OnInit {
   }
 
   private rememberPassword(): void {
-    waitForElement('section#multiplayer ul li').then(() => {
-      document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
-        node.addEventListener('click', () => {
-          const selected: string = node.querySelector('span').textContent;
-          this.handlePasswordPopup(selected);
+    waitForElement('section#multiplayer ul li')
+      .then(() => {
+        document.querySelectorAll('section#multiplayer ul li').forEach((node: HTMLLIElement) => {
+          node.addEventListener('click', () => {
+            const selected: string = node.querySelector('span').textContent;
+            this.handlePasswordPopup(selected);
+          });
         });
-      });
-    }).catch(() => console.warn('Can\'t find multiplayer list'));
+      })
+      .catch(() => console.warn("Can't find multiplayer list"));
   }
 
   private handlePasswordPopup(serverName: string): void {
@@ -68,8 +69,12 @@ export class RaceHandlerComponent implements OnInit {
 
   private async checkForDownloadsPopup(): Promise<void> {
     try {
-      const modalForm: HTMLElement =
-        (await waitForElement('.modal-dialog div[modal-title="\'Installing content\' | translate"', 2000) as HTMLDivElement).parentElement;
+      const modalForm: HTMLElement = (
+        (await waitForElement(
+          '.modal-dialog div[modal-title="\'Installing content\' | translate"',
+          2000
+        )) as HTMLDivElement
+      ).parentElement;
 
       if (modalForm.querySelector('div.modal-footer')) {
         // already added
@@ -82,9 +87,11 @@ export class RaceHandlerComponent implements OnInit {
       const exitButton: HTMLButtonElement = document.createElement('button');
       exitButton.classList.add('btn', 'secondary');
       exitButton.innerHTML = `<span>Exit game</span>`;
-      exitButton.addEventListener('click', () => this.dialog.open(ExitDialogComponent, {
-        panelClass: ['noDialogPadding', 'rfPanel']
-      }));
+      exitButton.addEventListener('click', () =>
+        this.dialog.open(ExitDialogComponent, {
+          panelClass: ['noDialogPadding', 'rfPanel']
+        })
+      );
 
       footer.appendChild(exitButton);
       modalForm.appendChild(footer);

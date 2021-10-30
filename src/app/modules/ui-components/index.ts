@@ -1,1 +1,1 @@
-export * from "./model/spin-box-item";
+export * from './model/spin-box-item';

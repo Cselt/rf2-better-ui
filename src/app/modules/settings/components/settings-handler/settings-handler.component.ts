@@ -9,7 +9,6 @@ import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.comp
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsHandlerComponent implements OnInit, OnDestroy {
-
   constructor(private dialog: MatDialog) {
     console.log('Setting handler works');
   }
@@ -41,5 +40,4 @@ export class SettingsHandlerComponent implements OnInit, OnDestroy {
 
     leftSection.appendChild(settingsButton);
   }
-
 }

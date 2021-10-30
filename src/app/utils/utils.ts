@@ -10,7 +10,7 @@ export function waitForElement<T>(selector: string, timeout: number = 30000): Pr
       reject();
     }, timeout);
 
-    const observer = new MutationObserver(mutations => {
+    const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
         resolve(document.querySelector(selector));
         observer.disconnect();
@@ -29,9 +29,11 @@ export function timeout(ms: number): Promise<void> {
   return new Promise<void>((resolve: () => void) => setTimeout(resolve, ms));
 }
 
-export function arrowNavigation(event: KeyboardEvent,
-                                listItems: NodeListOf<HTMLLIElement>,
-                                selector: string = 'ol.tabnavigation:not(.bottom) li.selected'): void {
+export function arrowNavigation(
+  event: KeyboardEvent,
+  listItems: NodeListOf<HTMLLIElement>,
+  selector: string = 'ol.tabnavigation:not(.bottom) li.selected'
+): void {
   if (!['ArrowRight', 'ArrowLeft'].includes(event.key)) {
     return;
   }

@@ -5,14 +5,7 @@ import { SettingsDialogComponent } from './components/settings-dialog/settings-d
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    UiComponentsModule
-  ],
-  declarations: [
-    SettingsHandlerComponent,
-    SettingsDialogComponent
-  ],
+  imports: [CommonModule, UiComponentsModule],
+  declarations: [SettingsHandlerComponent, SettingsDialogComponent]
 })
-export class SettingsModule {
-}
+export class SettingsModule {}

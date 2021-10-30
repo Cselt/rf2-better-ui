@@ -2,14 +2,14 @@
   <li *ngFor="let msg of messages$ | async">
     <div class="body">
       <div class="metadata">
-        <span class="time">{{msg.timestamp | date: 'HH:mm:ss'}}</span>
+        <span class="time">{{ msg.timestamp | date: 'HH:mm:ss' }}</span>
       </div>
-      <p class="chat-message-content">{{msg.message}}</p>
+      <p class="chat-message-content">{{ msg.message }}</p>
     </div>
   </li>
 </ol>
 
 <div class="bottom">
-  <input #text (keyup.enter)="sendMessage(text.value); text.value = ''">
+  <input #text (keyup.enter)="sendMessage(text.value); text.value = ''" />
   <span class="fi fi-iconsend" (click)="sendMessage(text.value); text.value = ''"></span>
 </div>

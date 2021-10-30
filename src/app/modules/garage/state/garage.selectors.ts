@@ -6,10 +6,7 @@ import { State } from './index';
 
 const selectGarageFeatureState = createFeatureSelector(fromState.garageFeatureKey);
 
-export const selectGarageState = createSelector(
-  selectGarageFeatureState,
-  (state: State) => state.garage
-);
+export const selectGarageState = createSelector(selectGarageFeatureState, (state: State) => state.garage);
 
 export const selectSetups: MemoizedSelector<GarageState, Setup[]> = createSelector(
   selectGarageState,

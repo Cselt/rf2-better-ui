@@ -13,7 +13,6 @@ import { DeleteConfirmPopupComponent } from '../delete-confirm-popup/delete-conf
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetupsComponent implements OnInit {
-
   @HostBinding('class')
   flexClass: string[] = ['flex', 'flex-col'];
 
@@ -25,10 +24,7 @@ export class SetupsComponent implements OnInit {
   public showingOnlyRelevant$: Observable<boolean> = this.store.pipe(select(GarageSelectors.showingOnlyRelevant));
   public compareToSetup$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCompareSetup));
 
-  constructor(private dialogRef: MatDialogRef<SetupsComponent>,
-              private store: Store,
-              private dialog: MatDialog) {
-  }
+  constructor(private dialogRef: MatDialogRef<SetupsComponent>, private store: Store, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(GarageActions.loadSetups());
@@ -46,18 +42,19 @@ export class SetupsComponent implements OnInit {
   }
 
   selectSetup(setup: Setup): void {
-    this.store.dispatch(GarageActions.selectSetup({setup}));
+    this.store.dispatch(GarageActions.selectSetup({ setup }));
   }
 
   changeShowOnlyRelevant(show: boolean): void {
-    this.store.dispatch(GarageActions.changeShowOnlyRelevant({showOnlyRelevant: show}));
+    this.store.dispatch(GarageActions.changeShowOnlyRelevant({ showOnlyRelevant: show }));
   }
 
   deleteSelected(setupName: string): void {
-    this.dialog.open(DeleteConfirmPopupComponent, {
-      panelClass: ['noDialogPadding', 'rfPanel'],
-      data: {setupName}
-    })
+    this.dialog
+      .open(DeleteConfirmPopupComponent, {
+        panelClass: ['noDialogPadding', 'rfPanel'],
+        data: { setupName }
+      })
       .afterClosed()
       .subscribe((confirmed: boolean) => {
         if (confirmed) {

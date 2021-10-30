@@ -8,9 +8,8 @@ describe('GarageHandlerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GarageHandlerComponent ]
-    })
-    .compileComponents();
+      declarations: [GarageHandlerComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('RaceCountdownTimerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RaceCountdownTimerComponent ]
-    })
-    .compileComponents();
+      declarations: [RaceCountdownTimerComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

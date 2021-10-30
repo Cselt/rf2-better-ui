@@ -15,7 +15,6 @@ export interface ExtendedSetup extends Setup {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetupTreeComponent {
-
   private _setups: ExtendedSetup[];
 
   @Input()
@@ -31,26 +30,28 @@ export class SetupTreeComponent {
   set setups(values: Setup[]) {
     values = values.filter((s: Setup) => s.name !== '<Factory Defaults>');
 
-    const extendedSetups: ExtendedSetup[] = values.map((setup: Setup) => {
-      const isDirectory: boolean = setup?.name.endsWith('\\') && setup?.modified === '';
-      return {
-        ...setup,
-        isDirectory,
-        displayName: setup.name.split('\\')[isDirectory ? 0 : 1]
-      } as ExtendedSetup;
-    }).filter((setup: ExtendedSetup, index: number, array: ExtendedSetup[]) => {
-      // We need to keep leafs
-      if (!setup.isDirectory) {
-        return true;
-      }
+    const extendedSetups: ExtendedSetup[] = values
+      .map((setup: Setup) => {
+        const isDirectory: boolean = setup?.name.endsWith('\\') && setup?.modified === '';
+        return {
+          ...setup,
+          isDirectory,
+          displayName: setup.name.split('\\')[isDirectory ? 0 : 1]
+        } as ExtendedSetup;
+      })
+      .filter((setup: ExtendedSetup, index: number, array: ExtendedSetup[]) => {
+        // We need to keep leafs
+        if (!setup.isDirectory) {
+          return true;
+        }
 
-      if (index === array.length - 1) {
-        return false;
-      }
+        if (index === array.length - 1) {
+          return false;
+        }
 
-      // Remove empty directories
-      return !array[index + 1]?.isDirectory;
-    });
+        // Remove empty directories
+        return !array[index + 1]?.isDirectory;
+      });
     console.warn('setus ', extendedSetups);
     this.dataSource = new ArrayDataSource<ExtendedSetup>(extendedSetups);
     this._setups = extendedSetups;
@@ -61,8 +62,9 @@ export class SetupTreeComponent {
 
   public dataSource: ArrayDataSource<ExtendedSetup>;
   public treeControl: FlatTreeControl<ExtendedSetup> = new FlatTreeControl<ExtendedSetup>(
-    (node: ExtendedSetup) => node.isDirectory ? 0 : 1,
-    (node: ExtendedSetup) => node.isDirectory);
+    (node: ExtendedSetup) => (node.isDirectory ? 0 : 1),
+    (node: ExtendedSetup) => node.isDirectory
+  );
 
   public selectedSetup: Setup;
   public filter: string = '';

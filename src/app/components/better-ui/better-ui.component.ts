@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentFactory,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import packageInfo from '../../../../package.json';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,17 +22,14 @@ import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'rf-better-ui',
-  template: `
-    <ng-template #container></ng-template>`,
+  template: `<ng-template #container></ng-template>`,
   styleUrls: ['./better-ui.component.scss']
 })
 export class BetterUiComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('container', {read: ViewContainerRef})
+  @ViewChild('container', { read: ViewContainerRef })
   container: ViewContainerRef;
 
-  constructor(private dialog: MatDialog,
-              private resolver: ComponentFactoryResolver) {
+  constructor(private dialog: MatDialog, private resolver: ComponentFactoryResolver) {
     console.log('Better UI loaded');
 
     const spanElement: HTMLSpanElement = document.querySelector('#betterUIVersion');
@@ -52,13 +57,15 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
 
         const quitLi: HTMLLIElement = document.createElement('li');
         quitLi.classList.add('fa', 'fa-power-off');
-        quitLi.addEventListener('click', () => this.dialog.open(ExitDialogComponent, {
-          panelClass: ['noDialogPadding', 'rfPanel']
-        }));
+        quitLi.addEventListener('click', () =>
+          this.dialog.open(ExitDialogComponent, {
+            panelClass: ['noDialogPadding', 'rfPanel']
+          })
+        );
         ol.appendChild(quitLi);
       }
     } catch (e) {
-      console.warn('Can\'t find nav element to add quit button');
+      console.warn("Can't find nav element to add quit button");
     }
   }
 
@@ -97,5 +104,4 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
     this.container.clear();
     this.container.createComponent(factory);
   }
-
 }

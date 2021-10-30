@@ -4,10 +4,14 @@
 
     <div class="flex justify-between items-center">
       <span>Disable setup popup</span>
-      <rf-spin-box [items]="[{displayName: 'Yes', value: true}, {displayName: 'No', value: false}]"
-                   [(selectedValue)]="disableSetup"></rf-spin-box>
+      <rf-spin-box
+        [items]="[
+          { displayName: 'Yes', value: true },
+          { displayName: 'No', value: false }
+        ]"
+        [(selectedValue)]="disableSetup"
+      ></rf-spin-box>
     </div>
-
   </div>
 
   <div class="flex bg-gray-300 py-6 space-x-2 justify-center">
@@ -15,4 +19,3 @@
     <button rf-button (click)="save()">Save</button>
   </div>
 </div>
-

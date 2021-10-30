@@ -8,10 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./exit-dialog.component.scss']
 })
 export class ExitDialogComponent {
-
-  constructor(private dialogRef: MatDialogRef<ExitDialogComponent>,
-              private http: HttpClient) {
-  }
+  constructor(private dialogRef: MatDialogRef<ExitDialogComponent>, private http: HttpClient) {}
 
   close(): void {
     this.dialogRef.close();
@@ -20,5 +17,4 @@ export class ExitDialogComponent {
   exit(): void {
     this.http.post('/rest/start/quitGame', undefined).subscribe();
   }
-
 }

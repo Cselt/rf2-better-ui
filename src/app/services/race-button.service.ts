@@ -6,9 +6,7 @@ import { waitForElement } from '../utils/utils';
   providedIn: 'root'
 })
 export class RaceButtonService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   public async addRaceButton(): Promise<void> {
     const quitLi: HTMLLIElement = await waitForElement<HTMLLIElement>('nav ol.right li.fa-power-off', 1000);
