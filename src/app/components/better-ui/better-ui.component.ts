@@ -30,7 +30,7 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
   container: ViewContainerRef;
 
   constructor(private dialog: MatDialog, private resolver: ComponentFactoryResolver) {
-    console.log('Better UI loaded');
+    console.log(`Better UI v${packageInfo.version} loaded`);
 
     const spanElement: HTMLSpanElement = document.querySelector('#betterUIVersion');
     spanElement.innerHTML += packageInfo.version + (environment.production ? '' : '-DEV');
