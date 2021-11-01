@@ -34,3 +34,7 @@ export const changeShowOnlyRelevant = createAction(
 export const deleteSelectedSetup = createAction('[Garage] Delete Selected Setup');
 
 export const compareSelected = createAction('[Garage] Compare Selected');
+
+export const setDefaultSelected = createAction('[Garage] Set Default Setup');
+
+export const factoryDefault = createAction('[Garage] Factory Default');

@@ -67,4 +67,14 @@ export class SetupsComponent implements OnInit {
     this.store.dispatch(GarageActions.compareSelected());
     this.dialogRef.close();
   }
+
+  setDefaultSetup(): void {
+    this.store.dispatch(GarageActions.setDefaultSelected());
+    this.dialogRef.close();
+  }
+
+  loadFactoryDefault(): void {
+    this.store.dispatch(GarageActions.factoryDefault());
+    this.dialogRef.close();
+  }
 }

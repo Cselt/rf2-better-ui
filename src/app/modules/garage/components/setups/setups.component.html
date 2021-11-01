@@ -38,10 +38,10 @@
       </div>
 
       <!-- Buttons -->
-      <div>
+      <div class="pl-2 pr-4">
         <div class="flex flex-shrink-0 space-x-2">
           <button class="flex-1" rf-button (click)="loadSelected()">Load</button>
-          <button class="flex-1" rf-button>Assign</button>
+          <button class="flex-1" rf-button (click)="setDefaultSetup()">Assign</button>
         </div>
 
         <div class="flex flex-shrink-0 space-x-2">
@@ -59,7 +59,7 @@
 
         <div class="flex flex-shrink-0 space-x-2">
           <button class="flex-1 w-2/4" rf-button>Copy</button>
-          <button class="flex-1 w-2/4" rf-button>Defaults</button>
+          <button class="flex-1 w-2/4" rf-button (click)="loadFactoryDefault()">Defaults</button>
         </div>
       </div>
     </section>

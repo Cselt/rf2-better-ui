@@ -111,5 +111,22 @@ export class GarageEffects {
     )
   );
 
+  setDefaultSelected$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GarageActions.setDefaultSelected),
+      concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
+      switchMap(([_, setup]: [any, string]) => this.service.setDefault(setup)),
+      map(() => GarageActions.updateView())
+    )
+  );
+
+  factoryDefault$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GarageActions.factoryDefault),
+      switchMap(() => this.service.loadSavedSetup('<Factory Defaults>')),
+      map(() => GarageActions.updateView())
+    )
+  );
+
   constructor(private actions$: Actions, private store: Store<any>, private service: GarageService) {}
 }

@@ -52,4 +52,8 @@ export class GarageService {
   public compareSetup(name: string): Observable<void> {
     return this.http.post<void>(`/rest/garage/setup/compare`, name);
   }
+
+  public setDefault(name: string): Observable<void> {
+    return this.http.post<void>('/rest/garage/setup/default', name);
+  }
 }
