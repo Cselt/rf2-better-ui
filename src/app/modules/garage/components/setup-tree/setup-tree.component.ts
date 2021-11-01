@@ -27,6 +27,9 @@ export class SetupTreeComponent {
   compareToSetup: string;
 
   @Input()
+  currentTrackFolder: string;
+
+  @Input()
   set setups(values: Setup[]) {
     values = values.filter((s: Setup) => s.name !== '<Factory Defaults>');
 

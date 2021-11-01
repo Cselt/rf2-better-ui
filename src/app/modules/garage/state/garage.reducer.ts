@@ -9,6 +9,7 @@ export interface GarageState {
   selectedSetupName: string;
   currentNote: string;
   showOnlyRelevant: boolean;
+  currentTrackFolder: string;
 }
 
 export const initialState: GarageState = {
@@ -17,7 +18,8 @@ export const initialState: GarageState = {
   currentSetupSummary: undefined,
   selectedSetupName: undefined,
   currentNote: undefined,
-  showOnlyRelevant: false
+  showOnlyRelevant: false,
+  currentTrackFolder: undefined
 };
 
 export const reducer: ActionReducer<GarageState, Action> = createReducer(
@@ -65,5 +67,10 @@ export const reducer: ActionReducer<GarageState, Action> = createReducer(
   on(GarageActions.changeShowOnlyRelevant, (state: GarageState, { showOnlyRelevant }) => ({
     ...state,
     showOnlyRelevant
+  })),
+
+  on(GarageActions.currentTrackFolderLoaded, (state: GarageState, { currentTrackFolder }) => ({
+    ...state,
+    currentTrackFolder
   }))
 );

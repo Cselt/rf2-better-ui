@@ -81,6 +81,7 @@
           [compareToSetup]="compareToSetup$ | async"
           [setups]="setups$ | async"
           [setupsLoading]="setupsLoading$ | async"
+          [currentTrackFolder]="currentTrackFolder$ | async"
           (selected)="selectSetup($event)"
         ></rf-setup-tree>
       </div>

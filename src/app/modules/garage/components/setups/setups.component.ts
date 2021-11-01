@@ -23,6 +23,7 @@ export class SetupsComponent implements OnInit {
   public notes$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentNotes));
   public showingOnlyRelevant$: Observable<boolean> = this.store.pipe(select(GarageSelectors.showingOnlyRelevant));
   public compareToSetup$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCompareSetup));
+  public currentTrackFolder$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentTrackFolder));
 
   constructor(private dialogRef: MatDialogRef<SetupsComponent>, private store: Store, private dialog: MatDialog) {}
 
@@ -30,6 +31,7 @@ export class SetupsComponent implements OnInit {
     this.store.dispatch(GarageActions.loadSetups());
     this.store.dispatch(GarageActions.loadSetupSummary());
     this.store.dispatch(GarageActions.loadShowingRelevant());
+    this.store.dispatch(GarageActions.loadCurrentTrackFolder());
   }
 
   loadSelected(): void {

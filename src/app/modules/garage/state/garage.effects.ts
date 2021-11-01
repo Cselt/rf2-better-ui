@@ -128,5 +128,13 @@ export class GarageEffects {
     )
   );
 
+  loadCurrentTrackFolder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GarageActions.loadCurrentTrackFolder),
+      switchMap(() => this.service.loadCurrentTrackFolder()),
+      map((currentTrackFolder: string) => GarageActions.currentTrackFolderLoaded({ currentTrackFolder }))
+    )
+  );
+
   constructor(private actions$: Actions, private store: Store<any>, private service: GarageService) {}
 }

@@ -13,7 +13,6 @@ import { SetupsComponent } from '../../modules/garage/components/setups/setups.c
 })
 export class GarageHandlerComponent implements OnInit {
   private listItems: NodeListOf<HTMLLIElement>;
-  private currentTrackFolder: string;
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
@@ -33,7 +32,6 @@ export class GarageHandlerComponent implements OnInit {
     this.listItems = document.querySelectorAll('main section div.thumbnail');
 
     this.findSetupButtons();
-    this.loadActiveTrack();
 
     window.addEventListener('hashchange', () => {
       if (location.hash.startsWith('#/summary')) {
@@ -56,11 +54,5 @@ export class GarageHandlerComponent implements OnInit {
       });
     };
     angular.element('left-section button:first').unbind('click');
-  }
-
-  private loadActiveTrack(): void {
-    this.http
-      .get('/rest/garage/currentTrackFolder', { responseType: 'text' })
-      .subscribe((folder: string) => (this.currentTrackFolder = folder));
   }
 }

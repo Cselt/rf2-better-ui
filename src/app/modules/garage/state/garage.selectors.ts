@@ -47,3 +47,8 @@ export const selectCompareSetup: MemoizedSelector<GarageState, string> = createS
   selectCurrentSummary,
   (summary: SetupSummary) => summary?.compareToSetup
 );
+
+export const selectCurrentTrackFolder: MemoizedSelector<GarageState, string> = createSelector(
+  selectGarageState,
+  (state: GarageState) => state.currentTrackFolder
+);

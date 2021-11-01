@@ -56,4 +56,8 @@ export class GarageService {
   public setDefault(name: string): Observable<void> {
     return this.http.post<void>('/rest/garage/setup/default', name);
   }
+
+  public loadCurrentTrackFolder(): Observable<string> {
+    return this.http.get('/rest/garage/currentTrackFolder', { responseType: 'text' });
+  }
 }

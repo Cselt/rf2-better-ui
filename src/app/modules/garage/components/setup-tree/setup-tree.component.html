@@ -69,7 +69,9 @@
             <i class="fa" [ngClass]="treeControl.isExpanded(node) ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
           </button>
 
-          <div class="w-full">{{ node.displayName }}</div>
+          <div class="w-full" [ngClass]="currentTrackFolder === node.displayName ? 'font-bold italic' : ''">
+            {{ node.displayName }}
+          </div>
         </cdk-tree-node>
       </cdk-tree>
     </div>

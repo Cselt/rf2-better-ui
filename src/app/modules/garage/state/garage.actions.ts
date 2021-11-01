@@ -38,3 +38,9 @@ export const compareSelected = createAction('[Garage] Compare Selected');
 export const setDefaultSelected = createAction('[Garage] Set Default Setup');
 
 export const factoryDefault = createAction('[Garage] Factory Default');
+
+export const loadCurrentTrackFolder = createAction('[Garage] Load Current Track Folder');
+export const currentTrackFolderLoaded = createAction(
+  '[Garage] Current Track Folder Loaded',
+  props<{ currentTrackFolder: string }>()
+);
