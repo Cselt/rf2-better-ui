@@ -11,7 +11,7 @@ export class SpinBoxComponent {
   items: SpinBoxItem[];
 
   @Input()
-  set selectedValue(value: any) {
+  set selectedValue(value: unknown) {
     this.selectedIdx = this.items.findIndex((item: SpinBoxItem) => value === item.value);
   }
 
@@ -20,7 +20,7 @@ export class SpinBoxComponent {
   }
 
   @Output()
-  selectedValueChange: EventEmitter<any> = new EventEmitter<any>();
+  selectedValueChange: EventEmitter<unknown> = new EventEmitter<unknown>();
 
   private selectedIdx: number = -1;
 

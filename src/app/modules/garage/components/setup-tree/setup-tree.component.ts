@@ -71,7 +71,7 @@ export class SetupTreeComponent {
 
   public selectedSetup: Setup;
   public filter: string = '';
-  public isDirectory = (idx: number, node: ExtendedSetup) => node.isDirectory;
+  public isDirectory = (idx: number, node: ExtendedSetup): boolean => node.isDirectory;
 
   getParentNode(node: ExtendedSetup): ExtendedSetup {
     const nodeIndex: number = this._setups.indexOf(node);

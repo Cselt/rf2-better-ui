@@ -7,7 +7,7 @@ export interface Setup {
 }
 
 export interface SetupSummary {
-  settingSummaries: any;
+  settingSummaries: unknown;
   activeSetup: string;
   compareToSetup: string;
 }

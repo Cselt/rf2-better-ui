@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Setup } from '../interfaces/setup';
+import { Setup, SetupSummary } from '../interfaces/setup';
 
 @Injectable()
 export class GarageService {
@@ -16,8 +16,8 @@ export class GarageService {
     return this.http.put<void>('/rest/garage/setup', name);
   }
 
-  public loadSetupSummary(): Observable<any> {
-    return this.http.get<any>('/rest/garage/summary');
+  public loadSetupSummary(): Observable<SetupSummary> {
+    return this.http.get<SetupSummary>('/rest/garage/summary');
   }
 
   public compare(name: string): Observable<void> {

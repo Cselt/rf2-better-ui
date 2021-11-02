@@ -2,6 +2,10 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { waitForElement } from '../../utils/utils';
 import { RaceButtonService } from '../../services/race-button.service';
 
+interface AppSwitchService {
+  openAppWithTab: (a: string, b: string) => void;
+}
+
 @Component({
   selector: 'rf-event-handler',
   template: '',
@@ -11,7 +15,7 @@ import { RaceButtonService } from '../../services/race-button.service';
 export class EventHandlerComponent implements OnInit, OnDestroy {
   private tabHolder: HTMLDivElement;
   private observer: MutationObserver;
-  private injector: any;
+  private injector: { get: <T>(value: string) => T };
 
   constructor(private raceButtonService: RaceButtonService) {}
 
@@ -68,7 +72,7 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
     carSelect.classList.add('secondary', 'carSelect');
     carSelect.innerHTML = `<span>Car Select</span>`;
 
-    const appSwitchService: any = this.injector.get('appSwitchService');
+    const appSwitchService: AppSwitchService = this.injector.get<AppSwitchService>('appSwitchService');
 
     carSelect.onclick = () => {
       sessionStorage.setItem('betterUI.carSelect', 'true');
@@ -81,7 +85,7 @@ export class EventHandlerComponent implements OnInit, OnDestroy {
   private injectChat(): void {
     const ngIncludeElement: HTMLElement = document.querySelector('.camera-wrapper').parentElement;
 
-    if (!!ngIncludeElement.querySelector('rf-chat')) {
+    if (ngIncludeElement.querySelector<HTMLElement>('rf-chat')) {
       // already injected
       return;
     }

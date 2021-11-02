@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
+import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import * as GarageActions from './garage.actions';
 import * as GarageSelectors from './garage.selectors';
 import { GarageService } from '../services/garage.service';
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Setup, SetupSummary } from '../interfaces/setup';
-import { select, Store } from '@ngrx/store';
+import { GarageState } from './garage.reducer';
+
+interface SummaryService {
+  initSummaryBoxes(data: unknown): void;
+}
 
 @Injectable()
 export class GarageEffects {
@@ -21,7 +26,7 @@ export class GarageEffects {
     this.actions$.pipe(
       ofType(GarageActions.loadSavedSetup),
       concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
-      switchMap(([_, setupName]) => this.service.loadSavedSetup(setupName)),
+      switchMap(([, setupName]: [never, string]) => this.service.loadSavedSetup(setupName)),
       map(() => GarageActions.updateView())
     )
   );
@@ -34,7 +39,7 @@ export class GarageEffects {
         switchMap(controller =>
           this.service.loadSetupSummary().pipe(
             tap((summary: SetupSummary) => {
-              const summaryService: any = controller.summaryService;
+              const summaryService: SummaryService = controller.summaryService;
               controller.settingsSummary = summary;
               summaryService.initSummaryBoxes(summary.settingSummaries);
             }),
@@ -97,7 +102,7 @@ export class GarageEffects {
     this.actions$.pipe(
       ofType(GarageActions.deleteSelectedSetup),
       concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
-      switchMap(([_, setup]) => this.service.deleteSetup(setup)),
+      switchMap(([, setup]: [never, string]) => this.service.deleteSetup(setup)),
       map(() => GarageActions.loadSetups())
     )
   );
@@ -106,7 +111,7 @@ export class GarageEffects {
     this.actions$.pipe(
       ofType(GarageActions.compareSelected),
       concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
-      switchMap(([_, setup]) => this.service.compareSetup(setup)),
+      switchMap(([, setup]: [never, string]) => this.service.compareSetup(setup)),
       map(() => GarageActions.updateView())
     )
   );
@@ -115,7 +120,7 @@ export class GarageEffects {
     this.actions$.pipe(
       ofType(GarageActions.setDefaultSelected),
       concatLatestFrom(() => this.store.pipe(select(GarageSelectors.selectDisplayedSetupName))),
-      switchMap(([_, setup]: [any, string]) => this.service.setDefault(setup)),
+      switchMap(([, setup]: [never, string]) => this.service.setDefault(setup)),
       map(() => GarageActions.updateView())
     )
   );
@@ -136,5 +141,5 @@ export class GarageEffects {
     )
   );
 
-  constructor(private actions$: Actions, private store: Store<any>, private service: GarageService) {}
+  constructor(private actions$: Actions, private store: Store<GarageState>, private service: GarageService) {}
 }

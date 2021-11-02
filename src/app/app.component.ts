@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SetupsComponent } from './modules/garage/components/setups/setups.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'rf-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

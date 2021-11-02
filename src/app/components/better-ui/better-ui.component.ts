@@ -70,7 +70,16 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
   }
 
   private applyHandlers(): void {
-    let factory: ComponentFactory<any>;
+    type HandlerTypes =
+      | StartHandlerComponent
+      | RaceHandlerComponent
+      | GarageHandlerComponent
+      | EventHandlerComponent
+      | SessionsHandlerComponent
+      | MultiplayerHandlerComponent
+      | SettingsHandlerComponent;
+
+    let factory: ComponentFactory<HandlerTypes>;
     switch (location.pathname) {
       case '/start/index.html':
         factory = this.resolver.resolveComponentFactory(StartHandlerComponent);

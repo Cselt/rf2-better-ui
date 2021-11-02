@@ -36,5 +36,5 @@ export interface SessionInfo {
   maxPlayers: number;
   serverName: string;
   startEventTime: number;
-  raceCompletion: any;
+  raceCompletion: unknown;
 }
