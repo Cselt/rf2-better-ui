@@ -68,6 +68,10 @@ nav {
   content: '\f002';
 }
 
+.fa-folder:before {
+  content: '\f07b';
+}
+
 .raceButton {
   margin: 0;
   background: vars.$colorRed;

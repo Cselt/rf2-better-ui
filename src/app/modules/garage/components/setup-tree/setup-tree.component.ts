@@ -55,7 +55,6 @@ export class SetupTreeComponent {
         // Remove empty directories
         return !array[index + 1]?.isDirectory;
       });
-    console.warn('setus ', extendedSetups);
     this.dataSource = new ArrayDataSource<ExtendedSetup>(extendedSetups);
     this._setups = extendedSetups;
   }

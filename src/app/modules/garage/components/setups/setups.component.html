@@ -66,14 +66,20 @@
 
     <!-- Right Section -->
     <section class="w-2/3 flex flex-col">
-      <!-- Show Only Relevant -->
-      <div
-        *ngIf="{ showOnlyRelevant: showingOnlyRelevant$ | async } as context"
-        class="flex items-center pl-1.5"
-        (click)="changeShowOnlyRelevant(!context.showOnlyRelevant)"
-      >
-        <i class="fa relevant mr-2 w-4" [ngClass]="context.showOnlyRelevant ? 'fa-check' : 'fa-times'"></i>
-        <span class="cursor-pointer">Show Only Relevant</span>
+      <div class="flex justify-between">
+        <!-- Show Only Relevant -->
+        <div
+          *ngIf="{ showOnlyRelevant: showingOnlyRelevant$ | async } as context"
+          class="flex items-center pl-1.5"
+          (click)="changeShowOnlyRelevant(!context.showOnlyRelevant)"
+        >
+          <i class="fa relevant mr-2 w-4" [ngClass]="context.showOnlyRelevant ? 'fa-check' : 'fa-times'"></i>
+          <span class="cursor-pointer">Show Only Relevant</span>
+        </div>
+
+        <button class="bg-transparent p-0" (click)="scrollToCurrent()" title="Go to current folder">
+          <i class="fa fa-folder"></i>
+        </button>
       </div>
       <div>
         <rf-setup-tree

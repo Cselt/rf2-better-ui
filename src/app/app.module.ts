@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -61,7 +61,7 @@ import { SettingsModule } from './modules/settings/settings.module';
   ]
   // bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {
     const chatWebComponent = createCustomElement(ChatComponent, { injector });
     customElements.define('rf-chat', chatWebComponent);
@@ -71,5 +71,10 @@ export class AppModule {
 
     const raceCountDownTimerWebComponent = createCustomElement(RaceCountdownTimerComponent, { injector });
     customElements.define('rf-race-countdown-timer', raceCountDownTimerWebComponent);
+  }
+
+  // eslint-disable-next-line
+  ngDoBootstrap(): void {
+    // do nothing
   }
 }

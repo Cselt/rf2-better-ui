@@ -79,4 +79,9 @@ export class SetupsComponent implements OnInit {
     this.store.dispatch(GarageActions.factoryDefault());
     this.dialogRef.close();
   }
+
+  scrollToCurrent(): void {
+    const element: HTMLElement = document.querySelector('#current');
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 }
