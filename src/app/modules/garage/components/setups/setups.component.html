@@ -77,12 +77,23 @@
           <span class="cursor-pointer">Show Only Relevant</span>
         </div>
 
-        <button class="bg-transparent p-0" (click)="scrollToCurrent()" title="Go to current folder">
-          <i class="fa fa-folder"></i>
-        </button>
+        <div>
+          <button
+            class="bg-transparent p-0 pr-2"
+            (click)="setupTree.openActiveSetupFolder(); scrollToCurrentFile()"
+            title="Go to current setup"
+          >
+            <i class="fa fa-file"></i>
+          </button>
+
+          <button class="bg-transparent p-0" (click)="scrollToCurrentFolder()" title="Go to current folder">
+            <i class="fa fa-folder"></i>
+          </button>
+        </div>
       </div>
       <div>
         <rf-setup-tree
+          #setupTree
           [activeSetupName]="activeSetupName$ | async"
           [compareToSetup]="compareToSetup$ | async"
           [setups]="setups$ | async"

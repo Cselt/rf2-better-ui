@@ -80,8 +80,15 @@ export class SetupsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  scrollToCurrent(): void {
-    const element: HTMLElement = document.querySelector('#current');
+  scrollToCurrentFolder(): void {
+    const element: HTMLElement = document.querySelector('#currentFolder');
     element.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrollToCurrentFile(): void {
+    setTimeout(() => {
+      const element: HTMLElement = document.querySelector('#currentFile');
+      element.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }
 }

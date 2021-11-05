@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Setup } from '../../interfaces/setup';
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -72,6 +72,8 @@ export class SetupTreeComponent {
   public filter: string = '';
   public isDirectory = (idx: number, node: ExtendedSetup): boolean => node.isDirectory;
 
+  constructor(private cd: ChangeDetectorRef) {}
+
   getParentNode(node: ExtendedSetup): ExtendedSetup {
     const nodeIndex: number = this._setups.indexOf(node);
 
@@ -114,5 +116,13 @@ export class SetupTreeComponent {
 
   trackBy(index: number, item: ExtendedSetup): string {
     return item.name;
+  }
+
+  openActiveSetupFolder(): void {
+    const active: ExtendedSetup = this._setups.find((s: ExtendedSetup) => s.name === this.activeSetupName);
+    const parent = this.getParentNode(active);
+    parent.isExpanded = true;
+    this.treeControl.expand(parent);
+    this.cd.markForCheck();
   }
 }
