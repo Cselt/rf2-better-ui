@@ -44,3 +44,5 @@ export const currentTrackFolderLoaded = createAction(
   '[Garage] Current Track Folder Loaded',
   props<{ currentTrackFolder: string }>()
 );
+
+export const copySetup = createAction('[Garage] Copy Setup', props<{ dest: string; src: string }>());

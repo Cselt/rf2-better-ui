@@ -6,6 +6,7 @@ import { Setup } from '../../interfaces/setup';
 import * as GarageSelectors from '../../state/garage.selectors';
 import { Observable } from 'rxjs';
 import { DeleteConfirmPopupComponent } from '../delete-confirm-popup/delete-confirm-popup.component';
+import { CopySetupPopupComponent } from '../copy-setup-popup/copy-setup-popup.component';
 
 @Component({
   selector: 'rf-setups',
@@ -24,6 +25,7 @@ export class SetupsComponent implements OnInit {
   public showingOnlyRelevant$: Observable<boolean> = this.store.pipe(select(GarageSelectors.showingOnlyRelevant));
   public compareToSetup$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCompareSetup));
   public currentTrackFolder$: Observable<string> = this.store.pipe(select(GarageSelectors.selectCurrentTrackFolder));
+  public setupFolders$: Observable<Setup[]> = this.store.pipe(select(GarageSelectors.selectSetupFolders));
 
   constructor(private dialogRef: MatDialogRef<SetupsComponent>, private store: Store, private dialog: MatDialog) {}
 
@@ -90,5 +92,22 @@ export class SetupsComponent implements OnInit {
       const element: HTMLElement = document.querySelector('#currentFile');
       element.scrollIntoView({ behavior: 'smooth' });
     }, 0);
+  }
+
+  openCopyPopup(setupFolders: Setup[], setupName: string): void {
+    this.dialog
+      .open(CopySetupPopupComponent, {
+        panelClass: ['noDialogPadding', 'rfPanel'],
+        height: '70vh',
+        maxHeight: '70vh',
+        data: { setupFolders, setupName }
+      })
+      .afterClosed()
+      .subscribe((result: { selectedFolder: Setup; setupName: string }) => {
+        if (!result) return;
+        this.store.dispatch(
+          GarageActions.copySetup({ dest: `${result.selectedFolder.name}${result.setupName}`, src: setupName })
+        );
+      });
   }
 }

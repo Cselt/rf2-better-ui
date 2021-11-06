@@ -141,5 +141,13 @@ export class GarageEffects {
     )
   );
 
+  copySetup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GarageActions.copySetup),
+      switchMap((data: { dest: string; src: string }) => this.service.copySetup(data.dest, data.src)),
+      map(() => GarageActions.loadSetups())
+    )
+  );
+
   constructor(private actions$: Actions, private store: Store<GarageState>, private service: GarageService) {}
 }

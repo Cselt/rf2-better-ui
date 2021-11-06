@@ -1,25 +1,6 @@
 <div class="flex flex-col">
   <!-- Header -->
-  <div class="flex justify-between items-center mb-5">
-    <h2 class="text-gray-400 italic select-none">Setups</h2>
-
-    <button (click)="close()" class="transform-gpu active:scale-90 bg-transparent p-0">
-      <svg
-        class="h-8 w-8 cursor-pointer fill-current text-gray-400 hover:text-black"
-        aria-hidden="true"
-        data-prefix="fas"
-        data-icon="times"
-        role="img"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 352 512"
-      >
-        <path
-          fill="currentColor"
-          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-        ></path>
-      </svg>
-    </button>
-  </div>
+  <rf-popup-header (closeClicked)="close()">Setups</rf-popup-header>
 
   <!-- Content -->
   <div class="flex">
@@ -57,8 +38,13 @@
           </button>
         </div>
 
-        <div class="flex flex-shrink-0 space-x-2">
-          <button class="flex-1 w-2/4" rf-button>Copy</button>
+        <div
+          class="flex flex-shrink-0 space-x-2"
+          *ngIf="{ setupName: setupName$ | async, setupFolders: setupFolders$ | async } as context"
+        >
+          <button class="flex-1 w-2/4" rf-button (click)="openCopyPopup(context.setupFolders, context.setupName)">
+            Copy
+          </button>
           <button class="flex-1 w-2/4" rf-button (click)="loadFactoryDefault()">Defaults</button>
         </div>
       </div>

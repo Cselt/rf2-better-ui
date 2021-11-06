@@ -1,0 +1,32 @@
+<div class="flex flex-col h-full">
+  <div class="flex-grow-0">
+    <rf-popup-header (closeClicked)="cancel()">Copy setup to folder</rf-popup-header>
+  </div>
+
+  <!-- Folder list -->
+  <div class="overflow-hidden flex-grow relative">
+    <div class="absolute overflow-auto top-0 left-0 right-0 bottom-0" #setupList>
+      <div
+        *ngFor="let folder of data.setupFolders"
+        class="cursor-pointer hover:bg-gray-200 w-full"
+        [class.bg-gray-200]="selectedFolder === folder"
+        [id]="selectedFolder === folder ? 'selected' : undefined"
+        (click)="selectedFolder = folder"
+      >
+        <span>{{ folder.name }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="flex-grow-0 pt-2">
+    <div>
+      <span>{{ selectedFolder?.name }}</span>
+      <input [(ngModel)]="setupName" />
+    </div>
+    <div class="flex bg-gray-300 py-6 space-x-2 justify-center">
+      <button rf-button color="secondary" (click)="cancel()">Cancel</button>
+      <button rf-button (click)="copy()">Copy</button>
+    </div>
+  </div>
+</div>

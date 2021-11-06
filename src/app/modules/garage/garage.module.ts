@@ -13,6 +13,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatButtonModule } from '@angular/material/button';
 import { DeleteConfirmPopupComponent } from './components/delete-confirm-popup/delete-confirm-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CopySetupPopupComponent } from './components/copy-setup-popup/copy-setup-popup.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatDialogModule
   ],
-  declarations: [SetupsComponent, SetupTreeComponent, DeleteConfirmPopupComponent],
+  declarations: [SetupsComponent, SetupTreeComponent, DeleteConfirmPopupComponent, CopySetupPopupComponent],
   providers: [GarageService],
   exports: [SetupsComponent]
 })

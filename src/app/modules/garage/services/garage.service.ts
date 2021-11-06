@@ -60,4 +60,8 @@ export class GarageService {
   public loadCurrentTrackFolder(): Observable<string> {
     return this.http.get('/rest/garage/currentTrackFolder', { responseType: 'text' });
   }
+
+  public copySetup(dest: string, src: string): Observable<void> {
+    return this.http.post<void>(`/rest/garage/setup/copysetup`, { dest, src });
+  }
 }

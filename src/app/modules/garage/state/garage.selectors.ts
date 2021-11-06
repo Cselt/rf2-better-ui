@@ -52,3 +52,8 @@ export const selectCurrentTrackFolder: MemoizedSelector<GarageState, string> = c
   selectGarageState,
   (state: GarageState) => state.currentTrackFolder
 );
+
+export const selectSetupFolders: MemoizedSelector<GarageState, Setup[]> = createSelector(
+  selectSetups,
+  (setups: Setup[]) => setups?.filter((setup: Setup) => setup?.name.endsWith('\\') && setup?.modified === '')
+);
