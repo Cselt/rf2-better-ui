@@ -82,18 +82,6 @@ export class SetupsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  scrollToCurrentFolder(): void {
-    const element: HTMLElement = document.querySelector('#currentFolder');
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  scrollToCurrentFile(): void {
-    setTimeout(() => {
-      const element: HTMLElement = document.querySelector('#currentFile');
-      element.scrollIntoView({ behavior: 'smooth' });
-    }, 0);
-  }
-
   openCopyPopup(setupFolders: Setup[], setupName: string): void {
     this.dialog
       .open(CopySetupPopupComponent, {

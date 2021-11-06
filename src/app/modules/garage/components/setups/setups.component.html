@@ -64,15 +64,11 @@
         </div>
 
         <div>
-          <button
-            class="bg-transparent p-0 pr-2"
-            (click)="setupTree.openActiveSetupFolder(); scrollToCurrentFile()"
-            title="Go to current setup"
-          >
+          <button class="bg-transparent p-0 pr-2" (click)="setupTree.scrollToCurrentFile()" title="Go to current setup">
             <i class="fa fa-file"></i>
           </button>
 
-          <button class="bg-transparent p-0" (click)="scrollToCurrentFolder()" title="Go to current folder">
+          <button class="bg-transparent p-0" (click)="setupTree.scrollToCurrentFolder()" title="Go to current folder">
             <i class="fa fa-folder"></i>
           </button>
         </div>

@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { Setup } from '../../interfaces/setup';
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -16,6 +25,9 @@ export interface ExtendedSetup extends Setup {
 })
 export class SetupTreeComponent {
   private _setups: ExtendedSetup[];
+
+  @ViewChild('treeList')
+  tree: ElementRef<HTMLDivElement>;
 
   @Input()
   setupsLoading: boolean;
@@ -124,5 +136,14 @@ export class SetupTreeComponent {
     parent.isExpanded = true;
     this.treeControl.expand(parent);
     this.cd.markForCheck();
+  }
+
+  scrollToCurrentFolder(): void {
+    this.tree.nativeElement.querySelector('#currentFolder').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrollToCurrentFile(): void {
+    this.openActiveSetupFolder();
+    setTimeout(() => this.tree.nativeElement.querySelector('#currentFile').scrollIntoView({ behavior: 'smooth' }));
   }
 }
