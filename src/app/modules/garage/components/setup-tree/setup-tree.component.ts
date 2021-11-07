@@ -136,18 +136,20 @@ export class SetupTreeComponent {
   }
 
   openSetupFolder(setup: ExtendedSetup): void {
+    if (!setup) return;
     const parent = this.getParentNode(setup);
+    if (!parent) return;
     parent.isExpanded = true;
     this.treeControl.expand(parent);
     this.cd.markForCheck();
   }
 
   scrollToCurrentFolder(): void {
-    this.tree.nativeElement.querySelector('#currentFolder').scrollIntoView({ behavior: 'smooth' });
+    this.tree.nativeElement.querySelector('#currentFolder')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   scrollToCurrentFile(): void {
     this.openActiveSetupFolder();
-    setTimeout(() => this.tree.nativeElement.querySelector('#currentFile').scrollIntoView({ behavior: 'smooth' }));
+    setTimeout(() => this.tree.nativeElement.querySelector('#currentFile')?.scrollIntoView({ behavior: 'smooth' }));
   }
 }
