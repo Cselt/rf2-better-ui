@@ -4,17 +4,15 @@
   </div>
 
   <!-- Folder list -->
-  <div class="overflow-hidden flex-grow relative px-4">
-    <div class="absolute overflow-auto top-0 left-0 right-0 bottom-0 px-4" #setupList>
-      <div
-        *ngFor="let folder of data.setupFolders"
-        class="cursor-pointer hover:bg-gray-200 w-full py-1"
-        [class.bg-gray-200]="selectedFolder === folder"
-        [id]="selectedFolder === folder ? 'selected' : undefined"
-        (click)="selectedFolder = folder"
-      >
-        <span>{{ folder.name }}</span>
-      </div>
+  <div class="overflow-auto h-full px-4" #setupList>
+    <div
+      *ngFor="let folder of data.setupFolders"
+      class="cursor-pointer hover:bg-gray-200 w-full py-1"
+      [class.bg-gray-200]="selectedFolder === folder"
+      [id]="selectedFolder === folder ? 'selected' : undefined"
+      (click)="selectedFolder = folder"
+    >
+      <span>{{ folder.name }}</span>
     </div>
   </div>
 
