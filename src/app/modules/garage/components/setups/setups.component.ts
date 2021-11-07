@@ -88,6 +88,7 @@ export class SetupsComponent implements OnInit {
         panelClass: ['noDialogPadding', 'rfPanel'],
         height: '70vh',
         maxHeight: '70vh',
+        width: '40vw',
         data: { setupFolders, setupName }
       })
       .afterClosed()

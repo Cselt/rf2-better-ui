@@ -86,7 +86,7 @@ export class SetupTreeComponent {
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  getParentNode(node: ExtendedSetup): ExtendedSetup {
+  getParentNode(node: ExtendedSetup): ExtendedSetup | null {
     const nodeIndex: number = this._setups.indexOf(node);
 
     for (let i = nodeIndex - 1; i >= 0; i--) {
@@ -132,7 +132,11 @@ export class SetupTreeComponent {
 
   openActiveSetupFolder(): void {
     const active: ExtendedSetup = this._setups.find((s: ExtendedSetup) => s.name === this.activeSetupName);
-    const parent = this.getParentNode(active);
+    this.openSetupFolder(active);
+  }
+
+  openSetupFolder(setup: ExtendedSetup): void {
+    const parent = this.getParentNode(setup);
     parent.isExpanded = true;
     this.treeControl.expand(parent);
     this.cd.markForCheck();

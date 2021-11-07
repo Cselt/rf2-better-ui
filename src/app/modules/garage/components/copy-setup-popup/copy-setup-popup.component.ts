@@ -24,7 +24,7 @@ export class CopySetupPopupComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setupList.nativeElement.querySelector('#selected').scrollIntoView({ block: 'center' });
+    this.setupList.nativeElement.querySelector('#selected')?.scrollIntoView({ block: 'center' });
   }
 
   cancel(): void {
