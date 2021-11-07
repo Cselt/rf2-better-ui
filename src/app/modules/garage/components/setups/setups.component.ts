@@ -15,7 +15,7 @@ import { CopySetupPopupComponent } from '../copy-setup-popup/copy-setup-popup.co
 })
 export class SetupsComponent implements OnInit {
   @HostBinding('class')
-  flexClass: string[] = ['flex', 'flex-col'];
+  flexClass: string[] = ['flex', 'flex-col', 'h-full'];
 
   public setups$: Observable<Setup[]> = this.store.pipe(select(GarageSelectors.selectSetups));
   public setupsLoading$: Observable<boolean> = this.store.pipe(select(GarageSelectors.selectSetupsLoading));
