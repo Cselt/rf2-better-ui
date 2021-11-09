@@ -20,7 +20,7 @@
 
       <!-- Buttons -->
       <div class="pl-2 pr-4">
-        <div class="flex flex-shrink-0 space-x-2">
+        <div class="flex flex-shrink-0 space-x-4">
           <button class="flex-1" rf-button (click)="loadSelected()">Load</button>
           <button
             *ngIf="{ setup: setupName$ | async } as context"
@@ -33,7 +33,7 @@
           </button>
         </div>
 
-        <div class="flex flex-shrink-0 space-x-2">
+        <div class="flex flex-shrink-0 space-x-4">
           <button class="flex-1 w-2/4" rf-button color="blue" (click)="compare()">Compare</button>
           <button
             *ngIf="{ setup: setupName$ | async } as context"
@@ -47,7 +47,7 @@
         </div>
 
         <div
-          class="flex flex-shrink-0 space-x-2"
+          class="flex flex-shrink-0 space-x-4"
           *ngIf="{ setupName: setupName$ | async, setupFolders: setupFolders$ | async } as context"
         >
           <button

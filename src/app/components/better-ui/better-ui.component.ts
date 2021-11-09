@@ -59,7 +59,8 @@ export class BetterUiComponent implements OnInit, AfterViewInit {
         quitLi.classList.add('fa', 'fa-power-off');
         quitLi.addEventListener('click', () =>
           this.dialog.open(ExitDialogComponent, {
-            panelClass: ['noDialogPadding', 'rfPanel']
+            panelClass: ['noDialogPadding', 'rfPanel'],
+            width: '25vw'
           })
         );
         ol.appendChild(quitLi);

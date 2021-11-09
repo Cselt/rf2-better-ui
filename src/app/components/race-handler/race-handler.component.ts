@@ -89,7 +89,8 @@ export class RaceHandlerComponent implements OnInit {
       exitButton.innerHTML = `<span>Exit game</span>`;
       exitButton.addEventListener('click', () =>
         this.dialog.open(ExitDialogComponent, {
-          panelClass: ['noDialogPadding', 'rfPanel']
+          panelClass: ['noDialogPadding', 'rfPanel'],
+          width: '25vw'
         })
       );
 

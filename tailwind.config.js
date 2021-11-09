@@ -6,6 +6,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        'popup-title': '#b5b8ba',
+        'popup-footer': '#ccc'
+      },
       skew: {
         22: '22deg',
         '-22': '-22deg'
