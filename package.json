@@ -1,6 +1,6 @@
 {
   "name": "rf2-better-ui",
-  "version": "3.3.0",
+  "version": "4.0.0",
   "scripts": {
     "ng": "ng",
     "start": "cross-env NG_PERSISTENT_BUILD_CACHE=1 ng serve --live-reload=false",
