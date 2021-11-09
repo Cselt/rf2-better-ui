@@ -22,7 +22,7 @@ export class SpinBoxComponent {
   @Output()
   selectedValueChange: EventEmitter<unknown> = new EventEmitter<unknown>();
 
-  private selectedIdx: number = -1;
+  public selectedIdx: number = -1;
 
   decrease(): void {
     if (this.selectedIdx === 0) {
