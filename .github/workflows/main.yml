@@ -4,14 +4,15 @@ on:
   push:
     tags:
       - v*
+  workflow_dispatch:
 
 jobs:
   build:
-    name: "Build Better-UI"
+    name: 'Build Better-UI'
     runs-on: windows-latest
     strategy:
       matrix:
-       node-version: [12.x]
+        node-version: [12.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -38,7 +39,7 @@ jobs:
         id: zip
         name: Download 7-zip
         with:
-          url: "https://www.7-zip.org/a/7za920.zip"
+          url: 'https://www.7-zip.org/a/7za920.zip'
           target: dist/7-zip
 
       - name: Decompress 7-zip
@@ -48,7 +49,7 @@ jobs:
         id: locate-plugin
         name: Download locate plguin
         with:
-          url: "https://nsis.sourceforge.io/mediawiki/images/a/af/Locate.zip"
+          url: 'https://nsis.sourceforge.io/mediawiki/images/a/af/Locate.zip'
           target: dist/plugins
 
       - name: Decompress Locate plugin
@@ -86,11 +87,11 @@ jobs:
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
         with:
-          script-file: "installer/install.nsi"
+          script-file: 'installer/install.nsi'
 
       - name: Push Build to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "dist/installer/*"
+          artifacts: 'dist/installer/*'
           token: ${{ secrets.TOKEN }}
           prerelease: true
